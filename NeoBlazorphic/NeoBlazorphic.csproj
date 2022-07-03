@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <IsPublishable>True</IsPublishable>
+    <PackageId>$(AssemblyName)</PackageId>
+    <VersionPrefix>0.0.1</VersionPrefix>
+	<VersionSuffix>alpha1</VersionSuffix>
+	<Company>None</Company>
+	<Authors>benoit_hoffman</Authors>
+	<Description>Blazor component library using the neomorphism style</Description>
+	<RepositoryUrl>https://github.com/Petit-Pas/neo-blazorphic</RepositoryUrl>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.5" />
+  </ItemGroup>
+
+</Project>
