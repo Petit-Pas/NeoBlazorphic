@@ -14,6 +14,14 @@
 	<RepositoryUrl>https://github.com/Petit-Pas/neo-blazorphic</RepositoryUrl>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\app.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\app.scss" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />

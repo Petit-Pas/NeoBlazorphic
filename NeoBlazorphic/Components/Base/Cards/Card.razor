@@ -1,0 +1,10 @@
+﻿@using NeoBlazorphic.UserInteraction.Mouse.BaseComponents
+
+@inherits MouseInteractiveBaseComponent
+
+<div class="@shadowStyle p-3 rounded-xl @shapeStyle @CustomClasses" 
+    @onmouseover=OnMouseOver @onmouseout=OnMouseOut
+    @onmousedown=OnMouseDown @onmouseup=OnMouseUp
+    @onclick=OnMouseClick>
+    @ChildContent
+</div>
