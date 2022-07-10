@@ -1,22 +1,50 @@
-﻿@tailwind base;
-@tailwind components;
-@tailwind utilities;
+﻿@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 // Different shapes handled by the library
 // Mirrors what you can find in NeoBlazorphic.StyleParameters.BackgroundShape
 
+
+// I cannot have a tailwind file starting with a property
+// I had one before, the transition animation were not working properly
+.do-not-use{
+}
+
+@property --base-card-left-color {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: red;
+}
+
+@property --base-card-right-color {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: red;
+}
+
+.base-card-shape {
+    --base-card-left-color: var(--main-color);
+    --base-card-right-color: var(--main-color);
+    background: linear-gradient(145deg, var(--base-card-left-color), var(--base-card-right-color));
+    transition: --base-card-left-color 0.2s, 
+                --base-card-right-color 0.2s;
+}
+
 .flat {
-    background: var(--main-color)
+    --base-card-left-color: var(--main-color);
+    --base-card-right-color: var(--main-color);
 }
 
 .convex {
-    background: linear-gradient(145deg, var(--light-color), var(--dark-color))
+    --base-card-left-color: var(--light-color);
+    --base-card-right-color: var(--dark-color);
 }
 
 .concave {
-    background: linear-gradient(145deg, var(--dark-color), var(--light-color))
+    --base-card-left-color: var(--dark-color);
+    --base-card-right-color: var(--light-color);
 }
-
 
 // Default colors served with the library
 // more can be used if defined with the same variables.

@@ -5,10 +5,37 @@
 
 <PageTitle>Weather forecast</PageTitle>
 
+
+
 <div class="neo-danger p-3" style="background: var(--main-color)">
+
+    <svg viewBox="0 0 100 100" style="fill:gold; stroke: transparent; transform: rotate(-90deg)">
+        @{
+            string pathString = "M 10 30 L 20 25 Q 22.2 30 20 35 L 10 30";
+        }
+        <path class="shadow-neo-out" d=@pathString style="filter:drop-shadow(0px 0px 1px black); transform-origin:10px 30px; transform: rotate(-107deg) scale(1.15) ;" ></path>
+        <path class="shadow-neo-out grow" d=@pathString style="filter:drop-shadow(0px 0px 1px black); transform-origin:10px 30px; transform: rotate(-53.5deg) ;" ></path>
+        <path class="shadow-neo-out grow" d=@pathString style="filter:drop-shadow(0px 0px 1px black)"></path>
+        <path class="shadow-neo-out" @onmouseover="() => mouseOver(true)" @onmouseout="() => mouseOver(false)" d=@pathString style=" transition: all .1s ease-in-out; filter:drop-shadow(0px 0px 1px black); transform-origin:10px 30px; transform: rotate(53.5deg) @scale ;" ></path>
+        <path class="shadow-neo-out grow grow:hover" d=@pathString style="filter:drop-shadow(0px 0px 1px black); transform-origin:10px 30px; transform: rotate(107deg) ;" ></path>
+    </svg>
+
+
 
 <ButtonCard>
     <div> Oui le texte </div>
 </ButtonCard>
 
 </div>
+
+@code{
+    public string scale { get; set; }
+
+    public void mouseOver(bool set)
+    {
+        if (set)
+            scale = "scale(1.15)";
+        else
+            scale = "";
+    }
+}
