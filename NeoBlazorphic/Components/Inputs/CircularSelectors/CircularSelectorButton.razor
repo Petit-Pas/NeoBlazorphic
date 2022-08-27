@@ -1,0 +1,63 @@
+﻿@using NeoBlazorphic.Math.Units
+@using NeoBlazorphic.StyleParameters
+@using NeoBlazorphic.UserInteraction.Mouse.BaseComponents
+
+@inherits MouseInteractiveBaseComponent
+
+@{
+    var angleInRadians = Converter.ToRadian(ButtonAngle); 
+    var labelX = (Math.Cos(angleInRadians / 2) * 15).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+    var labelY = (-(Math.Sin(angleInRadians / 2) * 15)).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+}
+
+@{
+    //double baseXPoint = 1;
+    //double baseYPoint = -1;
+    // we take base angle as 45 deg
+
+    var angleInRadiansForGradient = Converter.ToRadian(AngleShift + 135);
+
+    string originX = "-14";
+    string originY = "-14";
+    string endX = "14";
+    string endY = "14";
+
+    string gradientAngle = "0";
+
+    originX = (Math.Cos(angleInRadiansForGradient) * 20).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+    originY = (-Math.Sin(angleInRadiansForGradient) * 20).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+    endX = (-Math.Cos(angleInRadiansForGradient) * 20).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+    endY = (Math.Sin(angleInRadiansForGradient) * 20).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+
+   
+    
+}
+
+
+
+<g class="@(IsSelected ? "neo-primary" : "")" style="transition: all .15s ease-in-out; " transform="rotate(@($"{AngleShift}")) scale(@_scaleFactor)">
+    <defs>
+        <linearGradient id=@($"{UID}-ButtonGradient") x1=@originX y1=@originY x2=@endX y2=@endY gradientUnits="userSpaceOnUse">
+            @if (Shape == BackgroundShape.Concave)
+            {
+                <stop offset="0%" stop-color="var(--dark-color)"/>
+                <stop offset="100%" stop-color="var(--light-color)"/>
+            }
+            else if (Shape == BackgroundShape.Convex)
+            {
+                <stop offset="0%" stop-color="var(--light-color)"/>
+                <stop offset="100%" stop-color="var(--dark-color)"/>
+            }
+        </linearGradient>
+</defs>
+    <path d=@PathString
+        style="transition: all .15s ease-in-out;  "
+        fill="url(@($"#{UID}-ButtonGradient"))"
+        @onmouseover=OnMouseOver @onmouseout=OnMouseOut
+        @onmousedown=OnMouseDown @onmouseup=OnMouseUp
+        @onclick=OnMouseClick>
+    </path>
+
+    <text text-anchor="middle" x=@labelX y=@labelY style="fill:white; stroke: transparent; font: normal 4px Verdana, Helvetica, Arial, sans-serif; pointer-events: none;" transform="rotate(@($"{-AngleShift}") @labelX @labelY)" > @Index </text>
+
+</g>

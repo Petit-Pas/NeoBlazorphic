@@ -1,0 +1,38 @@
+﻿@inherits UiComponentBase
+
+@using NeoBlazorphic.StyleParameters
+
+<svg width=@ViewBoxSize height=@ViewBoxSize viewBox="-25 -25 50 50" style="fill: #202020; stroke: transparent; filter:drop-shadow(5px 5px 5px var(--dark-shadow)) drop-shadow(-5px -5px 5px var(--light-shadow)); stroke-width:0.15px">
+    <defs>
+      @{
+        string value = "200%";
+      }
+      <linearGradient id=@($"{UID}-CenterGradient") x1="0.25" y1="0.25" x2="0.75" y2="0.75">
+          @if (Shape == BackgroundShape.Concave)
+          {
+              <stop offset="0%" stop-color="var(--light-color)"/>
+              <stop offset="100%" stop-color="var(--dark-color)"/>
+          }
+          else if (Shape == BackgroundShape.Convex)
+          {
+              <stop offset="0%" stop-color="var(--dark-color)"/>
+              <stop offset="100%" stop-color="var(--light-color)"/>
+          }
+      </linearGradient>
+  </defs>
+@{
+    string pathString = $"M 0 0 L 20 0 A 20 20 0 0 0 {AngleEnd.X.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)} {AngleEnd.Y.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)} L 0 0";
+}
+
+    @for (var i = 0; i != AmountButtons; i += 1) {
+        int angle = -i * ButtonAngle + AngleOffset;
+        int stock = i;
+        // we need to draw the selected one last
+        <CircularSelectorButton Shape=@Shape AngleShift=@angle ButtonAngle="ButtonAngle" IsSelected=@(SelectedIndex == AmountButtons - stock) PathString=@pathString OnMouseClickCallBack="(e) => OnButtonClicked((int)AmountButtons - stock)" OnMouseOverCallBack="(e) => OnButtonMouseOver((int)AmountButtons - stock)" Index=@((int)AmountButtons - i)></CircularSelectorButton>
+    }
+   
+
+<circle cx="0" cy="0" r="10" style="stroke-width:0.15px; fill:url(@($"#{UID}-CenterGradient"));">
+    </circle>
+    <text text-anchor="middle" x="0" y="1" style="fill:white; stroke: transparent;font: bold 4px Verdana, Helvetica, Arial, sans-serif;pointer-events: none;"> @CenterText </text>
+</svg>

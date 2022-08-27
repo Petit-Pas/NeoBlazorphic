@@ -30,6 +30,21 @@ namespace NeoBlazorphic.Components.Base.Cards
         [Parameter, EditorRequired]
         public RenderFragment ChildContent { get; set; } = default!;
 
+        [Parameter]
+        public bool TextSelectable
+        {
+            get => _textSelectable;
+            set
+            {
+                if (value != _textSelectable)
+                {
+                    SetNewTextSelectableStyle(value);
+                    _textSelectable = value;
+                }
+            }
+        }
+        private bool _textSelectable = true;
+        private string textSelectableStyle = "";
 
         [Parameter]
         public BackgroundShape Shape
@@ -82,7 +97,6 @@ namespace NeoBlazorphic.Components.Base.Cards
                     Shape = BackgroundShape.Flat;
                     break;
             }
-            StateHasChanged();
         }
 
         private void SetNewShadowStyle(ShadowPosition newShadow)
@@ -100,7 +114,19 @@ namespace NeoBlazorphic.Components.Base.Cards
                     ShadowPosition = ShadowPosition.Out;
                     break;
             }
-            StateHasChanged();
+        }
+
+        private void SetNewTextSelectableStyle(bool selectable)
+        {
+            switch (selectable)
+            {
+                case true:
+                    textSelectableStyle = "";
+                    break;
+                case false:
+                    textSelectableStyle = "select-none";
+                    break;
+            }
         }
     }
 }

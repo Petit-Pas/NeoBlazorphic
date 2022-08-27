@@ -12,6 +12,7 @@
 	<Authors>benoit_hoffman</Authors>
 	<Description>Blazor component library using the neomorphism style</Description>
 	<RepositoryUrl>https://github.com/Petit-Pas/neo-blazorphic</RepositoryUrl>
+	<InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
   <ItemGroup>

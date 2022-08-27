@@ -46,8 +46,8 @@
     --base-card-right-color: var(--light-color);
 }
 
-// Default colors served with the library
-// more can be used if defined with the same variables.
+/* Default colors served with the library
+ more can be used if defined with the same variables.*/
 
 .neo-primary {
     --main-color: #5100a1;
@@ -57,15 +57,28 @@
     --light-color: #6700ac;
     --text-color: white;
     color: var(--text-color);
+    background: var(--main-color);
 }
 
 .neo-danger {
     --main-color: #d92645;
     --dark-shadow: #570f1c;
     --light-shadow: #ff3d6e;
-    --dark-color: #c3223e;
-    --light-color: #e8294a;
+    --dark-color: #af1e37;
+    --light-color: #ea3e5c;
     --text-color: white;
     color: var(--text-color);
+    background: var(--main-color);
+}
+
+.neo-gray {
+    --main-color: #202020;
+    --dark-shadow: #0d0d0d;
+    --light-shadow: #333333;
+    --dark-color: #1a1a1a;
+    --light-color: #383838;
+    --text-color: white;
+    color: var(--text-color);
+    background: var(--main-color);
 }
 

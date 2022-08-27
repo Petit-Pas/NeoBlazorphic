@@ -1,0 +1,66 @@
+﻿@page "/CardDemo"
+@using NeoBlazorphic.Components.Base.Cards
+@using NeoBlazorphic.StyleParameters
+
+<h2>Card</h2>
+
+<div>
+    The Card control is used as a container for other controls.
+    It can be either digged out or digged in, and it can have a flat, concave or convex shape
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <div class="m-3">
+            <Card Shape="BackgroundShape.Flat" ShadowPosition="ShadowPosition.Out">
+                Card example with text.
+                Shape is Flat shadows are Out.
+            </Card>
+        </div>
+        <div class="m-3">
+            <Card Shape="BackgroundShape.Concave" ShadowPosition="ShadowPosition.Out">
+                Card example with text.
+                Shape is Concave shadows are Out.
+            </Card>
+        </div>
+        <div class="m-3">
+            <Card Shape="BackgroundShape.Convex" ShadowPosition="ShadowPosition.Out">
+                Card example with text.
+                Shape is Convex shadows are Out.
+            </Card>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="m-3">
+            <Card Shape="BackgroundShape.Flat" ShadowPosition="ShadowPosition.In">
+                Card example with text.
+                Shape is Flat shadows are In.
+            </Card>
+        </div>
+        <div class="m-3">
+            <Card Shape="BackgroundShape.Concave" ShadowPosition="ShadowPosition.In">
+                Card example with text.
+                Shape is Concave shadows are In.
+            </Card>
+        </div>
+        <div class="m-3">
+            <Card Shape="BackgroundShape.Convex" ShadowPosition="ShadowPosition.In">
+                Card example with text.
+                Shape is Convex shadows are In.
+            </Card>
+        </div>
+
+    </div>
+</div>
+
+<div> The text on the button by default is selectable, but you can set the TextSelectable parameter to change that behavior </div>
+<div class="m-3">
+    <Card TextSelectable=false>
+        Here you cannot select the text
+    </Card>
+</div>
+
+
+@code {
+
+}

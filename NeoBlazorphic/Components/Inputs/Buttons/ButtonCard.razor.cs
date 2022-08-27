@@ -13,7 +13,7 @@ namespace NeoBlazorphic.Components.Inputs.Buttons
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            CustomClasses += " select-none ";
+            TextSelectable = false;
         }
 
         protected override async Task OnMouseOut(MouseEventArgs args)

@@ -1,6 +1,8 @@
 ﻿@page "/fetchdata"
 @using NeoBlazorphic
+@using NeoBlazorphic.Components.Base.Cards
 @using NeoBlazorphic.Components.Inputs.Buttons
+@using NeoBlazorphic.Components.Inputs.CircularSelectors
 @inject HttpClient Http
 
 <PageTitle>Weather forecast</PageTitle>
@@ -9,33 +11,41 @@
 
 <div class="neo-danger p-3" style="background: var(--main-color)">
 
-    <svg viewBox="0 0 100 100" style="fill:gold; stroke: transparent; transform: rotate(-90deg)">
-        @{
-            string pathString = "M 10 30 L 20 25 Q 22.2 30 20 35 L 10 30";
-        }
-        <path class="shadow-neo-out" d=@pathString style="filter:drop-shadow(0px 0px 1px black); transform-origin:10px 30px; transform: rotate(-107deg) scale(1.15) ;" ></path>
-        <path class="shadow-neo-out grow" d=@pathString style="filter:drop-shadow(0px 0px 1px black); transform-origin:10px 30px; transform: rotate(-53.5deg) ;" ></path>
-        <path class="shadow-neo-out grow" d=@pathString style="filter:drop-shadow(0px 0px 1px black)"></path>
-        <path class="shadow-neo-out" @onmouseover="() => mouseOver(true)" @onmouseout="() => mouseOver(false)" d=@pathString style=" transition: all .1s ease-in-out; filter:drop-shadow(0px 0px 1px black); transform-origin:10px 30px; transform: rotate(53.5deg) @scale ;" ></path>
-        <path class="shadow-neo-out grow grow:hover" d=@pathString style="filter:drop-shadow(0px 0px 1px black); transform-origin:10px 30px; transform: rotate(107deg) ;" ></path>
+    <CircularSelector AmountButtons="6" ButtonAngle=45 ViewBoxSize="500" AngleOffset="-130" CenterText=@centerText
+        OnItemSelected="(e) => selected = ((int)e.Item).ToString()" 
+        OnItemHovered="(e) => centerText = ((int)e.Item).ToString()">
+    </CircularSelector>
+
+    <div>Selected: @selected</div>
+
+    <ButtonCard>Oui</ButtonCard>
+
+    <svg width="500" height="500" viewBox="-20 -20 40 40">
+        <defs>
+            <linearGradient id=GradientZ x1="0" y1="0" x2="1" y2="1" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="white"/>
+                <stop offset="100%" stop-color="black"/>
+            </linearGradient>
+            <linearGradient id=GradientZZ x1="-20" y1="-20" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="white"/>
+                <stop offset="100%" stop-color="black"/>
+            </linearGradient>
+            <linearGradient id=GradientZZZ x1="-20" y1="20" x2="20" y2="-20" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="white"/>
+                <stop offset="100%" stop-color="black"/>
+            </linearGradient>
+        </defs>
+
+        <rect x="-20" y="-20" width="20" height="20" fill="url(#GradientZZ)"></rect>
+        <rect x="0" y="-20" width="20" height="20" fill="url(#GradientZZ)"></rect>
+        <rect x="-20" y="0" width="20" height="20" fill="url(#GradientZZ)"></rect>
+        <rect x="0" y="0" width="20" height="20" fill="url(#GradientZZZ)" transform="rotate(90 0 0)"></rect>
+
     </svg>
-
-
-
-<ButtonCard>
-    <div> Oui le texte </div>
-</ButtonCard>
 
 </div>
 
 @code{
-    public string scale { get; set; }
-
-    public void mouseOver(bool set)
-    {
-        if (set)
-            scale = "scale(1.15)";
-        else
-            scale = "";
-    }
+    public string centerText { get; set; } = "default";
+    public string selected { get; set; } = "default";
 }

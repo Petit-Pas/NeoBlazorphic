@@ -1,0 +1,48 @@
+﻿@page "/CircularSelectorDemo"
+
+@using NeoBlazorphic.Components.Inputs.CircularSelectors
+@using NeoBlazorphic.StyleParameters
+<h3>CircularSelectorDemo</h3>
+
+<div class="col">
+    <div class="row">
+        <div class="col-2"> Amount of buttons: @AmountButtons </div>
+        <button class="col-1 border-2 mx-2" @onclick="(e) => AmountButtons += 1"> + </button>
+        <button class="col-1 border-2" @onclick="(e) => AmountButtons -= 1"> - </button>
+    </div>
+
+    <div class="row">
+        <div class="col-2"> Size of buttons: @ButtonAngle ° </div>
+        <button class="col-1 border-2 mx-2" @onclick="(e) => ButtonAngle += 15"> + </button>
+        <button class="col-1 border-2" @onclick="(e) => ButtonAngle -= 15"> - </button>
+    </div>
+
+    <div class="row">
+        <div class="col-2"> Offset: @AngleOffset ° </div>
+        <button class="col-1 border-2 mx-2" @onclick="(e) => AngleOffset += 30"> + </button>
+        <button class="col-1 border-2" @onclick="(e) => AngleOffset -= 30"> - </button>
+    </div>
+</div>
+
+
+<CircularSelector AmountButtons=@AmountButtons AngleOffset=@AngleOffset ButtonAngle=@ButtonAngle 
+                  CenterText=@CenterText OnItemHovered="(e) => CenterText = e.ItemIndex.ToString()"
+                  Shape="BackgroundShape.Convex">
+</CircularSelector>
+
+<CircularSelector AmountButtons=@AmountButtons AngleOffset=@AngleOffset ButtonAngle=@ButtonAngle 
+                  CenterText=@CenterText OnItemHovered="(e) => CenterText = e.ItemIndex.ToString()"
+                  Shape="BackgroundShape.Concave">
+</CircularSelector>
+
+@code {
+    public EditContext context { get; set; } = new EditContext(new {});
+
+    public uint AmountButtons { get; set; } = 4;
+
+    public int ButtonAngle { get; set; } = 45;
+
+    public int AngleOffset { get; set; } = 0;
+
+    public string CenterText { get; set; } = "default";
+}

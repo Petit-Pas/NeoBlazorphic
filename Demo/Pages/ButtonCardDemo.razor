@@ -1,0 +1,40 @@
+﻿@page "/buttoncarddemo"
+@using NeoBlazorphic.Components.Inputs.Buttons
+
+<h3>ButtonCard</h3>
+
+<div> The button card control uses the Card control with animations interacting with the mouse</div>
+<div> Unlike with a card, you cannot select text of a ButtonCard</div>
+
+<div> Please note that animations work better with Chrome </div>
+
+<div class="m-3">
+    <ButtonCard OnMouseClickCallBack=OnClick>
+        Click Me!
+    </ButtonCard>
+</div>
+
+<div class="m-3" style="width: 100px; height: 100px">
+    <div class="h-full" >
+        <ButtonCard OnMouseClickCallBack=OnClick>
+            Click Me!
+        </ButtonCard>
+    </div>
+</div>
+
+@if (clicked)
+{
+    <div> Button click detected !</div>
+}
+
+@code {
+    public bool clicked { get; set; } = false;
+
+    public async void OnClick(MouseEventArgs ea)
+    {
+        clicked = true;
+        await Task.Delay(1000);
+        clicked = false;
+        StateHasChanged();
+    }
+}
