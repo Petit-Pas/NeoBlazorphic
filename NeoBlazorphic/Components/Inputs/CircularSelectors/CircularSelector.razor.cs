@@ -57,6 +57,9 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         [Parameter]
         public string CenterText { get; set; } = "Default";
 
+        [Parameter]
+        public string AccentClass { get; set; } = "neo-primary";
+
         protected int SelectedIndex { get; set; } = -1;
 
         protected override void OnInitialized()

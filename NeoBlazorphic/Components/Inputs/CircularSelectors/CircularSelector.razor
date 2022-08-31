@@ -28,7 +28,13 @@
     @for (var i = 0; i != AmountButtons; i += 1) {
         int angle = -i * ButtonAngle + AngleOffset;
         int stock = i;
-        <CircularSelectorButton Shape=@Shape AngleShift=@angle ButtonAngle="ButtonAngle" IsSelected=@(SelectedIndex == AmountButtons - stock) PathString=@pathString OnMouseClickCallBack="(e) => OnButtonClicked((int)AmountButtons - stock)" OnMouseOverCallBack="(e) => OnButtonMouseOver((int)AmountButtons - stock)" Index=@((int)AmountButtons - i)></CircularSelectorButton>
+        <CircularSelectorButton
+            Shape=@Shape AngleShift=@angle ButtonAngle="ButtonAngle"
+            IsSelected=@(SelectedIndex == AmountButtons - stock)
+            PathString=@pathString
+            OnMouseClickCallBack="(e) => OnButtonClicked((int)AmountButtons - stock)" OnMouseOverCallBack="(e) => OnButtonMouseOver((int)AmountButtons - stock)" Index=@((int)AmountButtons - i)
+            AccentClass=@AccentClass>
+        </CircularSelectorButton>
     }
     
     <!-- Drawing the center of the selector -->

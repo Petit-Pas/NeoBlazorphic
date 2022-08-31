@@ -51,6 +51,9 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         }
         private BackgroundShape _shape = BackgroundShape.Concave;
 
+        [Parameter]
+        public string AccentClass { get; set; } = "neo-primary";
+
         protected string Scale {
             get => _scaleFactor;
             set

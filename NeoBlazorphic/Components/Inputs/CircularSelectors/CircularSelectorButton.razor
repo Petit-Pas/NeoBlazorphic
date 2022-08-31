@@ -27,7 +27,7 @@
 
 
 
-<g class="@(IsSelected ? "neo-primary" : "")" style="transition: all .15s ease-in-out;" transform="rotate(@($"{AngleShift}")) scale(@_scaleFactor)">
+<g class="@(IsSelected ? AccentClass : "")" style="transition: all .15s ease-in-out;" transform="rotate(@($"{AngleShift}")) scale(@_scaleFactor)">
     <defs>
         <!-- Gradient for the button, we use the calculated origin to act as if all buttons where sharing the same gradient -->
         <linearGradient id=@($"{UID}-ButtonGradient") x1=@originX y1=@originY x2=@endX y2=@endY gradientUnits="userSpaceOnUse">
