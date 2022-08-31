@@ -41,7 +41,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
                 {
                     return;
                 }
-                if (value is not BackgroundShape.Concave or BackgroundShape.Convex)
+                if (value != BackgroundShape.Concave && value != BackgroundShape.Convex)
                 {
                     Console.WriteLine($"WARNING: CircularSelectorButton.Shape cannot be {Enum.GetName(value)}. Try with {Enum.GetName(BackgroundShape.Concave)} or {Enum.GetName(BackgroundShape.Convex)}");
                 }
