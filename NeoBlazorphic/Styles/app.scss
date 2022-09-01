@@ -27,8 +27,13 @@
     --base-card-left-color: var(--main-color);
     --base-card-right-color: var(--main-color);
     background: linear-gradient(145deg, var(--base-card-left-color), var(--base-card-right-color));
-    transition: --base-card-left-color 0.2s, 
-                --base-card-right-color 0.2s;
+    // TODO: cette transition n'a pas de sens:
+    // si je lis bien, ce code serait transcrit par :
+    // transition: #5100a1 .2s, #5100a1 .2s, ce qui n'a pas de sens.
+    // transition n'accepte que certains noms de propriétés et pas les valeurs elles-mêmes.
+    // ex: transition: padding .2s, margin-top .5s, background-color .2s;
+    /*    transition: --base-card-left-color 0.2s, 
+                --base-card-right-color 0.2s;*/
 }
 
 .flat {
@@ -48,6 +53,21 @@
 
 /* Default colors served with the library
  more can be used if defined with the same variables.*/
+
+// TODO: les propriétés color & background reçoivent toujours les mêmes valeurs.
+// n'hésite pas, sauf si cela devait changer, à en faire une classe commune à chacun des thèmes.
+/*.neo-base {
+    color: var(--text-color);
+    background: var(--main-color);
+}*/
+
+// TODO: je vois que utilises SCSS, mais aucune de ses fonctionnalités. A la place, tu utilises du CSS pur. 
+// Peut être que ce serait intéressant et ça simplifierait sûrement certaines déclarations de style.
+
+// TODO: tu mixes deux choses ici:
+// tes classes neo-* sont utilisées comme thème (drop down), 
+// mais aussi comme tranformation de couleur pour une classe de style graphique.
+// il faut vraiment éviter ça car les deux choses n'ont rien à voir.
 
 .neo-primary {
     --main-color: #5100a1;
@@ -80,4 +100,8 @@
     --text-color: white;
     color: var(--text-color);
     background: var(--main-color);
+}
+
+.selected {
+    filter: brightness(1.5);
 }

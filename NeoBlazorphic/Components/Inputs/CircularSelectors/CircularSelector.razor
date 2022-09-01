@@ -25,9 +25,12 @@
     }
     
     <!-- Drawing buttons first, to be able to draw the center above it -->
+    @*TODO: Tu devrais boucler sur un objet dédié qui contient les infos nécessaires à la def de tes composants.*@
+    @*TODO: petit truc sans importance, mais je pense que "ButtonsQuantity" est un peu plus adapté ici*@
     @for (var i = 0; i != AmountButtons; i += 1) {
         int angle = -i * ButtonAngle + AngleOffset;
         int stock = i;
+        // TODO: définit ton callback dans le code behind.
         <CircularSelectorButton
             Shape=@Shape AngleShift=@angle ButtonAngle="ButtonAngle"
             IsSelected=@(SelectedIndex == AmountButtons - stock)

@@ -43,6 +43,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
                 }
                 if (value != BackgroundShape.Concave && value != BackgroundShape.Convex)
                 {
+                    // TODO: tu peux simplement appeler BackgroundShape.Concave.ToString(), c'est plus lisible.
                     Console.WriteLine($"WARNING: CircularSelectorButton.Shape cannot be {Enum.GetName(value)}. Try with {Enum.GetName(BackgroundShape.Concave)} or {Enum.GetName(BackgroundShape.Convex)}");
                 }
                 _shape = value;
@@ -52,8 +53,15 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         private BackgroundShape _shape = BackgroundShape.Concave;
 
         [Parameter]
-        public string AccentClass { get; set; } = "neo-primary";
+        public string AccentClass { get; set; } = "selected";
 
+        // TODO: petit problème ici.
+        // tu demandes un redraw si le scaleFactor change.
+        // Du coup, tu associes un comportement de ton composant à un set de propriété.
+        // Dans ce composant ci, c'est parfaitement copréhensible de le faire dans le OnMouseOver & OnMouseOut, mais pas dans le set de propriété
+        // C'est l'event handler lui même qui doit faire appel au redraw, pas le set de propriété
+        // Ce redraw dans le set de prorpriété aurait du sens en revanche si ton composant avait un input "ScaleFactor" de type slide range,
+        // ce qui te permettrai d'avoir un rendu temps réel
         protected string Scale {
             get => _scaleFactor;
             set
@@ -78,5 +86,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
             Scale = "1";
             return base.OnMouseOut(args);
         }
+
+        protected string GetButtonClass() => this.IsSelected ? "selected" : string.Empty;
     }
 }
