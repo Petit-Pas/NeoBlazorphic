@@ -704,3 +704,23 @@ video {
   color: var(--text-color);
   background: var(--main-color);
 }
+
+// TODO: j'ai créé une classe selected-* par "thème" (primary, danger)
+// j'imagine que ces "thèmes" sont censés reprendre les idées de Bootstrap: danger, primary, secondary, info, warning...etc.
+// mais ici, ce n'est un set de culeurs que tu définis (comme le fait Bootstrap), mais tu redéfinis pluieurs variables à chaque fois.
+// Je ne suis pas certain de tes intentions, donc je laisse comme c'est.
+// Mais normalement un thème associe à chaque vlaeur fonctionnelle (primary, secondary...etc.) une seule et unique couleur dans une seule variable.
+// Sont ensuite définies d'autres variables qui sont déclinées de la principale: primary-dark, primary-light, ...etc.
+// Ces variables secondaires sont calculées à l'aide de fonctions SASS (lighten entre autres) sur base de la principale.
+// Pour rendre les choses plus simples, sans utiliser de SCSS, je me suis contenté d'utiliser du pur CSS et donc un filtre qui va modifier la couleur de base
+.selected-primary {
+    /*simple filtre*/
+    /*filter: brightness(1.5);*/
+    /*filter colorant*/
+    filter: sepia(100) hue-rotate(219deg) saturate(1.5) brightness(2);
+}
+
+.selected-danger {
+    /*filter colorant*/
+    filter: sepia(100) hue-rotate(299deg) saturate(5) brightness(2);
+}

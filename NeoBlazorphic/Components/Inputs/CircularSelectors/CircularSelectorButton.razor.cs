@@ -53,7 +53,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         private BackgroundShape _shape = BackgroundShape.Concave;
 
         [Parameter]
-        public string AccentClass { get; set; } = "selected";
+        public string AccentClass { get; set; } = "selected-primary";
 
         // TODO: petit problème ici.
         // tu demandes un redraw si le scaleFactor change.
@@ -87,6 +87,6 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
             return base.OnMouseOut(args);
         }
 
-        protected string GetButtonClass() => this.IsSelected ? "selected" : string.Empty;
+        protected string GetButtonClass() => this.IsSelected ? AccentClass : string.Empty;
     }
 }

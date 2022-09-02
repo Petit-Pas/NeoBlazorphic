@@ -2,6 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+// TODO: ce fichier est ignoré au profit du fichier wwwroot/css/app.scss
+// c'est d'ailleurs ça que ça m'a pris du temps :) 
+
+
 // Different shapes handled by the library
 // Mirrors what you can find in NeoBlazorphic.StyleParameters.BackgroundShape
 
@@ -100,8 +104,4 @@
     --text-color: white;
     color: var(--text-color);
     background: var(--main-color);
-}
-
-.selected {
-    filter: brightness(1.5);
 }

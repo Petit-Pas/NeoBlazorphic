@@ -27,13 +27,14 @@
 
 <CircularSelector AmountButtons=@AmountButtons AngleOffset=@AngleOffset ButtonAngle=@ButtonAngle 
                   CenterText=@CenterText OnItemHovered="(e) => CenterText = e.ItemIndex.ToString()"
-                  Shape="BackgroundShape.Convex">
+                  Shape="BackgroundShape.Convex"
+                  AccentClass="selected-primary">
 </CircularSelector>
 
 <CircularSelector AmountButtons=@AmountButtons AngleOffset=@AngleOffset ButtonAngle=@ButtonAngle 
                   CenterText=@CenterText OnItemHovered="(e) => CenterText = e.ItemIndex.ToString()"
                   Shape="BackgroundShape.Concave"
-                  AccentClass="neo-danger">
+                  AccentClass="selected-danger">
 </CircularSelector>
 
 @code {
