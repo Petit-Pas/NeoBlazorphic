@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using NeoBlazorphic.Models.SelectableItems;
 using NeoBlazorphic.StyleParameters;
 using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 {
-    public partial class CircularSelectorButton : MouseInteractiveBaseComponent
+    public partial class CircularSelectorButton<T> : MouseInteractiveBaseComponent
     {
         /// <summary>
         ///     the pathstring to use for the path component of the SVG 
@@ -16,20 +17,14 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         [Parameter]
         public int AngleShift { get; set; } = 0;
 
-        /// <summary>
-        ///     Used to bubble up events
-        /// </summary>
-        [Parameter]
-        public int Index { get; set; } = 0;
+        [Parameter, EditorRequired]
+        public SelectableItem<T> Item { get; set; } = SelectableItem<T>.Empty;
 
         /// <summary>
         ///     Used to dinamically calculate the position of the label on the button
         /// </summary>
         [Parameter, EditorRequired]
         public int ButtonAngle { get; set; }
-
-        [Parameter, EditorRequired]
-        public bool IsSelected { get; set; }
 
         [Parameter]
         public BackgroundShape Shape

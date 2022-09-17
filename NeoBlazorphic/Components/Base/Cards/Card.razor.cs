@@ -97,6 +97,7 @@ namespace NeoBlazorphic.Components.Base.Cards
                     Shape = BackgroundShape.Flat;
                     break;
             }
+            StateHasChanged();
         }
 
         private void SetNewShadowStyle(ShadowPosition newShadow)
@@ -114,6 +115,7 @@ namespace NeoBlazorphic.Components.Base.Cards
                     ShadowPosition = ShadowPosition.Out;
                     break;
             }
+            StateHasChanged();
         }
 
         private void SetNewTextSelectableStyle(bool selectable)

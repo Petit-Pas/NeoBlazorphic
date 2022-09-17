@@ -1,17 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using NeoBlazorphic.EventArgs;
 using NeoBlazorphic.Math.Units;
+using NeoBlazorphic.Models.SelectableItems;
 using NeoBlazorphic.StyleParameters;
-using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 {
-    public partial class CircularSelector : UiComponentBase
+    public partial class CircularSelector<T> : UiComponentBase
     {
-        [Parameter]
-        public uint AmountButtons { get; set; } = 3;
+        [Parameter, EditorRequired]
+        public SelectableItemList<T> Items { get; set; } = SelectableItemList<T>.Empty;
 
         /// <summary>
         ///     Expected to be in degrees
@@ -26,10 +24,10 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         public int AngleOffset { get; set; } = 0;
 
         [Parameter]
-        public EventCallback<SelectedItemEventArgs> OnItemSelected { get; set; }
+        public EventCallback<SelectedItemEventArgs<T>> OnItemSelected { get; set; }
 
         [Parameter]
-        public EventCallback<SelectedItemEventArgs> OnItemHovered { get; set; }
+        public EventCallback<SelectedItemEventArgs<T>> OnItemHovered { get; set; }
 
         [Parameter]
         public BackgroundShape Shape
@@ -60,15 +58,13 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         [Parameter]
         public string AccentClass { get; set; } = "neo-primary";
 
-        protected int SelectedIndex { get; set; } = -1;
-
         protected override void OnInitialized()
         {
             base.OnInitialized();
 
-            if (AmountButtons * ButtonAngle > 360)
+            if (Items.Count * ButtonAngle > 360)
             {
-                Console.WriteLine($"WARN: {AmountButtons} of {ButtonAngle}° will result in more than a full circle!");
+                Console.WriteLine($"WARN: {Items.Count} of {ButtonAngle}° will result in more than a full circle!");
             }
 
             CalculateAngleEnd();
@@ -87,16 +83,16 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
             AngleEnd = new Point2D(System.Math.Cos(angleInRadians) * 20, -System.Math.Sin(angleInRadians) * 20);
         }
 
-        public virtual async Task OnButtonMouseOver(int buttonIndex)
+        public virtual async Task OnButtonMouseOver(SelectableItem<T> selectedItem)
         {
-            await OnItemHovered.InvokeAsync(new SelectedItemEventArgs(buttonIndex, buttonIndex));
+            await OnItemHovered.InvokeAsync(new SelectedItemEventArgs<T>(selectedItem));
         }
 
-        public virtual async Task OnButtonClicked(int buttonIndex)
+        public virtual async Task OnButtonClicked(SelectableItem<T> selectedItem)
         {
-            SelectedIndex = buttonIndex;
+            Items.ResetSelected(selectedItem);
             StateHasChanged();
-            await OnItemSelected.InvokeAsync(new SelectedItemEventArgs(buttonIndex, buttonIndex));
+            await OnItemSelected.InvokeAsync(new SelectedItemEventArgs<T>(selectedItem));
         }
     }
 }

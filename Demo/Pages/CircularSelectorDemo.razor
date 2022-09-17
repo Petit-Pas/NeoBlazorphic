@@ -1,6 +1,7 @@
 ﻿@page "/CircularSelectorDemo"
 
 @using NeoBlazorphic.Components.Inputs.CircularSelectors
+@using NeoBlazorphic.Models.SelectableItems
 @using NeoBlazorphic.StyleParameters
 <h3>CircularSelectorDemo</h3>
 
@@ -25,25 +26,68 @@
 </div>
 
 
-<CircularSelector AmountButtons=@AmountButtons AngleOffset=@AngleOffset ButtonAngle=@ButtonAngle 
-                  CenterText=@CenterText OnItemHovered="(e) => CenterText = e.ItemIndex.ToString()"
-                  Shape="BackgroundShape.Convex">
+<CircularSelector Items=@NumList AngleOffset=@AngleOffset ButtonAngle=@ButtonAngle 
+                  CenterText=@CenterTextNum OnItemHovered="(e) => CenterTextNum = e.Item.Label"
+                  Shape="BackgroundShape.Convex"
+                  T=int>
 </CircularSelector>
 
-<CircularSelector AmountButtons=@AmountButtons AngleOffset=@AngleOffset ButtonAngle=@ButtonAngle 
-                  CenterText=@CenterText OnItemHovered="(e) => CenterText = e.ItemIndex.ToString()"
+<CircularSelector Items=@AlphaList AngleOffset=@AngleOffset ButtonAngle=@ButtonAngle 
+                  CenterText=@CenterTextAlpha OnItemHovered="(e) => CenterTextAlpha = e.Item.Label"
                   Shape="BackgroundShape.Concave"
-                  AccentClass="neo-danger">
+                  AccentClass="neo-danger"
+                  T=string>
 </CircularSelector>
 
 @code {
-    public EditContext context { get; set; } = new EditContext(new {});
 
-    public uint AmountButtons { get; set; } = 4;
+    public int AmountButtons { get; set; } = 4;
 
     public int ButtonAngle { get; set; } = 45;
 
     public int AngleOffset { get; set; } = 0;
 
-    public string CenterText { get; set; } = "default";
+    public string CenterTextNum { get; set; } = "-1";
+    public string CenterTextAlpha { get; set; } = "default";
+
+    public SelectableItemList<int> NumList { get; set; }
+    public SelectableItemList<string> AlphaList { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        NumList = new SelectableItemList<int>();
+        AlphaList = new SelectableItemList<string>();
+        ComputeItems();
+    }
+
+    private List<string> characters = new List<string>()
+    {
+        "a", "b", "c", "d", "e", "f", "g", "h",
+        "i", "j", "k", "l", "m", "n", "o", "p"
+    };
+
+    private void ComputeItems()
+    {
+        var toRemove = Math.Max(NumList.Count - AmountButtons, 0);
+        // removes the one too much
+        NumList.RemoveRange(NumList.Count - toRemove , toRemove);
+        // Adds missing ones
+        for (var i = NumList.Count; i != AmountButtons; i += 1)
+        {
+            NumList.Add(new SelectableItem<int>(i, i));
+        }
+
+        toRemove = Math.Max(AlphaList.Count - AmountButtons, 0);
+        // removes the one too much
+        AlphaList.RemoveRange(AlphaList.Count - toRemove , toRemove);
+        var a = 'a';
+        // Adds missing ones
+        for (var i = AlphaList.Count; i != AmountButtons; i += 1)
+        {
+            AlphaList.Add(new SelectableItem<string>(characters[i], i));
+        }
+
+    }
+
 }

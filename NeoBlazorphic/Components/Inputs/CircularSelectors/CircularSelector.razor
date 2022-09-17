@@ -1,4 +1,5 @@
 ﻿@inherits UiComponentBase
+@typeparam T
 
 @using NeoBlazorphic.StyleParameters
 @using NeoBlazorphic.Extensions.BaseTypes
@@ -25,15 +26,16 @@
     }
     
     <!-- Drawing buttons first, to be able to draw the center above it -->
-    @for (var i = 0; i != AmountButtons; i += 1) {
+    @for (var i = 0; i != Items.Count; i += 1) {
         int angle = -i * ButtonAngle + AngleOffset;
         int stock = i;
         <CircularSelectorButton
             Shape=@Shape AngleShift=@angle ButtonAngle="ButtonAngle"
-            IsSelected=@(SelectedIndex == AmountButtons - stock)
             PathString=@pathString
-            OnMouseClickCallBack="(e) => OnButtonClicked((int)AmountButtons - stock)" OnMouseOverCallBack="(e) => OnButtonMouseOver((int)AmountButtons - stock)" Index=@((int)AmountButtons - i)
-            AccentClass=@AccentClass>
+            OnMouseClickCallBack="(e) => OnButtonClicked(Items[stock])" OnMouseOverCallBack="(e) => OnButtonMouseOver(Items[stock])"
+            AccentClass=@AccentClass
+            Item="Items[stock]"
+            T="T">
         </CircularSelectorButton>
     }
     

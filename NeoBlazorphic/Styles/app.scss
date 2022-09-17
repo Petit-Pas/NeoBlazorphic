@@ -2,14 +2,11 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-// Different shapes handled by the library
-// Mirrors what you can find in NeoBlazorphic.StyleParameters.BackgroundShape
+/*  Different shapes handled by the library
+    Mirrors what you can find in NeoBlazorphic.StyleParameters.BackgroundShape  
 
-
-// I cannot have a tailwind file starting with a property
-// I had one before, the transition animation were not working properly
-.do-not-use{
-}
+    based on https://dev.to/afif/we-can-finally-animate-css-gradient-kdk
+*/
 
 @property --base-card-left-color {
     syntax: '<color>';
@@ -49,6 +46,11 @@
 /* Default colors served with the library
  more can be used if defined with the same variables.*/
 
+.base-neo-color {
+    color: var(--text-color);
+    background: var(--main-color);
+}
+
 .neo-primary {
     --main-color: #5100a1;
     --dark-shadow: #200040;
@@ -56,8 +58,6 @@
     --dark-color: #390091;
     --light-color: #6700ac;
     --text-color: white;
-    color: var(--text-color);
-    background: var(--main-color);
 }
 
 .neo-danger {
@@ -67,8 +67,6 @@
     --dark-color: #af1e37;
     --light-color: #ea3e5c;
     --text-color: white;
-    color: var(--text-color);
-    background: var(--main-color);
 }
 
 .neo-gray {
@@ -78,6 +76,4 @@
     --dark-color: #1a1a1a;
     --light-color: #383838;
     --text-color: white;
-    color: var(--text-color);
-    background: var(--main-color);
 }

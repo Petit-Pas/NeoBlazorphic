@@ -19,7 +19,6 @@ namespace NeoBlazorphic.Components.Inputs.Buttons
         protected override async Task OnMouseOut(MouseEventArgs args)
         {
             _isHovered = false;
-            
             // if the button is clicked, we cancel this event because we don't want the color to change when the mouse gets out, it is still the focused button
             if (_isClicked == false)
             {

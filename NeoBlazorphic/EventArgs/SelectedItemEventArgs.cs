@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using NeoBlazorphic.Models.SelectableItems;
 
-namespace NeoBlazorphic.EventArgs
+namespace NeoBlazorphic.EventArgs;
+
+public class SelectedItemEventArgs<T>
 {
-    public class SelectedItemEventArgs
+    public SelectedItemEventArgs(SelectableItem<T> item)
     {
-        public SelectedItemEventArgs(object item, int itemIndex)
-        {
-            Item = item;
-            ItemIndex = itemIndex;
-        }
-
-        public object Item { get; set; }
-        public int ItemIndex { get; set; }
+        Item = item;
     }
+
+    public SelectableItem<T> Item { get; set; }
 }
