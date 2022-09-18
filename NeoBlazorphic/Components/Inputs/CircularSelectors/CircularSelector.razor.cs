@@ -90,9 +90,12 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 
         public virtual async Task OnButtonClicked(SelectableItem<T> selectedItem)
         {
-            Items.ResetSelected(selectedItem);
-            StateHasChanged();
-            await OnItemSelected.InvokeAsync(new SelectedItemEventArgs<T>(selectedItem));
+            if (selectedItem.IsEnabled)
+            {
+                Items.ResetSelected(selectedItem);
+                StateHasChanged();
+                await OnItemSelected.InvokeAsync(new SelectedItemEventArgs<T>(selectedItem));
+            }
         }
     }
 }

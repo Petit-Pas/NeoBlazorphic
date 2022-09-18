@@ -64,13 +64,19 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 
         protected override Task OnMouseOver(MouseEventArgs args)
         {
-            Scale = "1.15";
+            if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
+            {
+                Scale = "1.15";
+            }
             return base.OnMouseOver(args);
         }
 
         protected override Task OnMouseOut(MouseEventArgs args)
         {
-            Scale = "1";
+            if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
+            {
+                Scale = "1";
+            }
             return base.OnMouseOut(args);
         }
     }

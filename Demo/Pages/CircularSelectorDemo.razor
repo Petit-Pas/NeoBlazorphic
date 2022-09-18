@@ -75,7 +75,14 @@
         // Adds missing ones
         for (var i = NumList.Count; i != AmountButtons; i += 1)
         {
-            NumList.Add(new SelectableItem<int>(i, i));
+            if (i == 1)
+            {
+                NumList.Add(new SelectableItem<int>(i, i, isEnabled: false));
+            }
+            else
+            {
+                NumList.Add(new SelectableItem<int>(i, i));
+            }
         }
 
         toRemove = Math.Max(AlphaList.Count - AmountButtons, 0);
@@ -85,7 +92,14 @@
         // Adds missing ones
         for (var i = AlphaList.Count; i != AmountButtons; i += 1)
         {
-            AlphaList.Add(new SelectableItem<string>(characters[i], i));
+            if (i == 1)
+            {
+                AlphaList.Add(new SelectableItem<string>(characters[i], i, isEnabled: false));
+            }
+            else
+            {
+                AlphaList.Add(new SelectableItem<string>(characters[i], i));
+            }
         }
 
     }

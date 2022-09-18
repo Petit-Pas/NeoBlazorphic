@@ -2,6 +2,7 @@
 @using NeoBlazorphic.StyleParameters
 @using NeoBlazorphic.UserInteraction.Mouse.BaseComponents
 @using NeoBlazorphic.Extensions.BaseTypes
+@using NeoBlazorphic.Models.SelectableItems
 
 @typeparam T
 
@@ -27,7 +28,7 @@
     var labelY = (-(Math.Sin(angleInRadians / 2) * 15)).ToInvariantString();
 }
 
-<g style="transition: all .15s ease-in-out;" transform="rotate(@($"{AngleShift}")) scale(@_scaleFactor)">
+<g class="@($"{(Item.IsEnabled ? "" : "neo-disabled")}")" style="transition: all .15s ease-in-out;" transform="rotate(@($"{AngleShift}")) scale(@_scaleFactor)">
     <defs>
         <!-- Gradient for the button, we use the calculated origin to act as if all buttons where sharing the same gradient -->
         <linearGradient id=@($"{UID}-ButtonGradient") x1=@originX y1=@originY x2=@endX y2=@endY gradientUnits="userSpaceOnUse">
@@ -56,31 +57,35 @@
     </text>
 </g>
 
-<g class=@AccentClass style="transition: all .15s ease-in-out, opacity 0.2s ease-in-out; opacity:@(Item.IsSelected ? "1" : "0")" transform="rotate(@($"{AngleShift}")) scale(@_scaleFactor)">
-    <defs>
-        <!-- Gradient for the button, we use the calculated origin to act as if all buttons where sharing the same gradient -->
-        <linearGradient id=@($"{UID}-ButtonGradient2") x1=@originX y1=@originY x2=@endX y2=@endY gradientUnits="userSpaceOnUse">
-            @if (Shape == BackgroundShape.Concave)
-            {
-                <stop offset="0%" stop-color="var(--dark-color)"/>
-                <stop offset="100%" stop-color="var(--light-color)"/>
-            }
-            else if (Shape == BackgroundShape.Convex)
-            {
-                <stop offset="0%" stop-color="var(--light-color)"/>
-                <stop offset="100%" stop-color="var(--dark-color)"/>
-            }
-        </linearGradient>
-    </defs>
-    
-    <!-- Drawing the button itself -->
-    <path d=@PathString fill="url(@($"#{UID}-ButtonGradient2"))"
-          @onmouseover=OnMouseOver @onmouseout=OnMouseOut @onmousedown=OnMouseDown @onmouseup=OnMouseUp @onclick=OnMouseClick>
-    </path>
-    
-    <!-- Using the index as the displayed property -->
-    <text text-anchor="middle" x=@labelX y=@labelY
-          style="fill: var(--text-color); stroke-width: 0px; font: normal 4px Verdana, Helvetica, Arial, sans-serif; pointer-events: none;" transform="rotate(@($"{-AngleShift}") @labelX @labelY)">
-        @Item.Label
-    </text>
-</g>
+@if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
+{
+
+    <g class=@AccentClass style="transition: all .15s ease-in-out, opacity 0.2s ease-in-out; opacity: @(Item.IsSelected ? "1" : "0")" transform="rotate(@($"{AngleShift}")) scale(@_scaleFactor)">
+        <defs>
+            <!-- Gradient for the button, we use the calculated origin to act as if all buttons where sharing the same gradient -->
+            <linearGradient id=@($"{UID}-ButtonGradient2") x1=@originX y1=@originY x2=@endX y2=@endY gradientUnits="userSpaceOnUse">
+                @if (Shape == BackgroundShape.Concave)
+                {
+                    <stop offset="0%" stop-color="var(--dark-color)"/>
+                    <stop offset="100%" stop-color="var(--light-color)"/>
+                }
+                else if (Shape == BackgroundShape.Convex)
+                {
+                    <stop offset="0%" stop-color="var(--light-color)"/>
+                    <stop offset="100%" stop-color="var(--dark-color)"/>
+                }
+            </linearGradient>
+        </defs>
+
+        <!-- Drawing the button itself -->
+        <path d=@PathString fill="url(@($"#{UID}-ButtonGradient2"))"
+              @onmouseover=OnMouseOver @onmouseout=OnMouseOut @onmousedown=OnMouseDown @onmouseup=OnMouseUp @onclick=OnMouseClick>
+        </path>
+
+        <!-- Using the index as the displayed property -->
+        <text text-anchor="middle" x=@labelX y=@labelY
+              style="fill: var(--text-color); stroke-width: 0px; font: normal 4px Verdana, Helvetica, Arial, sans-serif; pointer-events: none;" transform="rotate(@($"{-AngleShift}") @labelX @labelY)">
+            @Item.Label
+        </text>
+    </g>
+}
