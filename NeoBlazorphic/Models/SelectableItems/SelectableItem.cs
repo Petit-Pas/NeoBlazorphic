@@ -6,10 +6,11 @@
 /// <typeparam name="T"> the type of item that is selectable. That item will be displayed with .ToString, so better make sure that that method is implemented </typeparam>
 public class SelectableItem<T>
 {
-    public readonly static SelectableItem<T> Empty = new ();
+    public static readonly SelectableItem<T> Empty = new ();
 
     private SelectableItem()
     {
+        Item = default;
     }
 
     public SelectableItem(T item, int index, bool isEnabled = true, bool isSelected = false)
@@ -30,7 +31,7 @@ public class SelectableItem<T>
     /// <summary>
     ///     The actual object to select
     /// </summary>
-    public T Item { get; set; }
+    public T? Item { get; set; }
 
     /// <summary>
     ///     Will be used by any UI component to actually display the actual Item.

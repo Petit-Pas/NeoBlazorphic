@@ -41,7 +41,17 @@
 
 @code {
 
-    public int AmountButtons { get; set; } = 4;
+    public int AmountButtons
+    {
+        get => _amountButtons;
+        set
+        {
+            _amountButtons = value;
+            ComputeItems();
+        }
+    }
+
+    private int _amountButtons = 4;
 
     public int ButtonAngle { get; set; } = 45;
 

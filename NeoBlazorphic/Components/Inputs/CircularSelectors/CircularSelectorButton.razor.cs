@@ -38,7 +38,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
                 }
                 if (value != BackgroundShape.Concave && value != BackgroundShape.Convex)
                 {
-                    Console.WriteLine($"WARNING: CircularSelectorButton.Shape cannot be {Enum.GetName(value)}. Try with {Enum.GetName(BackgroundShape.Concave)} or {Enum.GetName(BackgroundShape.Convex)}");
+                    Console.WriteLine($"WARNING: CircularSelectorButton.Shape cannot be {Enum.GetName(value)}. Try with {BackgroundShape.Concave} or {BackgroundShape.Convex}");
                 }
                 _shape = value;
                 StateHasChanged();
@@ -49,24 +49,13 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         [Parameter]
         public string AccentClass { get; set; } = "neo-primary";
 
-        protected string Scale {
-            get => _scaleFactor;
-            set
-            {
-                if (_scaleFactor != value)
-                {
-                    _scaleFactor = value;
-                    StateHasChanged();
-                }
-            }
-        }
-        private string _scaleFactor = "1";
+        protected string ScaleFactor { get; set; } = "1";
 
         protected override Task OnMouseOver(MouseEventArgs args)
         {
             if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
             {
-                Scale = "1.15";
+                ScaleFactor = "1.15";
             }
             return base.OnMouseOver(args);
         }
@@ -75,9 +64,14 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         {
             if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
             {
-                Scale = "1";
+                ScaleFactor = "1";
             }
             return base.OnMouseOut(args);
         }
+
+        // UI methods
+        private string GetOpacityOfColoredButton() => Item.IsSelected ? "1" : "0";
+
+        private string GetMainButtonClass() => Item.IsEnabled ? "" : "neo-disabled";
     }
 }

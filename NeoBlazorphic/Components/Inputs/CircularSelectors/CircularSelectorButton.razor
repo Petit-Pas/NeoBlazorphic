@@ -9,7 +9,6 @@
 @inherits MouseInteractiveBaseComponent
 
 @{
-
     // calculate origins for gradients since we want the gradient to invert the rotation of the button itself
     // we take base angle as 135 deg
     var angleInRadiansForGradient = Converter.ToRadian(AngleShift + 135);
@@ -28,7 +27,9 @@
     var labelY = (-(Math.Sin(angleInRadians / 2) * 15)).ToInvariantString();
 }
 
-<g class="@($"{(Item.IsEnabled ? "" : "neo-disabled")}")" style="transition: all .15s ease-in-out;" transform="rotate(@($"{AngleShift}")) scale(@_scaleFactor)">
+<g class=@GetMainButtonClass() 
+   style="transition: all .15s ease-in-out;" 
+   transform="rotate(@AngleShift) scale(@ScaleFactor)">
     <defs>
         <!-- Gradient for the button, we use the calculated origin to act as if all buttons where sharing the same gradient -->
         <linearGradient id=@($"{UID}-ButtonGradient") x1=@originX y1=@originY x2=@endX y2=@endY gradientUnits="userSpaceOnUse">
@@ -47,20 +48,30 @@
     
     <!-- Drawing the button itself -->
     <path d=@PathString fill="url(@($"#{UID}-ButtonGradient"))"
-          @onmouseover=OnMouseOver @onmouseout=OnMouseOut @onmousedown=OnMouseDown @onmouseup=OnMouseUp @onclick=OnMouseClick>
+          @onmouseover=OnMouseOver 
+          @onmouseout=OnMouseOut 
+          @onmousedown=OnMouseDown
+          @onmouseup=OnMouseUp 
+          @onclick=OnMouseClick>
     </path>
     
     <!-- Using the index as the displayed property -->
     <text text-anchor="middle" x=@labelX y=@labelY
-          style="fill: var(--text-color); stroke-width: 0px; font: normal 4px Verdana, Helvetica, Arial, sans-serif; pointer-events: none;" transform="rotate(@($"{-AngleShift}") @labelX @labelY)">
+          style="fill: var(--text-color); stroke-width: 0px; font: normal 4px Verdana, Helvetica, Arial, sans-serif; pointer-events: none;" 
+          transform="rotate(@($"{-AngleShift}") @labelX @labelY)">
         @Item.Label
     </text>
 </g>
 
+<!-- Trick to animate gradients between different themes (normal and accent one).
+     We have 2 identical buttons, and depending on the status, we make the colored one transparent or not.
+-->
+
 @if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
 {
-
-    <g class=@AccentClass style="transition: all .15s ease-in-out, opacity 0.2s ease-in-out; opacity: @(Item.IsSelected ? "1" : "0")" transform="rotate(@($"{AngleShift}")) scale(@_scaleFactor)">
+    <g class=@AccentClass 
+       style="transition: all .15s ease-in-out, opacity 0.2s ease-in-out; opacity: @GetOpacityOfColoredButton()" 
+       transform="rotate(@AngleShift) scale(@ScaleFactor)">
         <defs>
             <!-- Gradient for the button, we use the calculated origin to act as if all buttons where sharing the same gradient -->
             <linearGradient id=@($"{UID}-ButtonGradient2") x1=@originX y1=@originY x2=@endX y2=@endY gradientUnits="userSpaceOnUse">
@@ -79,12 +90,17 @@
 
         <!-- Drawing the button itself -->
         <path d=@PathString fill="url(@($"#{UID}-ButtonGradient2"))"
-              @onmouseover=OnMouseOver @onmouseout=OnMouseOut @onmousedown=OnMouseDown @onmouseup=OnMouseUp @onclick=OnMouseClick>
+              @onmouseover=OnMouseOver 
+              @onmouseout=OnMouseOut 
+              @onmousedown=OnMouseDown 
+              @onmouseup=OnMouseUp 
+              @onclick=OnMouseClick>
         </path>
 
         <!-- Using the index as the displayed property -->
         <text text-anchor="middle" x=@labelX y=@labelY
-              style="fill: var(--text-color); stroke-width: 0px; font: normal 4px Verdana, Helvetica, Arial, sans-serif; pointer-events: none;" transform="rotate(@($"{-AngleShift}") @labelX @labelY)">
+              style="fill: var(--text-color); stroke-width: 0px; font: normal 4px Verdana, Helvetica, Arial, sans-serif; pointer-events: none;" 
+              transform="rotate(@(-AngleShift) @labelX @labelY)">
             @Item.Label
         </text>
     </g>

@@ -5,7 +5,7 @@ namespace NeoBlazorphic.Models.SelectableItems;
 
 public class SelectableItemList<T> : List<SelectableItem<T>>
 {
-    public static readonly SelectableItemList<T> Empty = new SelectableItemList<T>();
+    public static readonly SelectableItemList<T> Empty = new ();
 
     public bool HasSelectedItem(int amount = 1)
     {

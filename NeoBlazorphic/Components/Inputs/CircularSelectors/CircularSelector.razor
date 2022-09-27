@@ -3,6 +3,7 @@
 
 @using NeoBlazorphic.StyleParameters
 @using NeoBlazorphic.Extensions.BaseTypes
+@using NeoBlazorphic.Models.SelectableItems
 
 <svg width=@ViewBoxSize height=@ViewBoxSize viewBox="-25 -25 50 50" style="filter:drop-shadow(5px 5px 5px var(--dark-shadow)) drop-shadow(-5px -5px 5px var(--light-shadow));">
     <defs>
@@ -26,17 +27,20 @@
     }
     
     <!-- Drawing buttons first, to be able to draw the center above it -->
-    @for (var i = 0; i != Items.Count; i += 1) {
-        int angle = -i * ButtonAngle + AngleOffset;
-        int stock = i;
-        <CircularSelectorButton
-            Shape=@Shape AngleShift=@angle ButtonAngle="ButtonAngle"
-            PathString=@pathString
-            OnMouseClickCallBack="(e) => OnButtonClicked(Items[stock])" OnMouseOverCallBack="(e) => OnButtonMouseOver(Items[stock])"
-            AccentClass=@AccentClass
-            Item="Items[stock]"
-            T="T">
-        </CircularSelectorButton>
+    @if (Items != SelectableItemList<T>.Empty && Items.Count != 0)
+    {
+        var i = 0;
+        @foreach (var item in Items)
+        {
+            var angle = -i * ButtonAngle + AngleOffset;
+            <CircularSelectorButton
+                Shape=@Shape AngleShift=@angle ButtonAngle=@ButtonAngle PathString=@pathString
+                OnMouseClickCallBack="(e) => OnButtonClicked(item)" OnMouseOverCallBack="(e) => OnButtonMouseOver(item)"
+                AccentClass=@AccentClass
+                Item=@item
+                T=@T />
+            i += 1;
+        }
     }
     
     <!-- Drawing the center of the selector -->
