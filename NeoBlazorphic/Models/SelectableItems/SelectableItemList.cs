@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Dynamic;
+using System.Runtime.CompilerServices;
 using System.Xml;
 
 namespace NeoBlazorphic.Models.SelectableItems;
@@ -19,11 +21,20 @@ public class SelectableItemList<T> : List<SelectableItem<T>>
             return;
         }
 
+        if (SelectedItem != null && selectedItem == SelectedItem)
+        {
+            return;
+        }
+
         foreach (var item in this)
         {
             item.IsSelected = item == selectedItem;
         }
+
+        SelectedItem = selectedItem;
     }
+
+    private SelectableItem<T>? SelectedItem { get; set; } = default;
 
     private bool WarnIfNull([NotNullWhen(false)] SelectableItem<T>? item)
     {
