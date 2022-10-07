@@ -1,0 +1,15 @@
+﻿@inherits UiComponentBase
+@typeparam T
+
+@using System;
+@using NeoBlazorphic.Extensions.BaseTypes
+@using NeoBlazorphic.Models.SelectableItems
+
+@if (Items != SelectableItemList<T>.Empty && Items.Count != 0)
+{
+    Console.WriteLine("This is C#");
+    @foreach (var item in Items)
+    {
+        <DropDownListButton Item=@item/>
+    }
+}

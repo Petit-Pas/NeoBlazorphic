@@ -1,0 +1,15 @@
+﻿@using NeoBlazorphic.Math.Units
+@using NeoBlazorphic.StyleParameters
+@using NeoBlazorphic.UserInteraction.Mouse.BaseComponents
+@using NeoBlazorphic.Extensions.BaseTypes
+@using NeoBlazorphic.Models.SelectableItems
+
+@typeparam T
+@inherits MouseInteractiveBaseComponent
+
+<text>test</text>
+
+@if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
+{
+	Console.WriteLine("dqljkfj");
+}

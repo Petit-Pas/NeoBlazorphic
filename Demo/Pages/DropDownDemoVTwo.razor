@@ -1,0 +1,55 @@
+﻿@page "/dropdowndemovtwo"
+
+<!--DropDownListDemo-->
+@using NeoBlazorphic.StyleParameters
+@using NeoBlazorphic.Components.Inputs.DropDownLists
+@using NeoBlazorphic.Models.SelectableItems
+
+<h3>DropDownListDemo</h3>
+
+<div class="col">
+    <div class="row">
+        <div class="col-2"> Amount of buttons: @AmountButtons </div>
+        <button class="col-1 border-2 mx-2" @onclick="(e) => AmountButtons += 1"> + </button>
+        <button class="col-1 border-2" @onclick="(e) => AmountButtons -= 1"> - </button>
+    </div>
+</div>
+
+<DropDownList Items=@NumList/>
+
+@code {
+    public int AmountButtons
+    {
+        get => _amountButtons;
+        set
+        {
+            _amountButtons = value;
+            ComputeItems();
+        }
+    }
+
+    private int _amountButtons = 4;
+    public SelectableItemList<int> NumList { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        NumList = new SelectableItemList<int>();
+        ComputeItems();
+    }
+
+    private void ComputeItems()
+    {
+        var toRemove = Math.Max(NumList.Count - AmountButtons, 0);
+        // removes the one too much
+        NumList.RemoveRange(NumList.Count - toRemove, toRemove);
+        // Adds missing ones
+        for (var i = NumList.Count; i != AmountButtons; i += 1) {
+            if (i == 1) {
+                NumList.Add(new SelectableItem<int>(i, i, isEnabled: false));
+            } else {
+                NumList.Add(new SelectableItem<int>(i, i));
+            }
+        }
+    }
+}
