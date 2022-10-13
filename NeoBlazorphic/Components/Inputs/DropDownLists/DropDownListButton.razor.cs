@@ -8,5 +8,7 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
     {
         [Parameter, EditorRequired]
         public SelectableItem<T> Item { get; set; } = SelectableItem<T>.Empty;
+
+        //private string value;
     }
 }

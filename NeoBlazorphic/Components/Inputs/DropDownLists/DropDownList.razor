@@ -1,15 +1,26 @@
-﻿@inherits UiComponentBase
-@typeparam T
+﻿@typeparam T
 
 @using System;
 @using NeoBlazorphic.Extensions.BaseTypes
 @using NeoBlazorphic.Models.SelectableItems
+@using NeoBlazorphic.UserInteraction.Mouse.BaseComponents
+
+@inherits MouseInteractiveBaseComponent
+
 
 @if (Items != SelectableItemList<T>.Empty && Items.Count != 0)
 {
-    Console.WriteLine("This is C#");
-    @foreach (var item in Items)
-    {
-        <DropDownListButton Item=@item/>
-    }
+    <div>
+        <select @bind=@SelectedThemeString
+                style="fill: var(--text-color);"
+                class="@shadowStyle p-3 base-card-shape rounded-xl @shapeStyle"
+                @onmouseover=OnMouseOver
+                @onmouseout=OnMouseOut>
+            @_isClicked = true;
+            @foreach (var item in Items)
+            {
+                <DropDownListButton Item=@item T=@T/>
+            }
+        </select>
+    </div>
 }

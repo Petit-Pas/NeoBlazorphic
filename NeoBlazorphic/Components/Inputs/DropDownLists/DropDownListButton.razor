@@ -4,12 +4,11 @@
 @using NeoBlazorphic.Extensions.BaseTypes
 @using NeoBlazorphic.Models.SelectableItems
 
+
 @typeparam T
 @inherits MouseInteractiveBaseComponent
 
-<text>test</text>
-
 @if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
 {
-	Console.WriteLine("dqljkfj");
+	<option value=@Item style="transition: all .15s ease-in-out;"> @Item.Label </option>
 }
