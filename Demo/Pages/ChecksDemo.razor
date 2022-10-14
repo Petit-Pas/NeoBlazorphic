@@ -1,0 +1,38 @@
+﻿@page "/checksdemo"
+@using NeoBlazorphic.Components.Inputs.Checks.CheckBoxes
+@using NeoBlazorphic.StyleParameters
+
+<h1>ChecksDemo</h1>
+
+<br />
+
+<p> diabled buttons, they will still react and they are bound to the same data sources as the ones below. Hence 2 way binding works</p>
+
+<br/>
+<CheckBox @bind-IsChecked=_Test.Checked IsEnabled="false"></CheckBox>
+<br/>
+<CheckBox @bind-IsChecked=IsChecked2 IsEnabled="false" BoxShape="CheckBoxShape.Normal" AccentClass="neo-danger"></CheckBox>
+<br/>
+<CheckBox @bind-IsChecked=IsChecked IsEnabled="false" BoxShape="CheckBoxShape.Normal" AccentClass="neo-gray"></CheckBox>
+
+<br/><br/>
+<p> enabled buttons, they see how the cursor changes compared to the disabled ones </p>
+<br/>
+<CheckBox @bind-IsChecked=_Test.Checked BoxShape="CheckBoxShape.Round"></CheckBox>
+<br/>
+<CheckBox @bind-IsChecked=IsChecked2 BoxShape="CheckBoxShape.Round" AccentClass="neo-danger" ></CheckBox>
+<br/>
+<CheckBox @bind-IsChecked=IsChecked BoxShape="CheckBoxShape.Round" AccentClass="neo-gray"></CheckBox>
+
+@code {
+
+    public class Test
+    {
+        public bool Checked { get; set; } = false;
+    }
+
+    public bool IsChecked { get; set; } = false;
+    public bool IsChecked2 { get; set; } = false;
+
+    public Test _Test { get; set; } = new Test();
+}

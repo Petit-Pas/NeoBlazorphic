@@ -9,5 +9,9 @@ module.exports = {
             },
         },
     },
+    safelist: [
+        'rounded-md',
+        'rounded-full'
+    ],
     plugins: [],
 }

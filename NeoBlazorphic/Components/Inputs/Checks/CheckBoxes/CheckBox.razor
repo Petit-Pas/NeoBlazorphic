@@ -1,0 +1,8 @@
+﻿@inherits NeoBlazorphic.UserInteraction.Mouse.BaseComponents.MouseInteractiveBaseComponent;
+
+<div class="@GetCursor() base-card-shape @GetShadowPosition() text-xl @GetBackgroundShape() @GetBoxShape() @GetAccentClass() @GetOpacity() relative" style="width: 27px; height: 27px"
+    @onmouseover=OnMouseOver @onmouseout=OnMouseOut
+    @onmousedown=OnMouseDown @onmouseup=OnMouseUp
+    @onclick=OnMouseClick>
+    <div class="@GetMarkOpacity() inset-center select-none" style="transition: all 0.2s">&check;</div>
+</div>
