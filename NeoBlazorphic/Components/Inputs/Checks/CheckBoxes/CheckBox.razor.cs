@@ -6,9 +6,6 @@ using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
 
 namespace NeoBlazorphic.Components.Inputs.Checks.CheckBoxes
 {
-    // TODO the check mark shoulkd be updated with font awesome but it is currenly down
-    // TODO the expected comportment is a slicker V in the squared checkbox and a dot in the round checkbox
-
     public partial class CheckBox : MouseInteractiveBaseComponent
     {
         [Parameter]

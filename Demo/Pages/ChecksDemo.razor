@@ -6,23 +6,45 @@
 
 <br />
 
-<p> diabled buttons, they will still react and they are bound to the same data sources as the ones below. Hence 2 way binding works</p>
+<div class="col">
+    <div class="row">
+        <div class="col-1">
+            <br/>
+            <CheckBox @bind-IsChecked=_Test.Checked IsEnabled="true"></CheckBox>
+            <br/>
+            <CheckBox @bind-IsChecked=IsChecked2 IsEnabled="true" BoxShape="CheckBoxShape.Normal" AccentClass="neo-danger"></CheckBox>
+            <br/>
+            <CheckBox @bind-IsChecked=IsChecked IsEnabled="true" BoxShape="CheckBoxShape.Normal" AccentClass="neo-gray"></CheckBox>
+        </div>
+        <div class="col-1">
+            <br/>
+            <CheckBox @bind-IsChecked=_Test.Checked IsEnabled="false"></CheckBox>
+            <br/>
+            <CheckBox @bind-IsChecked=IsChecked2 IsEnabled="false" BoxShape="CheckBoxShape.Normal" AccentClass="neo-danger"></CheckBox>
+            <br/>
+            <CheckBox @bind-IsChecked=IsChecked IsEnabled="false" BoxShape="CheckBoxShape.Normal" AccentClass="neo-gray"></CheckBox>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <br/>
+            <CheckBox @bind-IsChecked=_Test.Checked IsEnabled="true" BoxShape="CheckBoxShape.Round" ></CheckBox>
+            <br/>
+            <CheckBox @bind-IsChecked=IsChecked2 IsEnabled="true" BoxShape="CheckBoxShape.Round" AccentClass="neo-danger"></CheckBox>
+            <br/>
+            <CheckBox @bind-IsChecked=IsChecked IsEnabled="true" BoxShape="CheckBoxShape.Round" AccentClass="neo-gray"></CheckBox>
+        </div>
+        <div class="col-1">
+            <br/>
+            <CheckBox @bind-IsChecked=_Test.Checked IsEnabled="false" BoxShape="CheckBoxShape.Round" ></CheckBox>
+            <br/>
+            <CheckBox @bind-IsChecked=IsChecked2 IsEnabled="false" BoxShape="CheckBoxShape.Round" AccentClass="neo-danger"></CheckBox>
+            <br/>
+            <CheckBox @bind-IsChecked=IsChecked IsEnabled="false" BoxShape="CheckBoxShape.Round" AccentClass="neo-gray"></CheckBox>
+        </div>
+    </div>
 
-<br/>
-<CheckBox @bind-IsChecked=_Test.Checked IsEnabled="false"></CheckBox>
-<br/>
-<CheckBox @bind-IsChecked=IsChecked2 IsEnabled="false" BoxShape="CheckBoxShape.Normal" AccentClass="neo-danger"></CheckBox>
-<br/>
-<CheckBox @bind-IsChecked=IsChecked IsEnabled="false" BoxShape="CheckBoxShape.Normal" AccentClass="neo-gray"></CheckBox>
-
-<br/><br/>
-<p> enabled buttons, they see how the cursor changes compared to the disabled ones </p>
-<br/>
-<CheckBox @bind-IsChecked=_Test.Checked BoxShape="CheckBoxShape.Round"></CheckBox>
-<br/>
-<CheckBox @bind-IsChecked=IsChecked2 BoxShape="CheckBoxShape.Round" AccentClass="neo-danger" ></CheckBox>
-<br/>
-<CheckBox @bind-IsChecked=IsChecked BoxShape="CheckBoxShape.Round" AccentClass="neo-gray"></CheckBox>
+</div>
 
 @code {
 
