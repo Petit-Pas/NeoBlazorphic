@@ -571,6 +571,11 @@ video {
   margin-bottom: 0.75rem;
 }
 
+.-mx-3 {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+
 .h-full {
   height: 100%;
 }
@@ -605,6 +610,11 @@ video {
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .shadow-neo-out {

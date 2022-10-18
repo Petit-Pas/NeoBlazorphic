@@ -7,26 +7,20 @@
     debug
 </button>
 
-<ul>
-@*<div class="col">*@
+<ul class="px-3">
     @if (Items != null && Items.Count != 0 && ItemRenderFragment != null)
     {
         @foreach (var item in Items)
         {
             
-            <li class="m-3">
+            @*<li class="m-3">*@
+            <li class="my-3 mx--3">
                 <Card Shape="BackgroundShape.Concave">
                     @ItemRenderFragment(item)
                 </Card>
             </li>
-            @*<div class="row p-4">
-                <Card Shape="BackgroundShape.Concave">
-                    @ItemRenderFragment(item)
-                </Card>
-            </div>*@
         }
     }
-@*</div>*@
 </ul>
 
 
