@@ -1,0 +1,38 @@
+﻿
+
+<div> @LastOneClicked </div>
+
+@if (Items != null && Items.Count != 0)
+{
+    foreach (var item in Items)
+    {
+        if (ItemTemplate != null)
+        {
+            <button class="btn btn-secondary" @onclick="() => HandleItemClicked(item)">
+                @ItemTemplate(item)
+            </button>
+            <br/><br/>
+        }
+    }
+}
+
+
+
+
+@code {
+
+    public string LastOneClicked { get; set; } = "None was clicked yet";
+
+    public void HandleItemClicked(int item)
+    {
+        LastOneClicked = $"Last one to be clicked is {item}";
+        StateHasChanged();
+    }
+
+    [Parameter]
+    public RenderFragment<int>? ItemTemplate { get; set; }
+
+    [Parameter]
+    public List<int>? Items { get; set; } = new List<int>();
+
+}

@@ -1,0 +1,32 @@
+﻿@using NeoBlazorphic.Components.Base.Cards;
+@using NeoBlazorphic.StyleParameters
+
+@typeparam T
+
+<button @onclick="() => DebugClicked()">
+    debug
+</button>
+
+<ul>
+@*<div class="col">*@
+    @if (Items != null && Items.Count != 0 && ItemRenderFragment != null)
+    {
+        @foreach (var item in Items)
+        {
+            
+            <li class="m-3">
+                <Card Shape="BackgroundShape.Concave">
+                    @ItemRenderFragment(item)
+                </Card>
+            </li>
+            @*<div class="row p-4">
+                <Card Shape="BackgroundShape.Concave">
+                    @ItemRenderFragment(item)
+                </Card>
+            </div>*@
+        }
+    }
+@*</div>*@
+</ul>
+
+

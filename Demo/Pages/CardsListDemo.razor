@@ -1,0 +1,82 @@
+﻿@using NeoBlazorphic.Components.Lists.CardsLists
+@using NeoBlazorphic.Components.Base.Cards
+@using NeoBlazorphic.StyleParameters
+
+
+@page "/CardsListDemo"
+
+<h1> CardsList Demo </h1>
+
+<Card ShadowPosition="ShadowPosition.In">
+    <div class="max-h-40" style="max-height: 36em; overflow-y: scroll;">
+        <CardsList T="int" Items="Integers">
+            <ItemRenderFragment Context="integer">
+                <div>
+                    @integer
+                </div>
+            </ItemRenderFragment>
+        </CardsList>
+    </div>
+</Card>
+
+
+<br/>
+
+<CardsList T="string" Items="Strings">
+    <ItemRenderFragment Context="_string">
+        @_string
+    </ItemRenderFragment>
+</CardsList>
+
+<br/>
+
+<CardsList T="Person" Items="Persons">
+    <ItemRenderFragment Context="person">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-10">
+                        @person.FirstName
+                    </div>
+                    <div class="col-2">
+                        @person.Age years old
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @person.LastName
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ItemRenderFragment>
+</CardsList>
+
+@code
+{
+    public List<int> Integers { get; set; } = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 };
+
+    public List<string> Strings { get; set; } = new() { "hello", "world", "how is it?" };
+
+    private class Person
+    {
+        public Person(string firstName, string lastName, int age)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Age = age;
+        }
+        
+        public string FirstName { get; }
+        public string LastName { get; }
+        public int Age { get; }
+    }
+
+    private List<Person> Persons { get; set; } = new()
+    {
+        new Person("Thomas", "Edison", 36),
+        new Person("Nicolas", "Tesla", 48),
+        new Person("Marie", "Curie", 57),
+        new Person("Ada", "Lovelace", 29)
+    };
+}

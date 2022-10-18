@@ -1,18 +1,13 @@
 ﻿@page "/counter"
 
-<PageTitle>Counter</PageTitle>
+<List Items=@Items>
+    <ItemTemplate Context="item">
+        <div> The number is @item </div>
+    </ItemTemplate>
+</List>
 
-<h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-
-@code {
-    private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
+@code
+{
+    public List<int> Items { get; set; } = new() { 1, 2, 3, 4 };
 }
