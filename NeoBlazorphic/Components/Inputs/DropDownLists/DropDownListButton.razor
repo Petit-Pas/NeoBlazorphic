@@ -9,9 +9,9 @@
 
 @if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
 {
-	<option value=@Item style="fill: var(--text-color);"
-			class="@shadowStyle p-3 base-card-shape rounded-xl
-			@shapeStyle">
+	<div style="fill: var(--text-color); position: fixed;"
+             class="@shadowStyle p-3 base-card-shape rounded-xl @shapeStyle">
 		@Item.Label
-	</option>
+         </div>
+	
 } 

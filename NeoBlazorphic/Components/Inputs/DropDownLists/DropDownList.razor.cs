@@ -13,10 +13,10 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
         public SelectableItemList<T> Items { get; set; } = SelectableItemList<T>.Empty;
         private bool _isHovered = false;
         private bool _isClicked = false;
+        private bool _isShowing = false;
 
         private string shadowStyle { get; set; } = "shadow-neo-out";
         private string shapeStyle { get; set; } = "flat";
-
         protected string SelectedThemeString
         {
             get => _selectedThemeString;
@@ -27,9 +27,13 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
                 }
             }
         }
-        private string _selectedThemeString = "gray";
+        private string _selectedThemeString = "Empty";
         //onfocus=@onMouseFocus()
 
+        protected override void OnParametersSet()
+        {
+            _selectedThemeString = Items.FirstOrDefault()?.Item?.ToString() ?? "Empty";
+        }
         [Parameter]
         public BackgroundShape Shape
         {
@@ -77,7 +81,6 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
             }
             StateHasChanged();
         }
-
         [Parameter]
         public ShadowPosition ShadowPosition
         {
@@ -96,20 +99,33 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
             Shape = BackgroundShape.Concave;
             await base.OnMouseOver(args);
         }
-
         protected override async Task OnMouseOut(MouseEventArgs args)
         {
             _isHovered = false;
+            _isShowing = false; //@TODO: detect when other elements are hovered
             if (_isClicked == false)
             {
                 Shape = BackgroundShape.Flat;
                 await base.OnMouseOut(args);
             }
-            
         }
-        public void OnChange(ChangeEventArgs e)
+        protected override async Task OnMouseDown(MouseEventArgs args)
         {
-            _selectedThemeString = e.Value.ToString();
+            _isClicked = true;
+            _isShowing = true;
+            ShadowPosition = ShadowPosition.In;
+            await base.OnMouseDown(args);
+        }
+        protected override async Task OnMouseUp(MouseEventArgs args)
+        {
+            _isClicked = false;
+
+            // if the button is not hovered (click then drag) we first want to restore the original color of the button, which is triggered in OnMouseOut
+            if (_isHovered == false) {
+                await OnMouseOut(args);
+            }
+            this.ShadowPosition = ShadowPosition.Out;
+            await base.OnMouseUp(args);
         }
     }
 }
