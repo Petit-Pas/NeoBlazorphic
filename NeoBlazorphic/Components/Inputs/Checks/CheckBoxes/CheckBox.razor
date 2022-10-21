@@ -1,0 +1,18 @@
+﻿@using NeoBlazorphic.StyleParameters
+@inherits NeoBlazorphic.UserInteraction.Mouse.BaseComponents.MouseInteractiveBaseComponent;
+
+<div class="@GetCursor() base-card-shape @GetShadowPosition() text-xl @GetBackgroundShape() @GetBoxShape() @GetAccentClass() @GetOpacity() relative" style="width: 27px; height: 27px; overflow: hidden"
+    @onmouseover=OnMouseOver @onmouseout=OnMouseOut
+    @onmousedown=OnMouseDown @onmouseup=OnMouseUp
+    @onclick=OnMouseClick>
+    @if (BoxShape == CheckBoxShape.Round)
+    {
+        <img class="@GetMarkOpacity() inset-center select-none" style="transition: all 0.2s; height: 8px; width: 8px; left: 35px; filter: drop-shadow(-21px 0 0px var(--text-color))" src="_content/NeoBlazorphic/img/dot.png"/>
+    }
+    else if (BoxShape == CheckBoxShape.Normal)
+    {
+        <img class="@GetMarkOpacity() inset-center select-none" style="transition: all 0.2s; height: 12px; width: 16px; left: 40px; filter: drop-shadow(-26px 0 0px var(--text-color))" src="_content/NeoBlazorphic/img/check.png"/>
+    }
+</div>
+
+

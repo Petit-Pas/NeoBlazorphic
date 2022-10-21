@@ -1,8 +1,10 @@
-﻿namespace NeoBlazorphic.StyleParameters
+﻿using NeoBlazorphic.Attributes;
+
+namespace NeoBlazorphic.StyleParameters
 {
     public enum ShadowPosition
     {
-        Out,
-        In
+        [CssClass("shadow-neo-out")] Out,
+        [CssClass("shadow-neo-in")] In
     }
 }
