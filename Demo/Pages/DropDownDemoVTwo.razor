@@ -22,7 +22,30 @@
 <br />
 <DropDownListButton Item=ThemeList[0] T=string />
 
+<br />
+<br />
+<br />
+
+<button class="btn btn-primary" @onclick="() => Show = !Show"> Open/close </button>
+<br />
+<br />
+
+<div>
+    <div style="background: black; width: 250px; height: 3em;"> je suis le haut de la dropdownlist </div>
+    @if (Show)
+    {
+        <div class="base-card-shape flat p-10 shadow-neo-out" style="position: fixed;"> je suis la dropdownlist </div>
+    }
+</div>
+
+<br />
+<DropDownListButton Item=ThemeList[0] T=string />
+
+
 @code {
+
+    public bool Show = false;
+
     public int AmountButtons
     {
         get => _amountButtons;
