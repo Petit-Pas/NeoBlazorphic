@@ -16,7 +16,6 @@
                 class="@shadowStyle p-3 base-card-shape rounded-xl @shapeStyle"
                 @onmouseover=OnMouseOver
                 @onmouseout=OnMouseOut>
-            @_isClicked = true;
             @foreach (var item in Items)
             {
                 <DropDownListButton Item=@item T=@T/>
