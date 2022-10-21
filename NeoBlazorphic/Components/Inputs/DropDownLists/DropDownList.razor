@@ -12,10 +12,12 @@
 {
     <div>
         <select @bind=@SelectedThemeString
+                @onclick=OnMouseClick
                 style="fill: var(--text-color);"
                 class="@shadowStyle p-3 base-card-shape rounded-xl @shapeStyle"
                 @onmouseover=OnMouseOver
                 @onmouseout=OnMouseOut>
+                
             @foreach (var item in Items)
             {
                 <DropDownListButton Item=@item T=@T/>

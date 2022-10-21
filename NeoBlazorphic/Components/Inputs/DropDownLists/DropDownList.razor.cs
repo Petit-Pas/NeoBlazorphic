@@ -28,8 +28,8 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
             }
         }
         private string _selectedThemeString = "gray";
+        //onfocus=@onMouseFocus()
 
-        
         [Parameter]
         public BackgroundShape Shape
         {
@@ -59,7 +59,6 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
             }
             StateHasChanged();
         }
-
         private void SetNewShapeStyle(BackgroundShape newShape)
         {
             switch (newShape) {
@@ -108,7 +107,6 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
             }
             
         }
-
         public void OnChange(ChangeEventArgs e)
         {
             _selectedThemeString = e.Value.ToString();

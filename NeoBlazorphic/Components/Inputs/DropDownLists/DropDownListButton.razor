@@ -4,11 +4,14 @@
 @using NeoBlazorphic.Extensions.BaseTypes
 @using NeoBlazorphic.Models.SelectableItems
 
-
 @typeparam T
 @inherits MouseInteractiveBaseComponent
 
 @if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
 {
-	<option value=@Item style="transition: all .15s ease-in-out;"> @Item.Label </option>
-}
+	<option value=@Item style="fill: var(--text-color);"
+			class="@shadowStyle p-3 base-card-shape rounded-xl
+			@shapeStyle">
+		@Item.Label
+	</option>
+} 
