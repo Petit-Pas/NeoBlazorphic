@@ -21,12 +21,12 @@
         </div>
         @if (@_isShowing)
         {
+            <div style="position: fixed;">
             @foreach (var item in Items)
             {
                 <DropDownListButton Item=@item T=@T/>
-                <br/>
             }
-            
+            </div>
         }
     </div>
 }
