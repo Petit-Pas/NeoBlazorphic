@@ -85,3 +85,18 @@
 .neo-disabled {
     opacity: 0.4;
 }
+
+/* 
+    alignments
+*/
+
+/* 
+    This class extends the comportment already available in tailwind to center an element in a relative parent 
+    https://tailwindcss.com/docs/top-right-bottom-left
+*/
+.inset-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
