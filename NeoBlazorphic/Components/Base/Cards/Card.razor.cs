@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Security.Cryptography;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
+using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.StyleParameters;
 using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
 
@@ -29,6 +31,14 @@ namespace NeoBlazorphic.Components.Base.Cards
 
         [Parameter, EditorRequired]
         public RenderFragment ChildContent { get; set; } = default!;
+
+        [Parameter] 
+        public Spacing Padding { get; set; } = Spacing._3;
+        [Parameter] 
+        public Spacing Margin { get; set; } = Spacing._0;
+
+        private string GetPadding() => Padding.GetCssClass("padding");
+        private string GetMargin() => Margin.GetCssClass("margin");
 
         [Parameter]
         public bool TextSelectable
