@@ -3,23 +3,31 @@
 
 @typeparam T
 
-<button @onclick="() => DebugClicked()">
-    debug
-</button>
+@if (Filter != default)
+{
+    <input @bind=SearchBarQuery @bind:event="oninput" placeholder="filter here..." style="color: black;">
+}
 
 <ul class="px-3">
-    @if (Items != null && Items.Count != 0 && ItemRenderFragment != null)
+    @{
+        var itemsToDisplay = DisplayableItems();
+    }
+    @if (itemsToDisplay != null && ItemRenderFragment != null)
     {
-        @foreach (var item in Items)
+        @foreach (var item in itemsToDisplay)
         {
-            
-            @*<li class="m-3">*@
-            <li class="my-3 mx--3">
-                <Card Shape="BackgroundShape.Concave">
-                    @ItemRenderFragment(item)
-                </Card>
+            <li class="my-3">
+                <CardsListItem T="T" Item="item" ItemRenderFragment=@ItemRenderFragment/>
             </li>
         }
+    }
+    else
+    {
+        <CardsListItem Item="null" T="string">
+            <ItemRenderFragment> 
+                nothing to show
+            </ItemRenderFragment>
+        </CardsListItem>
     }
 </ul>
 

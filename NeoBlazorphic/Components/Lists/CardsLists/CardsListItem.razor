@@ -1,0 +1,13 @@
+﻿@using NeoBlazorphic.Components.Base.Cards;
+@using NeoBlazorphic.StyleParameters
+
+@inherits NeoBlazorphic.UserInteraction.Mouse.BaseComponents.MouseInteractiveBaseComponent
+@typeparam T
+
+
+<Card Shape=@CardShape OnMouseOverCallBack="OnMouseOver" OnMouseOutCallBack="OnMouseOut">
+    @if (ItemRenderFragment != default)
+    {
+        @ItemRenderFragment(Item)
+    }
+</Card>
