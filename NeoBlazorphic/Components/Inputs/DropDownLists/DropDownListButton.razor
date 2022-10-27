@@ -10,8 +10,12 @@
 @if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
 {
 	<div style="fill: var(--text-color);"
-             class="@shadowStyle p-3 base-card-shape rounded-xl @shapeStyle">
+            class="@shadowStyle p-3 base-card-shape rounded-xl @shapeStyle"
+            @onmouseover=OnMouseOver
+            @onmouseout=OnMouseOut
+            @onmousedown=OnMouseDown
+            @onmouseup=OnMouseUp
+            @onclick=OnMouseClick>
 		@Item.Label
-         </div>
-	
+    </div>
 } 

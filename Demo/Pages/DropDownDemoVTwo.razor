@@ -14,11 +14,11 @@
 <br />
 <br />
 <br />
-<DropDownList Items=@ThemeList T=string/>
+<DropDownList Items=@EmptyList T=string />
 <br />
 <br />
 <br />
-
+<DropDownListButton Item=ThemeList[0] T=string />
 
 @code {
 
@@ -37,11 +37,13 @@
 
     private int _amountButtons = 3;
     public SelectableItemList<string> ThemeList { get; set; }
+    public SelectableItemList<string> EmptyList { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
         ThemeList = new SelectableItemList<string>();
+        EmptyList = new SelectableItemList<string>();
         ComputeItems();
     }
 

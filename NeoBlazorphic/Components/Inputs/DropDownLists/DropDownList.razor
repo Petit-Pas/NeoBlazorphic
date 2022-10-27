@@ -19,12 +19,12 @@
              @onmouseup=OnMouseUp>
                 @SelectedThemeString
         </div>
-        @if (@_isShowing)
-        {
+        @if (@_isClicked) {
             <div style="position: fixed;">
             @foreach (var item in Items)
             {
-                <DropDownListButton Item=@item T=@T/>
+                <DropDownListButton Item=@item T=@T OnMouseClickCallBack="(e) => OnButtonClicked(item)"
+                    OnMouseOverCallBack="(e) => OnButtonMouseOver(item)" />
             }
             </div>
         }

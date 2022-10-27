@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.Models.SelectableItems;
 using NeoBlazorphic.StyleParameters;
 using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
@@ -15,7 +16,6 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
         private string shadowStyle { get; set; } = "shadow-neo-out";
         private string shapeStyle { get; set; } = "flat";
 
-        //private string value;
 
         [Parameter]
         public ShadowPosition ShadowPosition
@@ -74,5 +74,19 @@ namespace NeoBlazorphic.Components.Inputs.DropDownLists
             }
             StateHasChanged();
         }
+        protected override Task OnMouseOver(MouseEventArgs args)
+        {
+            _isHovered = true;
+            Shape = BackgroundShape.Concave;
+            return base.OnMouseOver(args);
+        }
+        protected override Task OnMouseOut(MouseEventArgs args)
+        {
+            if (Item != SelectableItem<T>.Empty && Item.IsEnabled) {
+                _isHovered = false;
+                Shape = BackgroundShape.Flat;
+            }
+            return base.OnMouseOut(args);
+        } 
     }
 }
