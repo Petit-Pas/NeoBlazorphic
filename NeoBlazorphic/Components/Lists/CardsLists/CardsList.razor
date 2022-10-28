@@ -3,32 +3,39 @@
 
 @typeparam T
 
-@if (Filter != default)
-{
-    <input @bind=SearchBarQuery @bind:event="oninput" placeholder="filter here..." style="color: black;">
-}
+<div class="" style="height: 100%; overflow: hidden; display: grid; grid-template-rows: auto 1fr">
 
-<ul class="px-3">
-    @{
-        var itemsToDisplay = DisplayableItems();
-    }
-    @if (itemsToDisplay != null && ItemRenderFragment != null)
+    @if (Filter != default)
     {
-        @foreach (var item in itemsToDisplay)
-        {
-            <li class="my-3">
-                <CardsListItem T="T" Item="item" ItemRenderFragment=@ItemRenderFragment/>
-            </li>
-        }
+        <div class="" style="grid-row: 1">
+            <input @bind=SearchBarQuery @bind:event="oninput" placeholder="filter here..." style="color: black;">
+        </div>
     }
-    else
-    {
-        <CardsListItem Item="null" T="string">
-            <ItemRenderFragment> 
-                nothing to show
-            </ItemRenderFragment>
-        </CardsListItem>
-    }
-</ul>
-
+    
+    @* This percentage needs to be adapted depending on the size of the searchBar input *@
+    <div class="" style="overflow-y: auto; grid-row: 2">
+        <ul class="px-3">
+            @{
+                var itemsToDisplay = DisplayableItems();
+            }
+            @if (itemsToDisplay != null && ItemRenderFragment != null)
+            {
+                @foreach (var item in itemsToDisplay)
+                {
+                    <li class="my-3">
+                        <CardsListItem T="T" Item="item" ItemRenderFragment=@ItemRenderFragment/>
+                    </li>
+                }
+            }
+            else
+            {
+                <CardsListItem Item="null" T="string">
+                    <ItemRenderFragment>
+                        nothing to show
+                    </ItemRenderFragment>
+                </CardsListItem>
+            }
+        </ul>
+    </div>
+</div>
 

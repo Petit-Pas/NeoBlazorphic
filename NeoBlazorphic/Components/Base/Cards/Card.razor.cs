@@ -29,7 +29,7 @@ namespace NeoBlazorphic.Components.Base.Cards
         // if the parent wants to add some classes, he should surround the Card element with a div that has the given style.
         protected string CustomClasses { get; set; } = "";
 
-        [Parameter, EditorRequired]
+        [Parameter]
         public RenderFragment ChildContent { get; set; } = default!;
 
         [Parameter] 

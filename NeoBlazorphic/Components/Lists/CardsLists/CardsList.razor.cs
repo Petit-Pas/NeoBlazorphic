@@ -12,7 +12,7 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         [Parameter, EditorRequired]
         public List<T>? Items { get; set; }
 
-        [Parameter, EditorRequired]
+        [Parameter]
         public RenderFragment<T>? ItemRenderFragment { get; set; }
 
         [Parameter]

@@ -8,7 +8,7 @@
 <h1> CardsList Demo </h1>
 
 <Card ShadowPosition="ShadowPosition.In" Padding="Spacing._1" Margin="Spacing._0">
-    <div class="max-h-40" style="max-height: 36em; overflow-y: auto;">
+    <div class="" style="height: 20em">
         <CardsList T="int" Items="Integers" Filter="(i, filter) => i.ToString().Contains(filter)">
             <ItemRenderFragment Context="integer">
                 <div>
@@ -30,7 +30,7 @@
 
 <br/>
 
-<CardsList T="Person" Items="Persons">
+<CardsList T="Person" Items="Persons" Filter="(person, filter) => person.Age.ToString().Contains(filter)">
     <ItemRenderFragment Context="person">
         <div class="row">
             <div class="col">
