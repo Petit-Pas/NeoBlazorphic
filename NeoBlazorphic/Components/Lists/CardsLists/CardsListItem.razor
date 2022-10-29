@@ -4,10 +4,16 @@
 @inherits NeoBlazorphic.UserInteraction.Mouse.BaseComponents.MouseInteractiveBaseComponent
 @typeparam T
 
+@{
+    ComputeUIVariables();
+}
 
-<Card Shape=@CardShape OnMouseOverCallBack="OnMouseOver" OnMouseOutCallBack="OnMouseOut">
-    @if (ItemRenderFragment != default)
-    {
-        @ItemRenderFragment(Item)
-    }
-</Card>
+
+<div class="@GetAccentClass()">
+    <Card Shape=@CardShape ShadowPosition=@ShadowPosition OnMouseOverCallBack="OnMouseOver" OnMouseOutCallBack="OnMouseOut" OnMouseClickCallBack="OnMouseClick">
+        @if (ItemRenderFragment != default)
+        {
+            @ItemRenderFragment(Item)
+        }
+    </Card>
+</div>

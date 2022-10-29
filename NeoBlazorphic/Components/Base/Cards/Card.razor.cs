@@ -57,76 +57,12 @@ namespace NeoBlazorphic.Components.Base.Cards
         private string textSelectableStyle = "";
 
         [Parameter]
-        public BackgroundShape Shape
-        {
-            get => _shape;
-            set
-            {
-                if (_shape != value)
-                {
-                    SetNewShapeStyle(value);
-                    _shape = value;
-                }
-            }
-        }
-        private BackgroundShape _shape { get; set; } = BackgroundShape.Flat;
-        private string shapeStyle { get; set; } = "flat";
+        public BackgroundShape Shape { get; set; } = BackgroundShape.Flat;
 
 
         [Parameter]
-        public ShadowPosition ShadowPosition
-        {
-            get => _shadowPlacement;
-            set     
-            {
-                if (_shadowPlacement != value)
-                {
-                    SetNewShadowStyle(value);
-                    _shadowPlacement = value;
-                }
-            }
-        }
-        private ShadowPosition _shadowPlacement { get; set; } = ShadowPosition.Out;
-        private string shadowStyle { get; set; } = "shadow-neo-out";
+        public ShadowPosition ShadowPosition { get; set; } = ShadowPosition.Out;
 
-        private void SetNewShapeStyle(BackgroundShape newShape)
-        {
-            switch (newShape)
-            {
-                case BackgroundShape.Convex:
-                    shapeStyle = "convex";
-                    break;
-                case BackgroundShape.Concave:
-                    shapeStyle = "concave";
-                    break;
-                case BackgroundShape.Flat:
-                    shapeStyle = "flat";
-                    break;
-                default:
-                    Logger.LogWarning("Tried to set shape style on neomorphic Card with an unknown value.");
-                    Shape = BackgroundShape.Flat;
-                    break;
-            }
-            StateHasChanged();
-        }
-
-        private void SetNewShadowStyle(ShadowPosition newShadow)
-        {
-            switch (newShadow)
-            {
-                case ShadowPosition.Out:
-                    shadowStyle = "shadow-neo-out";
-                    break;
-                case ShadowPosition.In:
-                    shadowStyle = "shadow-neo-in";
-                    break;
-                default:
-                    Logger.LogWarning("Tried to set shadow style on neomorphic Card with an unknown value.");
-                    ShadowPosition = ShadowPosition.Out;
-                    break;
-            }
-            StateHasChanged();
-        }
 
         private void SetNewTextSelectableStyle(bool selectable)
         {
@@ -140,5 +76,9 @@ namespace NeoBlazorphic.Components.Base.Cards
                     break;
             }
         }
+
+        // UI Methods
+        private string GetShadowPosition() => ShadowPosition.GetCssClass();
+        private string GetBackgroundShape() => Shape.GetCssClass();
     }
 }

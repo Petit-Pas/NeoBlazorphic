@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.Web.Virtualization;
-using Microsoft.JSInterop.Infrastructure;
-
+﻿using System.Collections;
+using Microsoft.AspNetCore.Components;
+using NeoBlazorphic.Models.SelectableItems;
+using System.Linq;
 
 namespace NeoBlazorphic.Components.Lists.CardsLists
 {
@@ -10,13 +9,21 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
     {
 
         [Parameter, EditorRequired]
-        public List<T>? Items { get; set; }
+        public IEnumerable? Items { get; set; }
 
         [Parameter]
         public RenderFragment<T>? ItemRenderFragment { get; set; }
 
         [Parameter]
+        public RenderFragment? FooterRenderFragment { get; set; }
+
+        [Parameter]
+        public string? AccentClass { get; set; }
+
+        [Parameter]
         public Func<T, string, bool>? Filter { get; set; }
+
+        [Parameter] public bool CanSelectItem { get; set; }
 
         public string? SearchBarQuery
         {
@@ -25,14 +32,26 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         }
         private string? _searchBarQuery = "";
 
-        private IEnumerable<T>? DisplayableItems()
+        private IEnumerable<T> DisplayableItems()
         {
-            if (Filter == null || string.IsNullOrEmpty(SearchBarQuery))
+            if (Items is IEnumerable<T> items)
             {
-                return Items;
+                if (Filter == null || string.IsNullOrEmpty(SearchBarQuery))
+                {
+                    return items;
+                }
+                return items.Where(x => Filter(x, SearchBarQuery));
             }
+            return Array.Empty<T>();
+        }
 
-            return Items?.Where(x => Filter(x, SearchBarQuery));
+        private void CardClicked(T itemClicked)
+        {
+            if (itemClicked is ISelectableItem item && Items is ISelectableItemList items)
+            {
+                items.ResetSelected(item);
+                StateHasChanged();
+            }
         }
     }
 }
