@@ -6,10 +6,10 @@
 @page "/plainListDemo"
 
 <div style="height: 15em">
-    <PlainList ShadowPosition="ShadowPosition.Out" T="string" Items="Strings">
+    <PlainList ShadowPosition="ShadowPosition.Out" T="SelectableItem<string>" Items="Strings" AccentClass="neo-danger">
         <ItemRenderFragment Context="str">
             <div class="p-2">
-                @str
+                @str.Item
             </div>
         </ItemRenderFragment>
     </PlainList>
@@ -18,7 +18,7 @@
 <br/>
 
 <div style="height: 15em">
-    <PlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers">
+    <PlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers" AccentClass="neo-primary">
         <ItemRenderFragment Context="item">
             <div class="py-1 px-3">
                 @item.Item
@@ -53,5 +53,10 @@
         new SelectableItem<int>(20, 19),
     };
 
-    public List<string> Strings { get; set; } = new() { "hello", "world", "how is it?" };
+    public SelectableItemList<string> Strings { get; set; } = new()
+    {
+        new SelectableItem<string>("hello", 0), 
+        new SelectableItem<string>("world", 1), 
+        new SelectableItem<string>("how is it?", 2)
+    };
 }

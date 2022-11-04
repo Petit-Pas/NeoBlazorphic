@@ -3,7 +3,7 @@
 @inherits MouseInteractiveBaseComponent;
 @typeparam T
 
-<li style="@GetBrightnessFilter()">
+<li class="@AccentClass" style="@GetBrightnessFilter() @GetBackgroundColor()" @onmouseover="OnMouseOver" @onmouseout="OnMouseOut" @onclick="OnMouseClick">
     @if (ItemRenderFragment != null)
     {
         @ItemRenderFragment(Item);
