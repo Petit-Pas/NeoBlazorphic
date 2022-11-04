@@ -11,11 +11,11 @@
 }
 
 
-<div class="@GetAccentClass()">
+<li class="my-3 @GetAccentClass()">
     <Card Shape=@CardShape ShadowPosition=@ShadowPosition OnMouseOverCallBack="OnMouseOver" OnMouseOutCallBack="OnMouseOut" OnMouseClickCallBack="OnMouseClick">
         @if (ItemRenderFragment != default)
         {
             @ItemRenderFragment(Item)
         }
     </Card>
-</div>
+</li>

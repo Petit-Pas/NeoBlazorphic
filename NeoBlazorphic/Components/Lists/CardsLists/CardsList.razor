@@ -12,7 +12,6 @@
         </div>
     }
     
-    @* This percentage needs to be adapted depending on the size of the searchBar input *@
     <div class="" style="overflow-y: auto; grid-row: 2">
         <ul class="px-3">
             @{
@@ -22,9 +21,7 @@
             {
                 @foreach (var item in itemsToDisplay)
                 {
-                    <li class="my-3">
-                        <CardsListItem T="T" AccentClass=@AccentClass Item="item" ItemRenderFragment=@ItemRenderFragment OnMouseClickCallBack="() => CardClicked(item)" />
-                    </li>
+                    <CardsListItem T="T" AccentClass=@AccentClass Item="item" ItemRenderFragment=@ItemRenderFragment OnMouseClickCallBack="() => CardClicked(item)" />
                 }
             }
             else

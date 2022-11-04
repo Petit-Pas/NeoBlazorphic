@@ -7,11 +7,11 @@ namespace NeoBlazorphic.Components.Lists.PlainLists
 {
     public partial class PlainList<T> : ComponentBase
     {
-        [Parameter] 
-        public RenderFragment<T?>? ItemRenderFragment { get; set; } = default;
-
         [Parameter, EditorRequired]
         public IEnumerable? Items { get; set; }
+
+        [Parameter]
+        public RenderFragment<T?>? ItemRenderFragment { get; set; }
 
         [Parameter]
         public string AccentClass { get; set; } = "";
@@ -19,27 +19,32 @@ namespace NeoBlazorphic.Components.Lists.PlainLists
         [Parameter] 
         public ShadowPosition ShadowPosition { get; set; } = ShadowPosition.Out;
 
-        private void ItemSelected(T itemClicked)
+        [Parameter]
+        public Func<T, string, bool>? Filter { get; set; }
+
+        [Parameter] 
+        public string FilterString { get; set; } = "";
+
+        private T[] DisplayableItems()
+        {
+            if (Items is IEnumerable<T> items)
+            {
+                if (Filter == null || string.IsNullOrEmpty(FilterString))
+                {
+                    return items.ToArray();
+                }
+                return items.Where(x => Filter(x, FilterString)).ToArray();
+            }
+            return Array.Empty<T>();
+        }
+
+        private void ItemClicked(T itemClicked)
         {
             if (itemClicked is ISelectableItem item && Items is ISelectableItemList items)
             {
                 items.ResetSelected(item);
                 StateHasChanged();
             }
-        }
-
-        private T[] DisplayableItems()
-        {
-            if (Items is IEnumerable<T> items)
-            {
-                return items.ToArray();
-            //    if (Filter == null || string.IsNullOrEmpty(SearchBarQuery))
-            //    {
-            //        return items.ToArray();
-            //    }
-            //    return items.Where(x => Filter(x, SearchBarQuery)).ToArray();
-            }
-            return Array.Empty<T>();
         }
     }
 }

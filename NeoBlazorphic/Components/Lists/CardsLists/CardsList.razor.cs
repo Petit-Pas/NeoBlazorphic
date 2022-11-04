@@ -23,8 +23,6 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         [Parameter]
         public Func<T, string, bool>? Filter { get; set; }
 
-        [Parameter] public bool CanSelectItem { get; set; }
-
         public string? SearchBarQuery
         {
             get => _searchBarQuery;

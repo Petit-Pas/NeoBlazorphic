@@ -22,6 +22,7 @@ namespace NeoBlazorphic.Components.Lists.PlainLists
         
         protected override void StateUpdated()
         {
+            base.StateUpdated();
             StateHasChanged();
         }
 
