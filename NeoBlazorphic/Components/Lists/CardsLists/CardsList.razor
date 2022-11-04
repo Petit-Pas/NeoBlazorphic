@@ -16,9 +16,9 @@
     <div class="" style="overflow-y: auto; grid-row: 2">
         <ul class="px-3">
             @{
-                var itemsToDisplay = DisplayableItems()?.ToArray();
+                var itemsToDisplay = DisplayableItems().ToArray();
             }
-            @if (itemsToDisplay != null && ItemRenderFragment != null && itemsToDisplay.Count() != 0)
+            @if (ItemRenderFragment != null && itemsToDisplay.Length != 0)
             {
                 @foreach (var item in itemsToDisplay)
                 {

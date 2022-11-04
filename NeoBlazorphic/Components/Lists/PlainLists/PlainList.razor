@@ -1,0 +1,25 @@
+﻿@using NeoBlazorphic.Components.Base.Cards;
+@using NeoBlazorphic.StyleParameters
+
+@typeparam T
+
+<Card Margin="Spacing._0" Padding="Spacing._0" ShadowPosition="ShadowPosition">
+    <ul style="overflow: auto; height: 100%;">
+        @{
+            var itemsToDisplay = DisplayableItems();
+        }
+        @if (ItemRenderFragment != null & itemsToDisplay.Length != 0)
+        {
+            var i = 0;
+            @foreach (var item in itemsToDisplay)
+            {
+                <PlainListItem T=@T Item="item" ItemIndex="i" ItemRenderFragment=@ItemRenderFragment/>
+                i += 1;
+            }
+        }
+        else
+        {
+            <li> Nothing to display... </li>
+        }
+    </ul>
+</Card>

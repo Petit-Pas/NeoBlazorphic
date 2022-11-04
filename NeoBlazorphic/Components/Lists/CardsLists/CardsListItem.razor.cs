@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.Models.SelectableItems;
 using NeoBlazorphic.StyleParameters;
 using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
@@ -12,7 +11,7 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         public T? Item { get; set; }
 
         [Parameter, EditorRequired]
-        public RenderFragment<T>? ItemRenderFragment { get; set; }
+        public RenderFragment<T?>? ItemRenderFragment { get; set; }
 
         [Parameter]
         public string AccentClass { get; set; } = "";
@@ -24,10 +23,10 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         protected override void StateUpdated()
         {
             base.StateUpdated();
-            ComputeUIVariables();
+            RefreshUIVariables();
         }
 
-        private void ComputeUIVariables()
+        private void RefreshUIVariables()
         {
             ComputeShadowPosition();
             ComputeShape();

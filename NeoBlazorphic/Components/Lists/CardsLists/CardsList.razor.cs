@@ -32,15 +32,15 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         }
         private string? _searchBarQuery = "";
 
-        private IEnumerable<T> DisplayableItems()
+        private T[] DisplayableItems()
         {
             if (Items is IEnumerable<T> items)
             {
                 if (Filter == null || string.IsNullOrEmpty(SearchBarQuery))
                 {
-                    return items;
+                    return items.ToArray();
                 }
-                return items.Where(x => Filter(x, SearchBarQuery));
+                return items.Where(x => Filter(x, SearchBarQuery)).ToArray();
             }
             return Array.Empty<T>();
         }

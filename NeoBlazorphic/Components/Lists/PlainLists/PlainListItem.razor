@@ -1,0 +1,11 @@
+﻿@using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
+
+@inherits MouseInteractiveBaseComponent;
+@typeparam T
+
+<li style="@GetBrightnessFilter()">
+    @if (ItemRenderFragment != null)
+    {
+        @ItemRenderFragment(Item);
+    }
+</li>

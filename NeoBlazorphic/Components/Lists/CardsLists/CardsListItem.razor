@@ -5,7 +5,9 @@
 @typeparam T
 
 @{
-    ComputeUIVariables();
+    // Used to modify variables before the actual re rendering of the below page
+    // Using OnAfterRender would lead to 2 refresh instead of one.
+    RefreshUIVariables();
 }
 
 
