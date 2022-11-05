@@ -1,20 +1,19 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using System.Dynamic;
-using System.Runtime.CompilerServices;
-using System.Xml;
 
 namespace NeoBlazorphic.Models.SelectableItems;
 
-public class SelectableItemList<T> : List<SelectableItem<T>>
+public class SelectableItemList<T> : List<SelectableItem<T>>, ISelectableItemList
 {
-    public static readonly SelectableItemList<T> Empty = new ();
+    public static readonly SelectableItemList<T> Empty = new();
+
+    public event EventHandler SelectionUpdated;
 
     public bool HasSelectedItem(int amount = 1)
     {
         return this.Count(x => x.IsSelected) == amount;
     }
 
-    public void ResetSelected(SelectableItem<T>? selectedItem)
+    public void ResetSelected(ISelectableItem? selectedItem)
     {
         if (WarnIfNull(selectedItem) || WarnIfNotInCollection(selectedItem))
         {
@@ -34,9 +33,26 @@ public class SelectableItemList<T> : List<SelectableItem<T>>
         SelectedItem = selectedItem;
     }
 
-    private SelectableItem<T>? SelectedItem { get; set; } = default;
+    private void OnSelectionUpdated()
+    {
+        SelectionUpdated?.Invoke(this, new System.EventArgs());
+    }
 
-    private bool WarnIfNull([NotNullWhen(false)] SelectableItem<T>? item)
+    public ISelectableItem? SelectedItem
+    {
+        get => selectedItem;
+        set
+        {
+            if (selectedItem == value)
+            {
+                selectedItem = value;
+                OnSelectionUpdated();
+            }
+        }
+    }
+    private ISelectableItem? selectedItem;
+
+    private bool WarnIfNull([NotNullWhen(false)] ISelectableItem? item)
     {
         if (item != null)
         {
@@ -47,7 +63,7 @@ public class SelectableItemList<T> : List<SelectableItem<T>>
         return true;
     }
 
-    private bool WarnIfNotInCollection(SelectableItem<T> item)
+    private bool WarnIfNotInCollection(ISelectableItem item)
     {
         if (this.Contains(item))
         {
@@ -57,4 +73,5 @@ public class SelectableItemList<T> : List<SelectableItem<T>>
         Console.WriteLine("Error: trying to interact with SelectableItemList with an item that does not belong to the collection");
         return true;
     }
+
 }

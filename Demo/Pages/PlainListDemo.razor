@@ -1,0 +1,62 @@
+﻿@using NeoBlazorphic.Components.Lists.PlainLists
+@using NeoBlazorphic.Models.SelectableItems
+@using NeoBlazorphic.StyleParameters
+@using NeoBlazorphic.Components.Lists.PlainLists
+
+@page "/plainListDemo"
+
+<div style="height: 15em">
+    <PlainList ShadowPosition="ShadowPosition.Out" T="SelectableItem<string>" Items="Strings" AccentClass="neo-danger">
+        <ItemRenderFragment Context="str">
+            <div class="p-2">
+                @str.Item
+            </div>
+        </ItemRenderFragment>
+    </PlainList>
+</div>
+
+<br/>
+
+<div style="height: 15em">
+    <PlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers" AccentClass="neo-primary">
+        <ItemRenderFragment Context="item">
+            <div class="py-1 px-3">
+                @item.Item
+            </div>
+        </ItemRenderFragment>
+    </PlainList>
+</div>
+
+
+@code {
+    public SelectableItemList<int> Integers { get; set; } = new()
+    {
+        new SelectableItem<int>(1, 0),
+        new SelectableItem<int>(2, 1),
+        new SelectableItem<int>(3, 2),
+        new SelectableItem<int>(4, 3),
+        new SelectableItem<int>(5, 4),
+        new SelectableItem<int>(6, 5),
+        new SelectableItem<int>(7, 6),
+        new SelectableItem<int>(8, 7),
+        new SelectableItem<int>(9, 8),
+        new SelectableItem<int>(10, 9),
+        new SelectableItem<int>(11, 10),
+        new SelectableItem<int>(12, 11),
+        new SelectableItem<int>(13, 12),
+        new SelectableItem<int>(14, 13),
+        new SelectableItem<int>(15, 14),
+        new SelectableItem<int>(16, 15),
+        new SelectableItem<int>(17, 16),
+        new SelectableItem<int>(18, 17),
+        new SelectableItem<int>(19, 18),
+        new SelectableItem<int>(20, 19),
+    };
+
+    public SelectableItemList<string> Strings { get; set; } = new()
+    {
+        new SelectableItem<string>("hello", 0), 
+        new SelectableItem<string>("world", 1), 
+        new SelectableItem<string>("how is it?", 2)
+    };
+}

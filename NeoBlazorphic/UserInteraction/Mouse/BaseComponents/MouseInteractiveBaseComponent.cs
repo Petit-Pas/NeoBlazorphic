@@ -5,7 +5,7 @@ using NeoBlazorphic.Components;
 
 namespace NeoBlazorphic.UserInteraction.Mouse.BaseComponents
 {
-    public class MouseInteractiveBaseComponent : UiComponentBase
+    public abstract class MouseInteractiveBaseComponent : UiComponentBase
     {
         [Inject]
         protected IJSRuntime _jsRuntime { get; set; } = null!;
@@ -25,7 +25,22 @@ namespace NeoBlazorphic.UserInteraction.Mouse.BaseComponents
         [Parameter]
         public EventCallback<MouseEventArgs> OnMouseClickCallBack { get; set; }
 
-        protected bool _isHovered { get; set; } = false;
+        protected bool IsHovered {
+            get => _isHovered;
+            set {
+                if (_isHovered != value)
+                {
+                    _isHovered = value;
+                    StateUpdated();
+                }
+            }
+        }
+        private bool _isHovered = false;
+
+        protected virtual void StateUpdated()
+        {
+        }
+        
 
         [JSInvokable]
         public void MouseUpFromJs(MouseEventArgs args)
@@ -37,7 +52,7 @@ namespace NeoBlazorphic.UserInteraction.Mouse.BaseComponents
         // It enables to at least have a custom inner comportment on the event before bubbling it up
         protected virtual async Task OnMouseOver(MouseEventArgs args)
         {
-            _isHovered = true;
+            IsHovered = true;
             await OnMouseOverCallBack.InvokeAsync(args);
         }
 
@@ -45,7 +60,7 @@ namespace NeoBlazorphic.UserInteraction.Mouse.BaseComponents
         // It enables to at least have a custom inner comportment on the event before bubbling it up
         protected virtual async Task OnMouseOut(MouseEventArgs args)
         {
-            _isHovered = false;
+            IsHovered = false;
             await OnMouseOutCallBack.InvokeAsync(args);
         }
 

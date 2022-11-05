@@ -1,0 +1,137 @@
+﻿@using NeoBlazorphic.Components.Lists.CardsLists
+@using NeoBlazorphic.Components.Base.Cards
+@using NeoBlazorphic.Models.SelectableItems
+@using NeoBlazorphic.StyleParameters
+
+@page "/CardsListDemo"
+
+<h1> CardsList Demo </h1>
+
+<Card ShadowPosition="ShadowPosition.In" Padding="Spacing._1" Margin="Spacing._0">
+    <div class="" style="height: 40em">
+        <CardsList AccentClass="neo-danger" T="SelectableItem<int>" Items="Integers" Filter="(i, filter) => i.Item.ToString().Contains(filter)">
+            <ItemRenderFragment Context="selectableItem">
+                <div>
+                    @selectableItem.Item
+                </div>
+
+                @if (selectableItem.IsSelected)
+                {
+                    <div> Yipiie I am selected </div>
+                }
+            </ItemRenderFragment>
+            
+            <FooterRenderFragment>
+                <div class="row">
+                    <div class="col-1">
+                        <button class="btn btn-secondary" @onclick="() => Integers.Remove(Integers.Last())">
+                            Remove 1
+                        </button>
+                    </div>
+                    <div class="col-1">
+                    <button class="btn btn-secondary" @onclick="() => Integers.Add(new SelectableItem<int>(Integers.Last().Item + 1, Integers.Count))">
+                        Add 1
+                    </button>
+                </div>
+                    <div class="col-1">
+                        <div>
+                            Total of items: @Integers.Count
+                        </div>
+                    </div>
+                </div>
+            </FooterRenderFragment>
+        </CardsList>
+    </div>
+</Card>
+
+
+<br/>
+
+<CardsList T="string" Items="Strings" Filter="(s, filter) => s.Contains(filter)">
+    <ItemRenderFragment Context="_string">
+        @_string
+    </ItemRenderFragment>
+</CardsList>
+
+<br/>
+
+<CardsList T="string" Items="Array.Empty<string>().ToList()" Filter="(s, filter) => s.Contains(filter)">
+    <ItemRenderFragment Context="_string">
+        @_string
+    </ItemRenderFragment>
+</CardsList>
+
+<br/>
+
+<CardsList T="Person" Items="Persons" Filter="(person, filter) => person.Age.ToString().Contains(filter)">
+    <ItemRenderFragment Context="person">
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-10">
+                        @person.FirstName
+                    </div>
+                    <div class="col-2">
+                        @person.Age years old
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        @person.LastName
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ItemRenderFragment>
+</CardsList>
+
+@code
+{
+    public SelectableItemList<int> Integers { get; set; } = new()
+    {
+        new SelectableItem<int>(1, 0),
+        new SelectableItem<int>(2, 1),
+        new SelectableItem<int>(3, 2),
+        new SelectableItem<int>(4, 3),
+        new SelectableItem<int>(5, 4),
+        new SelectableItem<int>(6, 5),
+        new SelectableItem<int>(7, 6),
+        new SelectableItem<int>(8, 7),
+        new SelectableItem<int>(9, 8),
+        new SelectableItem<int>(10, 9),
+        new SelectableItem<int>(11, 10),
+        new SelectableItem<int>(12, 11),
+        new SelectableItem<int>(13, 12),
+        new SelectableItem<int>(14, 13),
+        new SelectableItem<int>(15, 14),
+        new SelectableItem<int>(16, 15),
+        new SelectableItem<int>(17, 16),
+        new SelectableItem<int>(18, 17),
+        new SelectableItem<int>(19, 18),
+        new SelectableItem<int>(20, 19),
+    };
+
+    public List<string> Strings { get; set; } = new() { "hello", "world", "how is it?" };
+
+    private class Person
+    {
+        public Person(string firstName, string lastName, int age)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+            Age = age;
+        }
+        
+        public string FirstName { get; }
+        public string LastName { get; }
+        public int Age { get; }
+    }
+
+    private List<Person> Persons { get; set; } = new()
+    {
+        new Person("Thomas", "Edison", 36),
+        new Person("Nicolas", "Tesla", 48),
+        new Person("Marie", "Curie", 57),
+        new Person("Ada", "Lovelace", 29)
+    };
+}

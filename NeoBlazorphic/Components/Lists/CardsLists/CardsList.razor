@@ -1,0 +1,47 @@
+﻿@using NeoBlazorphic.Components.Base.Cards;
+@using NeoBlazorphic.StyleParameters
+
+@typeparam T
+
+<div class="" style="height: 100%; overflow: hidden; display: grid; grid-template-rows: auto 1fr auto">
+
+    @if (Filter != default)
+    {
+        <div class="mx-3 my-1" style="grid-row: 1">
+            <input @bind=SearchBarQuery @bind:event="oninput" placeholder="filter here..." style="color: black;">
+        </div>
+    }
+    
+    <div class="" style="overflow-y: auto; grid-row: 2">
+        <ul class="px-3">
+            @{
+                var itemsToDisplay = DisplayableItems().ToArray();
+            }
+            @if (ItemRenderFragment != null && itemsToDisplay.Length != 0)
+            {
+                @foreach (var item in itemsToDisplay)
+                {
+                    <CardsListItem T="T" AccentClass=@AccentClass Item="item" ItemRenderFragment=@ItemRenderFragment OnMouseClickCallBack="() => CardClicked(item)" />
+                }
+            }
+            else
+            {
+                <li class="my-3">
+                    <CardsListItem Item="null" T="string">
+                        <ItemRenderFragment>
+                            nothing to show
+                        </ItemRenderFragment>
+                    </CardsListItem>
+                </li>
+            }
+        </ul>
+    </div>
+    
+    @if (FooterRenderFragment != default)
+    {
+        <div class="mx-3 my-1">
+            @FooterRenderFragment
+        </div>
+    }
+</div>
+

@@ -5,8 +5,11 @@ namespace NeoBlazorphic.StyleParameters
 {
     public enum BackgroundShape
     {
-        [CssClass("flat")] Flat,
-        [CssClass("concave")] Concave,
-        [CssClass("convex")] Convex
+        [CssClass("flat")]
+        Flat,
+        [CssClass("concave")]
+        Concave,
+        [CssClass("convex")]
+        Convex
     }
 }

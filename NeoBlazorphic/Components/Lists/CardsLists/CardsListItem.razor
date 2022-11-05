@@ -1,0 +1,21 @@
+﻿@using NeoBlazorphic.Components.Base.Cards;
+@using NeoBlazorphic.StyleParameters
+
+@inherits NeoBlazorphic.UserInteraction.Mouse.BaseComponents.MouseInteractiveBaseComponent
+@typeparam T
+
+@{
+    // Used to modify variables before the actual re rendering of the below page
+    // Using OnAfterRender would lead to 2 refresh instead of one.
+    RefreshUIVariables();
+}
+
+
+<li class="my-3 @GetAccentClass()">
+    <Card Shape=@CardShape ShadowPosition=@ShadowPosition OnMouseOverCallBack="OnMouseOver" OnMouseOutCallBack="OnMouseOut" OnMouseClickCallBack="OnMouseClick">
+        @if (ItemRenderFragment != default)
+        {
+            @ItemRenderFragment(Item)
+        }
+    </Card>
+</li>
