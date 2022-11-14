@@ -1,0 +1,19 @@
+﻿@inherits InputBase<string>
+
+
+<div class="">
+    @if (!string.IsNullOrWhiteSpace(Label))
+    {
+        <label class="" for="@Id">@Label</label>
+    }
+    @* 
+        This oninput rule serves the purpose of both triggering the onchange event AND the validation on each keystroke.
+        https://www.meziantou.net/validating-an-input-on-keypress-instead-of-on-change-in-blazor.htm 
+    *@
+    <input type="text" class="" id="@Id" @bind="@CurrentValue" placeholder="@Placeholder" 
+           @oninput="EventCallback.Factory.CreateBinder<string>(this, value => CurrentValueAsString = value, CurrentValueAsString!)" />
+    <div class="">
+        <ValidationMessage For="@ValidationFor" />
+    </div>
+</div>
+

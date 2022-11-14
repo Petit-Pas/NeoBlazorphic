@@ -1,0 +1,37 @@
+﻿@page "/inputfielddemo"
+
+@using NeoBlazorphic.Components.Inputs.Fields.BaseFields;
+@using Blazored.FluentValidation;
+@using System.ComponentModel.DataAnnotations;
+@using FluentValidation
+
+<EditForm Model="_Model">
+    @*<DataAnnotationsValidator />*@
+    <FluentValidationValidator />
+    <BaseTextField Label="prénom" Id="FirstNameField" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></BaseTextField>
+    <button type="submit">Validate</button>
+</EditForm>
+
+<p>
+    @_Model.FirstName @_Model.LastName
+</p>
+
+@code {
+
+    public class AddressValidator : AbstractValidator<FormModel>
+    {
+        public AddressValidator()
+        {
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage("you must specify a FirstName");
+            RuleFor(x => x.FirstName).Length(3, 15).WithMessage("first name should be between 3 and 15 characters");
+        }
+    }
+
+    public class FormModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    public FormModel _Model { get; set; } = new FormModel();
+}
