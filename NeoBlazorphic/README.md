@@ -1,0 +1,2 @@
+﻿document.getElementById('7b668361-65f9-4382-a221-6e0287c6a43b').style.getPropertyValue('--main-color')
+Doing this enable to get from C#through interop a value from a css variable => might be the better way to setup "AccentColor" rather than defining as a parameter

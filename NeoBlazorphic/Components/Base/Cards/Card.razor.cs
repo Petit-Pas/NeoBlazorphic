@@ -37,6 +37,9 @@ namespace NeoBlazorphic.Components.Base.Cards
         [Parameter] 
         public Spacing Margin { get; set; } = Spacing._0;
 
+        [Parameter] 
+        public BorderRadius BorderRadius { get; set; } = new (0.75, "rem");
+
         private string GetPadding() => Padding.GetCssClass("padding");
         private string GetMargin() => Margin.GetCssClass("margin");
 
@@ -80,5 +83,6 @@ namespace NeoBlazorphic.Components.Base.Cards
         // UI Methods
         private string GetShadowPosition() => ShadowPosition.GetCssClass();
         private string GetBackgroundShape() => Shape.GetCssClass();
+        private string GetBorderRadius() => BorderRadius.GetCssProperty();
     }
 }

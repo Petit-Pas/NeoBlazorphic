@@ -78,6 +78,10 @@
     --light-color: #383838;
     --text-color: white;
 }
+::selection {
+    color: var(--main-color) !important;
+    background: var(--text-color) !important;
+}
 
 /* 
     States
