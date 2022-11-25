@@ -1,0 +1,56 @@
+﻿@page "/inputfielddemo"
+
+@using NeoBlazorphic.Components.Inputs.Fields.BaseFields;
+@using Blazored.FluentValidation;
+@using FluentValidation
+@using NeoBlazorphic.StyleParameters
+
+<EditForm Model="_Model">
+    @*<DataAnnotationsValidator />*@
+    <FluentValidationValidator />
+    
+    <div class="my-3">
+        <BaseTextField AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Top" LabelSizePx="121" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></BaseTextField>
+    </div>
+
+    <div class="my-3">
+        <BaseTextField AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Right" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname"></BaseTextField>
+    </div>
+
+    <div class="my-3">
+        <BaseTextField AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Bottom" LabelSizePx="121" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></BaseTextField>
+    </div>
+
+    <div class="my-3">
+        <BaseTextField AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname"></BaseTextField>
+    </div>
+
+
+    <button type="submit">Validate</button>
+</EditForm>
+
+<p>
+    @_Model.FirstName @_Model.LastName
+</p>
+
+@code {
+
+    public class AddressValidator : AbstractValidator<FormModel>
+    {
+        public AddressValidator()
+        {
+            RuleFor(x => x.FirstName).NotEmpty().WithMessage("you must specify a FirstName");
+            RuleFor(x => x.FirstName).Length(3, 15).WithMessage("first name should be between 3 and 15 characters");
+            RuleFor(x => x.LastName).NotEmpty().WithMessage("you must specify a last name");
+            RuleFor(x => x.LastName).Length(3, 15).WithMessage("last name should be between 3 and 15 characters");
+        }
+    }
+
+    public class FormModel
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    public FormModel _Model { get; set; } = new FormModel();
+}

@@ -2,8 +2,9 @@
 
 @inherits MouseInteractiveBaseComponent
 
-<div class="@GetShadowPosition() @GetPadding() @GetMargin() base-card-shape rounded-xl @GetBackgroundShape() @CustomClasses @textSelectableStyle h-full" 
-    @onmouseover=OnMouseOver @onmouseout=OnMouseOut
+<div class="@GetShadowPosition() @GetPadding() @GetMargin() base-card-shape @GetBackgroundShape() @CustomClasses @textSelectableStyle h-full" 
+     style="@GetBorderRadius()"
+     @onmouseover=OnMouseOver @onmouseout=OnMouseOut
     @onmousedown=OnMouseDown @onmouseup=OnMouseUp
     @onclick=OnMouseClick>
     @ChildContent
