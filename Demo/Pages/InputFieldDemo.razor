@@ -1,6 +1,7 @@
 ﻿@page "/inputfielddemo"
 
-@using NeoBlazorphic.Components.Inputs.Fields.BaseFields;
+@using NeoBlazorphic.Components.Inputs.Fields.String;
+@using NeoBlazorphic.Components.Inputs.Fields.Number;
 @using Blazored.FluentValidation;
 @using FluentValidation
 @using NeoBlazorphic.StyleParameters
@@ -10,27 +11,31 @@
     <FluentValidationValidator />
     
     <div class="my-3">
-        <BaseTextField AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Top" LabelSizePx="121" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></BaseTextField>
+        <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Top" LabelSizePx="121" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></StringInput>
     </div>
 
     <div class="my-3">
-        <BaseTextField AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Right" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname"></BaseTextField>
+        <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Right" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname"></StringInput>
     </div>
 
     <div class="my-3">
-        <BaseTextField AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Bottom" LabelSizePx="121" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></BaseTextField>
+        <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Bottom" LabelSizePx="121" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></StringInput>
     </div>
 
     <div class="my-3">
-        <BaseTextField AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname"></BaseTextField>
+        <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname"></StringInput>
     </div>
 
+    
+    <div class="my-3">
+        <IntInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="true" LabelSizePx="121" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+    </div>
 
     <button type="submit">Validate</button>
 </EditForm>
 
 <p>
-    @_Model.FirstName @_Model.LastName
+    @_Model.FirstName @_Model.LastName @_Model.Age
 </p>
 
 @code {
@@ -41,8 +46,11 @@
         {
             RuleFor(x => x.FirstName).NotEmpty().WithMessage("you must specify a FirstName");
             RuleFor(x => x.FirstName).Length(3, 15).WithMessage("first name should be between 3 and 15 characters");
+            
             RuleFor(x => x.LastName).NotEmpty().WithMessage("you must specify a last name");
             RuleFor(x => x.LastName).Length(3, 15).WithMessage("last name should be between 3 and 15 characters");
+
+            RuleFor(x => x.Age).GreaterThanOrEqualTo(0).WithMessage("Age must be greater than or equal to 0");
         }
     }
 
@@ -50,6 +58,8 @@
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public int Age { get; set; } = 0;
     }
 
     public FormModel _Model { get; set; } = new FormModel();
