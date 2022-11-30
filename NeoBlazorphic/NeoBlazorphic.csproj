@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\app.scss" />
+    <None Include="wwwroot\css\app.css" />
   </ItemGroup>
 
 
