@@ -20,9 +20,9 @@ jobs:
 #    - name: Restore workloads
 #      run: dotnet workload restore  
     - name: Restore dependencies
-      run: dotnet restore .\NeoBlazorphic\NeoBlazorphic.csproj
+      run: dotnet restore ./NeoBlazorphic/NeoBlazorphic.csproj
     - name: Build
-      run: dotnet build .\NeoBlazorphic\NeoBlazorphic.csproj --no-restore
+      run: dotnet build ./NeoBlazorphic/NeoBlazorphic.csproj --no-restore
 #    - name: Test
 #      run: dotnet test --no-build --verbosity normal
 
