@@ -1,4 +1,5 @@
 ﻿using BlazorXMauiDemo.Data;
+using BlazorXMauiDemo.Service;
 using Microsoft.Extensions.Logging;
 
 namespace BlazorXMauiDemo
@@ -20,6 +21,10 @@ namespace BlazorXMauiDemo
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
+#endif
+
+#if WINDOWS
+            builder.Services.AddSingleton<IFileManager, FileManager>();
 #endif
 
             builder.Services.AddSingleton<WeatherForecastService>();

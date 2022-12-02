@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Sandbox\Sandbox.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "Demo\Demo.csproj", "{5831FCD5-80A3-499F-8A05-49A5605788BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorXMauiDemo", "BlazorXMauiDemo\BlazorXMauiDemo.csproj", "{A57079FB-0480-44D0-8D36-F88435614A1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorXMauiDemo", "BlazorXMauiDemo\BlazorXMauiDemo.csproj", "{A57079FB-0480-44D0-8D36-F88435614A1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
