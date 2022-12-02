@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sandbox", "Sandbox\Sandbox.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo", "Demo\Demo.csproj", "{5831FCD5-80A3-499F-8A05-49A5605788BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorXMauiDemo", "BlazorXMauiDemo\BlazorXMauiDemo.csproj", "{A57079FB-0480-44D0-8D36-F88435614A1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{5831FCD5-80A3-499F-8A05-49A5605788BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5831FCD5-80A3-499F-8A05-49A5605788BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5831FCD5-80A3-499F-8A05-49A5605788BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A57079FB-0480-44D0-8D36-F88435614A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A57079FB-0480-44D0-8D36-F88435614A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A57079FB-0480-44D0-8D36-F88435614A1D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A57079FB-0480-44D0-8D36-F88435614A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A57079FB-0480-44D0-8D36-F88435614A1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A57079FB-0480-44D0-8D36-F88435614A1D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

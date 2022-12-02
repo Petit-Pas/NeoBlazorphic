@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>BlazorXMauiDemo</title>
     <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/app.css" rel="stylesheet" />
-    <link href="Demo.styles.css" rel="stylesheet" />
-
+    <link href="BlazorXMauiDemo.styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="_content/NeoBlazorphic/css/app.css" />
     <script src="_content/NeoBlazorphic/js/interop.js"></script>
-
 </head>
 
 <body>
+
+    <div class="status-bar-safe-area"></div>
+
     <div id="app">Loading...</div>
 
     <div id="blazor-error-ui">
@@ -23,7 +23,9 @@
         <a href="" class="reload">Reload</a>
         <a class="dismiss">🗙</a>
     </div>
-    <script src="_framework/blazor.webassembly.js"></script>
+
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
+
 </body>
 
 </html>

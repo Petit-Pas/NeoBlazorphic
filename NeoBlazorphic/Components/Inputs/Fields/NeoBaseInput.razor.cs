@@ -4,11 +4,11 @@ using System.Linq.Expressions;
 using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.StyleParameters;
 
-namespace NeoBlazorphic.Components.Inputs.Fields.BaseFields
+namespace NeoBlazorphic.Components.Inputs.Fields
 {
-    public partial class BaseTextField : InputBase<string>
+    public partial class NeoBaseInput<T> : InputBase<T>
     {
-        [Parameter, EditorRequired] public Expression<Func<string>> ValidationFor { get; set; } = default!;
+        [Parameter, EditorRequired] public Expression<Func<T>> ValidationFor { get; set; } = default!;
         [Parameter] public string? Label { get; set; }
         [Parameter] public string? Placeholder { get; set; }
         [Parameter] public bool ValidateOnKeyPress { get; set; }
@@ -20,11 +20,9 @@ namespace NeoBlazorphic.Components.Inputs.Fields.BaseFields
 
         private string Id { get; set; } = Guid.NewGuid().ToString();
 
-        protected override bool TryParseValueFromString(string? value, out string result, out string? validationErrorMessage)
+        protected override bool TryParseValueFromString(string? value, out T result, out string? validationErrorMessage)
         {
-            result = value;
-            validationErrorMessage = null;
-            return true;
+            throw new ArgumentNullException("NeoBaseInput should not be used as such, you should inherit it and override TryParseValueFromString");
         }
 
         private void OnFocusIn(FocusEventArgs e)
@@ -77,9 +75,9 @@ namespace NeoBlazorphic.Components.Inputs.Fields.BaseFields
         }
 
         private static readonly int _cornerRemSize = 4;
-        private static readonly BorderRadius _full = new (_cornerRemSize, "rem");
-        private static readonly BorderRadius _squaredOnRight = new (0, _cornerRemSize, _cornerRemSize, 0, "rem");
-        private static readonly BorderRadius _squaredOnLeft = new (_cornerRemSize, 0, 0, _cornerRemSize, "rem");
+        private static readonly BorderRadius _full = new(_cornerRemSize, "rem");
+        private static readonly BorderRadius _squaredOnRight = new(0, _cornerRemSize, _cornerRemSize, 0, "rem");
+        private static readonly BorderRadius _squaredOnLeft = new(_cornerRemSize, 0, 0, _cornerRemSize, "rem");
 
         private BorderRadius GetFieldBorderRadius()
         {

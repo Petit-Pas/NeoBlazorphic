@@ -1,0 +1,42 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main class="@($"base-neo-color neo-{SelectedThemeString}")">
+        <div class="top-row px-4" style="background: var(--main-color)">
+            <select @bind=@SelectedThemeString>
+                <option value="gray"> Gray </option>
+                <option value="primary"> Primary </option>
+                <option value="danger"> Danger </option>
+            </select>
+
+            <p style="color: var(--text-color)">@SelectedThemeString</p>
+
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <p></p>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    protected string SelectedThemeString
+    {
+        get => _selectedThemeString;
+        set
+        {
+            if (_selectedThemeString != value)
+            {
+                _selectedThemeString = value;
+            }
+        }
+    }
+    private string _selectedThemeString = "gray";
+}

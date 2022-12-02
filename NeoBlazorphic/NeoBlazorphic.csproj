@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <IsPublishable>True</IsPublishable>
     <PackageId>$(AssemblyName)</PackageId>
-    <Version>0.0.1-alpha1.2.0</Version>
+    <Version>0.0.1-alpha1.3.0</Version>
 	<Company>None</Company>
 	<Authors>benoit_hoffman</Authors>
 	<Description>Blazor component library using the neomorphism style</Description>
@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\app.scss" />
+    <None Include="wwwroot\css\app.css" />
   </ItemGroup>
 
 
