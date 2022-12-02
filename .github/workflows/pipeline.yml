@@ -17,12 +17,12 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-    - name: Restore workloads
-      run: dotnet workload restore
+#    - name: Restore workloads
+#      run: dotnet workload restore  
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore .\NeoBlazorphic\NeoBlazorphic.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build .\NeoBlazorphic\NeoBlazorphic.csproj --no-restore
 #    - name: Test
 #      run: dotnet test --no-build --verbosity normal
 
