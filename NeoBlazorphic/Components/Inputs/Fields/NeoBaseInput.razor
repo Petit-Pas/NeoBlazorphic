@@ -19,7 +19,7 @@
 
                 <Card ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
                     <input @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
-                        type="text" class="" style="-webkit-appearance: none; outline: none; background: transparent; color: var(--text-color)"
+                        type="text" class="" style="-webkit-appearance: none; outline: none; background: transparent; color: var(--text-color); width: 100%"
                            id="@Id" @bind="@CurrentValue" placeholder="@Placeholder"
                            @oninput="GetOnInputBinder()" />
                 </Card>
@@ -40,7 +40,7 @@ else
 
             <Card ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
                 <input @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
-                    type="text" class="" style=" -webkit-appearance: none; outline: none; background: transparent; color: var(--text-color)"
+                   type="text" class="" style=" -webkit-appearance: none; outline: none; background: transparent; color: var(--text-color); width: 100%"
                            id="@Id" @bind="@CurrentValue" placeholder="@Placeholder"
                            @oninput="GetOnInputBinder()" />
             </Card>
