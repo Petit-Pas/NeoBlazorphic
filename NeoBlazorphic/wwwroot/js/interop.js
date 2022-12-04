@@ -2,7 +2,7 @@
     document.addEventListener(
         "mouseup",
         (args) => {
-            instanceReference.invokeMethod(callbackMethod, args);
+            instanceReference.invokeMethodAsync(callbackMethod, args);
         },
         { once: true }
     );
