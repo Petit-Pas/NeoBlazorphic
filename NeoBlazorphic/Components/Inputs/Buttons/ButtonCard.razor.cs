@@ -52,6 +52,7 @@ namespace NeoBlazorphic.Components.Inputs.Buttons
             }
 
             this.ShadowPosition = ShadowPosition.Out;
+            StateHasChanged();
             await base.OnMouseUp(args);
         }
     }

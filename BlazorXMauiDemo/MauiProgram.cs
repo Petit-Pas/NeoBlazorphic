@@ -1,6 +1,9 @@
-﻿using BlazorXMauiDemo.Data;
+﻿using ABI.Microsoft.Web.WebView2.Core;
+using BlazorXMauiDemo.Data;
 using BlazorXMauiDemo.Service;
+using Demo.Pages;
 using Microsoft.Extensions.Logging;
+using PeterLeslieMorris.Blazor.Validation;
 
 namespace BlazorXMauiDemo
 {
@@ -17,9 +20,12 @@ namespace BlazorXMauiDemo
                 });
 
             builder.Services.AddMauiBlazorWebView();
+            
+            builder.Services.AddFormValidation(config =>
+                config.AddFluentValidation(typeof(InputFieldDemo.FormModel).Assembly));
 
 #if DEBUG
-		builder.Services.AddBlazorWebViewDeveloperTools();
+            builder.Services.AddBlazorWebViewDeveloperTools();
 		builder.Logging.AddDebug();
 #endif
 

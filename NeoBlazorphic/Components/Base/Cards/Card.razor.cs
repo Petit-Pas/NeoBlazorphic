@@ -30,7 +30,7 @@ namespace NeoBlazorphic.Components.Base.Cards
         protected string CustomClasses { get; set; } = "";
 
         [Parameter]
-        public RenderFragment ChildContent { get; set; } = default!;
+        public RenderFragment? ChildContent { get; set; } = default!;
 
         [Parameter] 
         public Spacing Padding { get; set; } = Spacing._3;
@@ -39,6 +39,9 @@ namespace NeoBlazorphic.Components.Base.Cards
 
         [Parameter] 
         public BorderRadius BorderRadius { get; set; } = new (0.75, "rem");
+
+        [Parameter] 
+        public bool ShouldBeVisibleWhenEmpty { get; set; } = true;
 
         private string GetPadding() => Padding.GetCssClass("padding");
         private string GetMargin() => Margin.GetCssClass("margin");
@@ -84,5 +87,7 @@ namespace NeoBlazorphic.Components.Base.Cards
         private string GetShadowPosition() => ShadowPosition.GetCssClass();
         private string GetBackgroundShape() => Shape.GetCssClass();
         private string GetBorderRadius() => BorderRadius.GetCssProperty();
+
+        private string GetVisiblityDependingOnEmptiness() => ShouldBeVisibleWhenEmpty ? "": "invisible-when-empty";
     }
 }

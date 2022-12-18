@@ -27,10 +27,6 @@
     <Content Include="README.md" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="wwwroot\css\app.css" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <SupportedPlatform Include="browser" />
@@ -38,6 +34,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
 </Project>

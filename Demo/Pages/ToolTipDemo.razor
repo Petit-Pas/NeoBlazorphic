@@ -1,0 +1,39 @@
+﻿@using NeoBlazorphic.Components.ToolTips
+@using NeoBlazorphic.Components.Base.Cards
+
+@page "/tooltipdemo"
+
+<ToolTip Text="Hovered!" @ref="Tooltip1">
+    <ChildContent>
+        <button class="btn btn-primary" @onclick="() => Tooltip1.SwitchVisibility()"> Click me </button>
+    </ChildContent>
+</ToolTip>
+
+
+
+<p></p>
+<p></p>
+
+<ToolTip>
+    <ChildContent> <div > hello world </div></ChildContent>
+    <ToolTipContent>
+        <Card>
+
+        </Card>
+    </ToolTipContent>
+</ToolTip>
+
+@*<ToolTip>
+    <ChildContent>
+        <div style="background: black">Hover Here </div>
+    </ChildContent>
+    <ToolTipContent>
+        <div> Hovered mais différent </div>
+    </ToolTipContent>
+</ToolTip>*@
+
+
+@code
+{
+    public ToolTip Tooltip1 { get; set; }
+}

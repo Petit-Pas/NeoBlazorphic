@@ -5,11 +5,16 @@
 @using Blazored.FluentValidation;
 @using FluentValidation
 @using NeoBlazorphic.StyleParameters
+@using System.ComponentModel.DataAnnotations
 
-<EditForm Model="_Model">
+@using PeterLeslieMorris.Blazor.Validation
+
+@*Model="_Model"*@
+<EditForm EditContext="_EditContext">
+    <Validate />
     @*<DataAnnotationsValidator />*@
-    <FluentValidationValidator />
-    
+    @*<FluentValidationValidator />*@
+
     <div class="my-3">
         <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Top" LabelSizePx="121" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></StringInput>
     </div>
@@ -26,9 +31,20 @@
         <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname"></StringInput>
     </div>
 
-    
+
     <div class="my-3">
-        <IntInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="true" LabelSizePx="121" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+        <IntInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="false" LabelSizePx="121" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+    </div>
+    <div class="my-3">
+        <IntInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="false" LabelSizePx="121" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+    </div>
+
+    <div class="my-3">
+        <IntInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="false" LabelSizePx="121" Label="Age wrapped" @bind-Value="_Model.AgeWrapper._Age" ValidationFor="@(() => _Model.AgeWrapper._Age)" PlaceHolder="age"></IntInput>
+    </div>
+
+    <div class="my-3">
+        <InputText @bind-Value="_Model.LastName"></InputText>
     </div>
 
     <button type="submit">Validate</button>
@@ -40,27 +56,62 @@
 
 @code {
 
+    public FormModel _Model { get; set; }
+    public EditContext _EditContext { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _Model = new FormModel();
+        _EditContext = new EditContext(_Model);
+        await base.OnInitializedAsync();
+    }
+
     public class AddressValidator : AbstractValidator<FormModel>
     {
         public AddressValidator()
         {
             RuleFor(x => x.FirstName).NotEmpty().WithMessage("you must specify a FirstName");
             RuleFor(x => x.FirstName).Length(3, 15).WithMessage("first name should be between 3 and 15 characters");
-            
+
             RuleFor(x => x.LastName).NotEmpty().WithMessage("you must specify a last name");
             RuleFor(x => x.LastName).Length(3, 15).WithMessage("last name should be between 3 and 15 characters");
 
             RuleFor(x => x.Age).GreaterThanOrEqualTo(0).WithMessage("Age must be greater than or equal to 0");
+            RuleFor(x => x.Age).LessThanOrEqualTo(10).WithMessage("Age must be less than or equal to 10");
+
+            RuleFor(x => x.AgeWrapper).SetValidator(new AgeWrapperValidator());
         }
+    }
+
+    public class AgeWrapperValidator : AbstractValidator<AgeWrapper>
+    {
+        public AgeWrapperValidator()
+        {
+            RuleFor(x => x._Age).GreaterThanOrEqualTo(0).WithMessage("Age must be greater than or equal to 0");
+            RuleFor(x => x._Age).LessThanOrEqualTo(10).WithMessage("Age must be less than or equal to 10");
+        }
+    }
+
+    public class AgeWrapper
+    {
+        [Required]
+        [Range(0, 55)]
+        public int _Age { get; set; }
     }
 
     public class FormModel
     {
+        [Required]
+        [MinLength(3)]
         public string FirstName { get; set; }
+        [Required]
+        [MinLength(3)]
         public string LastName { get; set; }
 
+        [Required]
+        [Range(0, 100)]
         public int Age { get; set; } = 0;
-    }
 
-    public FormModel _Model { get; set; } = new FormModel();
+        public AgeWrapper AgeWrapper { get; set; } = new () { _Age = 0 };
+    }
 }

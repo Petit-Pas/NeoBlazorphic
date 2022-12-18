@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Diagnostics.CodeAnalysis;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.StyleParameters;
+using System.Globalization;
 
 namespace NeoBlazorphic.Components.Inputs.Fields
 {
@@ -20,9 +22,56 @@ namespace NeoBlazorphic.Components.Inputs.Fields
 
         private string Id { get; set; } = Guid.NewGuid().ToString();
 
-        protected override bool TryParseValueFromString(string? value, out T result, out string? validationErrorMessage)
+        private bool IsHovered { get; set; } = false;
+
+        private bool IsValid { get; set; } = true;
+
+        protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out T result, [NotNullWhen(false)] out string? validationErrorMessage)
         {
-            throw new ArgumentNullException("NeoBaseInput should not be used as such, you should inherit it and override TryParseValueFromString");
+            IsValid = true;
+            if (EditContext.GetValidationMessages(FieldIdentifier).Any())
+            {
+                IsValid = false;
+            }
+
+            // those values should not be used anyway, this class should always be used by overriding and calling base method
+            result = default;
+            validationErrorMessage = null;
+            return IsValid;
+        }
+
+        protected override string? FormatValueAsString(T? value)
+        {
+            // Avoiding a cast to IFormattable to avoid boxing.
+            switch (value)
+            {
+                case null:
+                    return null;
+
+                case string @string:
+                    return @string;
+
+                case int @int:
+                    return BindConverter.FormatValue(@int, CultureInfo.InvariantCulture);
+
+                case long @long:
+                    return BindConverter.FormatValue(@long, CultureInfo.InvariantCulture);
+
+                case short @short:
+                    return BindConverter.FormatValue(@short, CultureInfo.InvariantCulture);
+
+                case float @float:
+                    return BindConverter.FormatValue(@float, CultureInfo.InvariantCulture);
+
+                case double @double:
+                    return BindConverter.FormatValue(@double, CultureInfo.InvariantCulture);
+
+                case decimal @decimal:
+                    return BindConverter.FormatValue(@decimal, CultureInfo.InvariantCulture);
+
+                default:
+                    throw new InvalidOperationException($"Unsupported type {value.GetType()}");
+            }
         }
 
         private void OnFocusIn(FocusEventArgs e)
@@ -35,6 +84,16 @@ namespace NeoBlazorphic.Components.Inputs.Fields
         {
             IsFocused = false;
             StateHasChanged();
+        }
+
+        private void OnMouseOver()
+        {
+            IsHovered = true;
+        }
+
+        private void OnMouseOut()
+        {
+            IsHovered = false;
         }
 
         // UI computing methods 
@@ -74,6 +133,11 @@ namespace NeoBlazorphic.Components.Inputs.Fields
             return $"grid-row: {row}; grid-column: {col};";
         }
 
+        private string GetAccentColor()
+        {
+            return IsValid ? "" : "neo-danger";
+        }
+
         private static readonly int _cornerRemSize = 4;
         private static readonly BorderRadius _full = new(_cornerRemSize, "rem");
         private static readonly BorderRadius _squaredOnRight = new(0, _cornerRemSize, _cornerRemSize, 0, "rem");
@@ -98,12 +162,27 @@ namespace NeoBlazorphic.Components.Inputs.Fields
 
             if (ValidateOnKeyPress)
             {
-                return EventCallback.Factory.CreateBinder<string>(this, value => CurrentValueAsString = value,
+                return EventCallback.Factory.CreateBinder<string?>(this, value => CurrentValueAsString = value,
                     CurrentValueAsString!);
             }
             return default;
         }
 
-        private string GetAccentClass() => IsFocused ? AccentColor : "";
+        private EventCallback<ChangeEventArgs> GetOnChangeBinder()
+        {
+            /*
+                This oninput rule serves the purpose of both triggering the onchange event AND the validation on each keystroke.
+                https://www.meziantou.net/validating-an-input-on-keypress-instead-of-on-change-in-blazor.htm
+            */
+
+            if (!ValidateOnKeyPress)
+            {
+                return EventCallback.Factory.CreateBinder<string?>(this, value => CurrentValueAsString = value,
+                    CurrentValueAsString!);
+            }
+            return default;
+        }
+
+        private string GetInputAccentClass() => IsFocused ? AccentColor : "";
     }
 }
