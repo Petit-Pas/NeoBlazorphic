@@ -52,7 +52,7 @@
     background: var(--main-color);
 }
 
-.neo-primary {
+/*.neo-primary {
     --main-color: #5100a1;
     --dark-shadow: #200040;
     --light-shadow: #8200ff;
@@ -69,15 +69,64 @@
     --light-color: #ea3e5c;
     --text-color: white;
 }
-
+*/
 .neo-gray {
-    --main-color: #202020;
-    --dark-shadow: #0d0d0d;
-    --light-shadow: #333333;
-    --dark-color: #1a1a1a;
-    --light-color: #383838;
-    --text-color: white;
+    --base-main-color: #202020;
+    --base-dark-color: #1a1a1a;
+    --base-light-color: #383838;
+    --base-text-color: white;
+    --base-dark-shadow: #0d0d0d;
+    --base-light-shadow: #333333;
+    /**/
+    --danger-main-color: #d92645;
+    --danger-dark-color: #af1e37;
+    --danger-light-color: #ea3e5c;
+    --danger-text-color: white;
+    --danger-dark-shadow: #570f1c;
+    --danger-light-shadow: #ff3d6e;
+    /**/
+    --primary-main-color: #5100a1;
+    --primary-dark-color: #390091;
+    --primary-light-color: #6700ac;
+    --primary-text-color: white;
+    --primary-dark-shadow: #200040;
+    --primary-light-shadow: #8200ff;
+    /**/
+    --main-color: var(--base-main-color);
+    --dark-color: var(--base-dark-color);
+    --light-color: var(--base-light-color);
+    --text-color: var(--base-text-color);
+    --dark-shadow: var(--base-dark-shadow);
+    --light-shadow: var(--base-light-shadow);
+    /* 
+        These two are used only with additional modifiers (such as danger or primary
+        Their purpose is to be able to chose between the default shadows 
+        ex: --dark-shadow and --light-shadow, which for this case are gray no matter the modifier, 
+            or the shadows of the modifier, such as red or indigo by using --alternate-dark-shadow and --alternate-light-shadow
+        This was mostly needed to make the difference between inside and outside shadows, 
+        since one needs to use the background of the parent, while the other one the background of the child
+        Note: For the main theme without modifiers, it is indeed the same as the normal shadow colors.
+    */
+    --alternate-dark-shadow: var(--base-dark-shadow);
+    --alternate-light-shadow: var(--base-light-shadow);
 }
+.neo-danger {
+    --main-color: var(--danger-main-color);
+    --dark-color: var(--danger-dark-color);
+    --light-color: var(--danger-light-color);
+    --text-color: var(--danger-text-color);
+    --alternate-dark-shadow: var(--danger-dark-shadow);
+    --alternate-light-shadow: var(--danger-light-shadow);
+}
+.neo-primary {
+    --main-color: var(--primary-main-color);
+    --dark-color: var(--primary-dark-color);
+    --light-color: var(--primary-light-color);
+    --text-color: var(--primary-text-color);
+    --alternate-dark-shadow: var(--primary-dark-shadow);
+    --alternate-light-shadow: var(--primary-light-shadow);
+}
+
 ::selection {
     color: var(--main-color) !important;
     background: var(--text-color) !important;

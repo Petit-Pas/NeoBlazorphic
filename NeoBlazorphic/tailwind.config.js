@@ -5,7 +5,7 @@ module.exports = {
         extend: {
             boxShadow: {
                 'neo-out': '5px 5px 10px var(--dark-shadow), -5px -5px 10px var(--light-shadow)',
-                'neo-in': 'inset 5px 5px 10px var(--dark-shadow), inset -5px -5px 10px var(--light-shadow)'
+                'neo-in': 'inset 5px 5px 10px var(--alternate-dark-shadow), inset -5px -5px 10px var(--alternate-light-shadow)'
             },
         },
     },

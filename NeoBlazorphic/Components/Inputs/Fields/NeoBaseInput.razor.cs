@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.StyleParameters;
 using System.Globalization;
+using Microsoft.JSInterop;
 
 namespace NeoBlazorphic.Components.Inputs.Fields
 {
@@ -17,6 +18,9 @@ namespace NeoBlazorphic.Components.Inputs.Fields
         [Parameter] public int LabelSizePx { get; set; } = 100;
         [Parameter] public ElementRelativePosition LabelPosition { get; set; } = ElementRelativePosition.Top;
         [Parameter] public string AccentColor { get; set; } = "neo-primary";
+
+        [Inject]
+        public IJSRuntime jsRuntime { get; set; }
 
         private bool IsFocused { get; set; } = false;
 
@@ -33,6 +37,9 @@ namespace NeoBlazorphic.Components.Inputs.Fields
             {
                 IsValid = false;
             }
+            StateHasChanged();
+
+            jsRuntime.InvokeVoidAsync("console.log", $"triggered with [{value}] and should be {(IsValid ? "valid" : "invalid")}");
 
             // those values should not be used anyway, this class should always be used by overriding and calling base method
             result = default;
