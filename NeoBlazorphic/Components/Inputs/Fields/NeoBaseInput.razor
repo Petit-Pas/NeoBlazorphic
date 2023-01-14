@@ -6,57 +6,45 @@
 
 @using NeoBlazorphic.Components.ToolTips
 
-<div> @IsValid </div>
-
 <div @onmouseover="OnMouseOver" @onmouseout="OnMouseOut">
     <ToolTip>
         <ChildContent>
 
-            @if (LabelPosition is ElementRelativePosition.Left or ElementRelativePosition.Right)
-            {
-                <div class="@GetAccentColor()">
-                    <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._1" BorderRadius="@(new(4, "rem"))" >
+            <div class="input-group @GetAccentColor()" style="">
 
-                        <div class="grid" style="@GetColumnDefinition() @GetRowDefinition() align-items: center">
-
-                            @if (!string.IsNullOrWhiteSpace(Label))
-                            {
-                                <label class="mx-2" style="@GetLabelGridPositions()" for="@Id">@Label</label>
-                            }
-
-                            <div class="@GetInputAccentClass()" style="@GetFieldGridPositions()">
-
-                                <Card ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
-                                    <input @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
-                                           type="text" class="" style="-webkit-appearance: none; outline: none; background: transparent; color: var(--text-color); width: 100%"
-                                           id="@Id" placeholder="@Placeholder"
-                                           @oninput="GetOnInputBinder()" @onchange="GetOnChangeBinder()" value="@CurrentValueAsString" />
-                                </Card>
+                @if (!string.IsNullOrWhiteSpace(Label))
+                {
+                    <label class="input-label" for="@Id">@Label</label>
+                }
+                
+                <Card BorderRadius="_full" Padding="Spacing._1">
+                    <div class="input-row">
+                        @if (InputFieldPrefix != null)
+                        {
+                            <div class="input-prefix">
+                                @InputFieldPrefix
                             </div>
+                        }
+
+                        <div class="input @GetInputAccentClass()">
+
+                            <Card ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
+                                <input @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
+                                       type="text" class="" style="-webkit-appearance: none; outline: none; background: transparent; color: var(--text-color); width: 100%"
+                                       id="@Id" placeholder="@Placeholder"
+                                       @oninput="GetOnInputBinder()" @onchange="GetOnChangeBinder()" value="@CurrentValueAsString"/>
+                            </Card>
                         </div>
-                    </Card>
-                </div>
-            }
-            else
-            {
-                <div class="d-grid" style="@GetColumnDefinition() @GetRowDefinition() align-items: center">
 
-                    @if (!string.IsNullOrWhiteSpace(Label))
-                    {
-                        <label class="mx-2" style="@GetLabelGridPositions()" for="@Id">@Label</label>
-                    }
-
-                    <div class="@GetInputAccentClass()" style="@GetFieldGridPositions()">
-
-                        <Card ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
-                            <input @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
-                                   type="text" class="" style=" -webkit-appearance: none; outline: none; background: transparent; color: var(--text-color); width: 100%"
-                                   id="@Id"  placeholder="@Placeholder"
-                                   @oninput="GetOnInputBinder()" @onchange="GetOnChangeBinder()" value="@CurrentValueAsString" />
-                        </Card>
+                        @if (InputFieldSuffix != null)
+                        {
+                            <div class="input-suffix">
+                                @InputFieldSuffix
+                            </div>
+                        }
                     </div>
-                </div>
-            }
+                </Card>
+            </div>
 
         </ChildContent>
         

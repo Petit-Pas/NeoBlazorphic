@@ -12,11 +12,13 @@ namespace NeoBlazorphic.Components.Inputs.Fields
     public partial class NeoBaseInput<T> : InputBase<T>
     {
         [Parameter, EditorRequired] public Expression<Func<T>> ValidationFor { get; set; } = default!;
+
+        [Parameter] public RenderFragment? InputFieldPrefix { get; set; }
+        [Parameter] public RenderFragment? InputFieldSuffix { get; set; }
+
         [Parameter] public string? Label { get; set; }
         [Parameter] public string? Placeholder { get; set; }
         [Parameter] public bool ValidateOnKeyPress { get; set; }
-        [Parameter] public int LabelSizePx { get; set; } = 100;
-        [Parameter] public ElementRelativePosition LabelPosition { get; set; } = ElementRelativePosition.Top;
         [Parameter] public string AccentColor { get; set; } = "neo-primary";
 
         [Inject]
@@ -32,19 +34,9 @@ namespace NeoBlazorphic.Components.Inputs.Fields
 
         protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out T result, [NotNullWhen(false)] out string? validationErrorMessage)
         {
-            IsValid = true;
-            if (EditContext.GetValidationMessages(FieldIdentifier).Any())
-            {
-                IsValid = false;
-            }
-            StateHasChanged();
-
-            jsRuntime.InvokeVoidAsync("console.log", $"triggered with [{value}] and should be {(IsValid ? "valid" : "invalid")}");
-
-            // those values should not be used anyway, this class should always be used by overriding and calling base method
             result = default;
-            validationErrorMessage = null;
-            return IsValid;
+            validationErrorMessage = "NeoBaseInput implementations should override TryParseValueFromString()";
+            return false;
         }
 
         protected override string? FormatValueAsString(T? value)
@@ -104,44 +96,9 @@ namespace NeoBlazorphic.Components.Inputs.Fields
         }
 
         // UI computing methods 
-        private string GetColumnDefinition()
-        {
-            return LabelPosition switch
-            {
-                ElementRelativePosition.Left => $"grid-template-columns: {LabelSizePx}px 1fr;",
-                ElementRelativePosition.Right => $"grid-template-columns: 1fr {LabelSizePx}px;",
-                _ => "grid-template-columns: 1fr;"
-            };
-        }
-
-        private string GetRowDefinition()
-        {
-            return LabelPosition switch
-            {
-                ElementRelativePosition.Top => "grid-template-rows: auto, auto",
-                ElementRelativePosition.Bottom => "grid-template-rows: auto, auto",
-                _ => "grid-template-rows: auto;"
-            };
-        }
-
-        private string GetLabelGridPositions()
-        {
-            var row = LabelPosition is ElementRelativePosition.Bottom ? 2 : 1;
-            var col = LabelPosition is ElementRelativePosition.Right ? 2 : 1;
-
-            return $"grid-row: {row}; grid-column: {col};";
-        }
-
-        private string GetFieldGridPositions()
-        {
-            var row = LabelPosition is ElementRelativePosition.Top ? 2 : 1;
-            var col = LabelPosition is ElementRelativePosition.Left ? 2 : 1;
-
-            return $"grid-row: {row}; grid-column: {col};";
-        }
-
         private string GetAccentColor()
         {
+            IsValid = !EditContext.GetValidationMessages(FieldIdentifier).Any();
             return IsValid ? "" : "neo-danger";
         }
 
@@ -149,14 +106,16 @@ namespace NeoBlazorphic.Components.Inputs.Fields
         private static readonly BorderRadius _full = new(_cornerRemSize, "rem");
         private static readonly BorderRadius _squaredOnRight = new(0, _cornerRemSize, _cornerRemSize, 0, "rem");
         private static readonly BorderRadius _squaredOnLeft = new(_cornerRemSize, 0, 0, _cornerRemSize, "rem");
+        private static readonly BorderRadius _squared = new(0);
 
         private BorderRadius GetFieldBorderRadius()
         {
-            return LabelPosition switch
+            return (InputFieldPrefix != null, InputFieldSuffix != null) switch
             {
-                ElementRelativePosition.Left => _squaredOnRight,
-                ElementRelativePosition.Right => _squaredOnLeft,
-                _ => _full
+                (true, true) => _squared,
+                (false, false) => _full,
+                (false, true) => _squaredOnLeft,
+                (true, false) => _squaredOnRight
             };
         }
 

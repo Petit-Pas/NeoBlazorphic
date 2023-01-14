@@ -1,0 +1,35 @@
+﻿
+.input-group {
+    display: grid;
+    grid-template-rows: auto auto;
+    align-items: center;
+}
+
+.input-label {
+    grid-row: 1;
+    margin: 0.5rem 0.3rem;
+}
+
+.input-row {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+}
+
+.input-prefix {
+    grid-column: 1;
+    margin: 0 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    grid-column: 2;
+}
+
+.input-suffix {
+    grid-column: 3;
+    margin: 0 0.75rem;
+    display: flex;
+    align-items: center;
+}

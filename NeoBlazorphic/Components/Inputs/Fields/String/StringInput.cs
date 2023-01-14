@@ -12,11 +12,8 @@ namespace NeoBlazorphic.Components.Inputs.Fields.String
 
         protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out string result, [NotNullWhen(false)] out string? validationErrorMessage)
         {
-            base.TryParseValueFromString(value, out result, out validationErrorMessage);
-
-            result = value;
+            result = value!;
             validationErrorMessage = null;
-            EditContext.NotifyFieldChanged(FieldIdentifier);
             return true;
         }
     }

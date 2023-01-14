@@ -16,31 +16,40 @@
     @*<FluentValidationValidator />*@
 
     <div class="my-3">
-        <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" LabelSizePx="121" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></StringInput>
+        <StringInput AccentColor="neo-primary" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
+            <InputFieldPrefix> <p style="width: 100px">Firstname</p> </InputFieldPrefix>
+            <InputFieldSuffix> <p> +3 </p> </InputFieldSuffix>
+        </StringInput>
     </div>
 
     <div class="my-3">
-        <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname"></StringInput>
-    </div>
-@*
-    <div class="my-3">
-        <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Bottom" LabelSizePx="121" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname"></StringInput>
+        <StringInput AccentColor="neo-primary" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname">
+            <InputFieldPrefix> <p style="width: 100px">LastName</p> </InputFieldPrefix>
+        </StringInput>
     </div>
 
     <div class="my-3">
-        <StringInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname"></StringInput>
-    </div>*@
-
-
-    <div class="my-3">
-        <IntInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="false" LabelSizePx="121" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
-    </div>
-    <div class="my-3">
-        <IntInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="false" LabelSizePx="121" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+        <StringInput AccentColor="neo-primary" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
+            <InputFieldPrefix> <p style="width: 100px">Firstname</p> </InputFieldPrefix>
+        </StringInput>
     </div>
 
     <div class="my-3">
-        <IntInput AccentColor="neo-primary" LabelPosition="ElementRelativePosition.Left" ValidateOnKeyPress="false" LabelSizePx="121" Label="Age wrapped" @bind-Value="_Model.AgeWrapper._Age" ValidationFor="@(() => _Model.AgeWrapper._Age)" PlaceHolder="age"></IntInput>
+        <StringInput AccentColor="neo-primary" ValidateOnKeyPress="true" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname">
+            <InputFieldPrefix> <p style="width: 100px">LastName</p> </InputFieldPrefix>
+        </StringInput>
+    </div>
+
+
+    <div class="my-3">
+        <IntInput AccentColor="neo-primary" ValidateOnKeyPress="false" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+    </div>
+    <div class="my-3">
+        <IntInput AccentColor="neo-primary" ValidateOnKeyPress="false" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+    </div>
+
+    <div class="my-3">
+        <IntInput AccentColor="neo-primary" ValidateOnKeyPress="false" Label="Age wrapped" @bind-Value="_Model.AgeWrapper._Age" ValidationFor="@(() => _Model.AgeWrapper._Age)" PlaceHolder="age"></IntInput>
     </div>
 
     <div class="my-3">
@@ -48,6 +57,7 @@
     </div>
 
     <button type="submit">Validate</button>
+    <button @onclick="() => Test()">Test</button>
 </EditForm>
 
 <p>
@@ -55,6 +65,11 @@
 </p>
 
 @code {
+
+    private void Test()
+    {
+        _EditContext.Validate();
+    }
 
     public FormModel _Model { get; set; }
     public EditContext _EditContext { get; set; }
