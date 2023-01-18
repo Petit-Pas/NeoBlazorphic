@@ -3,6 +3,7 @@
     display: grid;
     grid-template-rows: auto auto;
     align-items: center;
+    z-index: 0;
 }
 
 .input-label {
@@ -18,18 +19,19 @@
 
 .input-prefix {
     grid-column: 1;
-    margin: 0 0.75rem;
+    margin: 0 0.25rem;
     display: flex;
     align-items: center;
 }
 
 .input {
     grid-column: 2;
+    z-index: 1;
 }
 
 .input-suffix {
     grid-column: 3;
-    margin: 0 0.75rem;
+    margin: 0 0.25rem;
     display: flex;
     align-items: center;
 }

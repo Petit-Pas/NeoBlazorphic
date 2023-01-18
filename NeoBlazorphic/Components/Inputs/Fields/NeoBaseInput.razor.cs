@@ -104,8 +104,8 @@ namespace NeoBlazorphic.Components.Inputs.Fields
 
         private static readonly int _cornerRemSize = 4;
         private static readonly BorderRadius _full = new(_cornerRemSize, "rem");
-        private static readonly BorderRadius _squaredOnRight = new(0, _cornerRemSize, _cornerRemSize, 0, "rem");
-        private static readonly BorderRadius _squaredOnLeft = new(_cornerRemSize, 0, 0, _cornerRemSize, "rem");
+        private static readonly BorderRadius _squaredOnLeft = new(0, _cornerRemSize, _cornerRemSize, 0, "rem");
+        private static readonly BorderRadius _squaredOnRight = new(_cornerRemSize, 0, 0, _cornerRemSize, "rem");
         private static readonly BorderRadius _squared = new(0);
 
         private BorderRadius GetFieldBorderRadius()
@@ -114,8 +114,8 @@ namespace NeoBlazorphic.Components.Inputs.Fields
             {
                 (true, true) => _squared,
                 (false, false) => _full,
-                (false, true) => _squaredOnLeft,
-                (true, false) => _squaredOnRight
+                (false, true) => _squaredOnRight,
+                (true, false) => _squaredOnLeft
             };
         }
 

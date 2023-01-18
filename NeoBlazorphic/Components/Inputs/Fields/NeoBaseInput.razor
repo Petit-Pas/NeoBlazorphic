@@ -17,13 +17,15 @@
                     <label class="input-label" for="@Id">@Label</label>
                 }
                 
-                <Card BorderRadius="_full" Padding="Spacing._1">
+                
                     <div class="input-row">
                         @if (InputFieldPrefix != null)
                         {
-                            <div class="input-prefix">
-                                @InputFieldPrefix
-                            </div>
+                        <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2"  BorderRadius="_squaredOnRight">
+                                <div class="input-prefix">
+                                    @InputFieldPrefix
+                                </div>
+                            </Card>
                         }
 
                         <div class="input @GetInputAccentClass()">
@@ -38,12 +40,13 @@
 
                         @if (InputFieldSuffix != null)
                         {
-                            <div class="input-suffix">
-                                @InputFieldSuffix
-                            </div>
+                            <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
+                                <div class="input-suffix">
+                                    @InputFieldSuffix
+                                </div>
+                            </Card>
                         }
                     </div>
-                </Card>
             </div>
 
         </ChildContent>
