@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using NeoBlazorphic.Attributes;
+﻿using NeoBlazorphic.Attributes;
 
 namespace NeoBlazorphic.Extensions.BaseTypes
 {
@@ -37,7 +34,7 @@ namespace NeoBlazorphic.Extensions.BaseTypes
             }
 
             return string.IsNullOrEmpty(category)
-                ? attributes.GetDefaultValue() 
+                ? attributes.GetDefaultValue()
                 : attributes.GetValueForCategory(category);
         }
     }

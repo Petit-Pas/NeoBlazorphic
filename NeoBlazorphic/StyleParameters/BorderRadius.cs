@@ -1,9 +1,12 @@
-﻿using NeoBlazorphic.Extensions.BaseTypes;
+﻿using Microsoft.AspNetCore.Authorization;
+using NeoBlazorphic.Extensions.BaseTypes;
 
 namespace NeoBlazorphic.StyleParameters
 {
     public class BorderRadius
     {
+        public static readonly BorderRadius Default = new (3, "em");
+
         private readonly double[] _bordersPixels;
         private readonly string _unit;
 
