@@ -1,0 +1,71 @@
+﻿
+@property --card-bg-left {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: red;
+}
+
+@property --card-bg-right {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: red;
+}
+
+.neo-button-container {
+    transition: all .2s;
+}
+.neo-button-container:hover {
+    transform: translateY(-2px);
+}
+
+.neo-button {
+    user-select: none;
+    padding: 1em;
+    background: linear-gradient(145deg, var(--card-bg-left), var(--card-bg-right));
+    --card-bg-left: var(--card-base-color);
+    --card-bg-right: var(--card-base-color);
+    transition: --card-bg-left 0.2s, --card-bg-right 0.2s;
+    box-shadow: 5px 5px 10px var(--bottom-color), -5px -5px 10px var(--top-color);
+}
+.neo-button:hover {
+    --card-bg-left: var(--card-darker-bg-color);
+    --card-bg-right: var(--card-lighter-bg-color);
+}
+.neo-button:active {
+    box-shadow: inset 5px 5px 10px var(--bottom-color), inset -5px -5px 10px var(--top-color);
+}
+
+.base {
+    --top-color: var(--base-light-shadow);
+    --bottom-color: var(--base-dark-shadow);
+    --card-darker-bg-color: var(--base-dark-color);
+    --card-lighter-bg-color: var(--base-light-color);
+    --card-base-color: var(--base-main-color);
+}
+
+.primary {
+    --top-color: var(--base-light-shadow);
+    --bottom-color: var(--base-dark-shadow);
+    --card-darker-bg-color: var(--primary-dark-color);
+    --card-lighter-bg-color: var(--primary-light-color);
+    --card-base-color: var(--primary-main-color);
+}
+.primary:active {
+    --top-color: var(--primary-light-shadow);
+    --bottom-color: var(--primary-dark-shadow);
+    
+}
+
+.danger {
+    --top-color: var(--base-light-shadow);
+    --bottom-color: var(--base-dark-shadow);
+    --card-darker-bg-color: var(--danger-dark-color);
+    --card-lighter-bg-color: var(--danger-light-color);
+    --card-base-color: var(--danger-main-color);
+}
+
+.danger:active {
+    --top-color: var(--danger-light-shadow);
+    --bottom-color: var(--danger-dark-shadow);
+}
+

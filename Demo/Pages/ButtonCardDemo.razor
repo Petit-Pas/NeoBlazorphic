@@ -1,5 +1,6 @@
 ﻿@page "/buttoncarddemo"
 @using NeoBlazorphic.Components.Inputs.Buttons
+@using NeoBlazorphic.StyleParameters
 
 <h3>ButtonCard</h3>
 
@@ -19,6 +20,24 @@
         <ButtonCard OnMouseClickCallBack=OnClick>
             Click Me!
         </ButtonCard>
+    </div>
+</div>
+
+<div class="m-3">
+    <NewButtonCard ColorTheme="ColorTheme.Base" OnMouseClickCallBack=OnClick>
+        <ChildContent>
+            Click Me!
+        </ChildContent>
+    </NewButtonCard>
+</div>
+
+<div class="m-3" style="width: 100px; height: 100px">
+    <div class="h-full">
+        <NewButtonCard ColorTheme="ColorTheme.Base" OnMouseClickCallBack=OnClick>
+            <ChildContent>
+                Click Me!
+            </ChildContent>
+        </NewButtonCard>
     </div>
 </div>
 
