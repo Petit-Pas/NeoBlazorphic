@@ -26,6 +26,7 @@
     --card-bg-right: var(--card-base-color);
     transition: --card-bg-left 0.2s, --card-bg-right 0.2s;
     box-shadow: 5px 5px 10px var(--bottom-color), -5px -5px 10px var(--top-color);
+    cursor: pointer;
 }
 .neo-button:hover {
     --card-bg-left: var(--card-darker-bg-color);

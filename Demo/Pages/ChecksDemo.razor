@@ -24,6 +24,23 @@
             <br/>
             <CheckBox @bind-IsChecked=IsChecked IsEnabled="false" BoxShape="CheckBoxShape.Normal" AccentClass="neo-gray"></CheckBox>
         </div>
+        
+        <div class="col-1">
+            <br />
+            <NewCheckBox @bind-IsChecked=_Test.Checked IsEnabled="true" ColorTheme="ColorTheme.Primary"></NewCheckBox>
+            <br />
+            <NewCheckBox @bind-IsChecked=IsChecked2 IsEnabled="true" BoxShape="CheckBoxShape.Normal" ColorTheme="ColorTheme.Danger"></NewCheckBox>
+            <br />
+            <NewCheckBox @bind-IsChecked=IsChecked IsEnabled="true" BoxShape="CheckBoxShape.Normal" ColorTheme="ColorTheme.Base"></NewCheckBox>
+        </div>
+        <div class="col-1">
+            <br />
+            <NewCheckBox @bind-IsChecked=_Test.Checked IsEnabled="false" ColorTheme="ColorTheme.Primary"></NewCheckBox>
+            <br />
+            <NewCheckBox @bind-IsChecked=IsChecked2 IsEnabled="false" BoxShape="CheckBoxShape.Normal" ColorTheme="ColorTheme.Danger"></NewCheckBox>
+            <br />
+            <NewCheckBox @bind-IsChecked=IsChecked IsEnabled="false" BoxShape="CheckBoxShape.Normal" ColorTheme="ColorTheme.Base"></NewCheckBox>
+        </div>
     </div>
     <div class="row">
         <div class="col-1">
@@ -42,6 +59,24 @@
             <br/>
             <CheckBox @bind-IsChecked=IsChecked IsEnabled="false" BoxShape="CheckBoxShape.Round" AccentClass="neo-gray"></CheckBox>
         </div>
+
+        <div class="col-1">
+            <br/>
+            <NewCheckBox @bind-IsChecked=_Test.Checked IsEnabled="true" BoxShape="CheckBoxShape.Round" ColorTheme="ColorTheme.Primary"></NewCheckBox>
+            <br/>
+            <NewCheckBox @bind-IsChecked=IsChecked2 IsEnabled="true" BoxShape="CheckBoxShape.Round" ColorTheme="ColorTheme.Danger"></NewCheckBox>
+            <br/>
+            <NewCheckBox @bind-IsChecked=IsChecked IsEnabled="true" BoxShape="CheckBoxShape.Round" ColorTheme="ColorTheme.Base"></NewCheckBox>
+        </div>
+        <div class="col-1">
+            <br/>
+            <NewCheckBox @bind-IsChecked=_Test.Checked IsEnabled="false" BoxShape="CheckBoxShape.Round" ColorTheme="ColorTheme.Primary"></NewCheckBox>
+            <br/>
+            <NewCheckBox @bind-IsChecked=IsChecked2 IsEnabled="false" BoxShape="CheckBoxShape.Round" ColorTheme="ColorTheme.Danger"></NewCheckBox>
+            <br/>
+            <NewCheckBox @bind-IsChecked=IsChecked IsEnabled="false" BoxShape="CheckBoxShape.Round" ColorTheme="ColorTheme.Base"></NewCheckBox>
+        </div>
+
     </div>
 
 </div>

@@ -25,9 +25,6 @@ namespace NeoBlazorphic.Components.Inputs.Buttons
         }
 
         // UI Methods
-        public string GetColorTheme => ColorTheme.GetCssClass();
-
-        
-
+        private string GetColorTheme => ColorTheme.GetCssClass();
     }
 }
