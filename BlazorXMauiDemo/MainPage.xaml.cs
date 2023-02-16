@@ -12,14 +12,14 @@
         {
     #if WINDOWS
             try
-            {
+            {   
                 (blazorWebView.Handler.PlatformView as Microsoft.UI.Xaml.Controls.WebView2).CoreWebView2.Settings
                     .IsGeneralAutofillEnabled = false;
-            }
+            }   
             catch (Exception)
             {
             }
-#endif
+#endif  
         }
     }
 }

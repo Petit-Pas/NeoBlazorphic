@@ -25,6 +25,18 @@
     </div>
 </div>
 
+<NewCircularSelector>
+    <NewCircularSelectorButtonContent> <img src="/icon-192.png"/> </NewCircularSelectorButtonContent>
+    <NewCircularSelectorButtonContent> <img src="/icon-192.png"/> </NewCircularSelectorButtonContent>
+    <NewCircularSelectorButtonContent> <img src="/icon-192.png" /> </NewCircularSelectorButtonContent>
+</NewCircularSelector>
+
+<NewCircularSelector>
+    <NewCircularSelectorButtonContent> <div style="width:20px">0</div> </NewCircularSelectorButtonContent>
+    <NewCircularSelectorButtonContent> <div>1</div> </NewCircularSelectorButtonContent>
+    <NewCircularSelectorButtonContent> <div>2</div> </NewCircularSelectorButtonContent>
+</NewCircularSelector>
+
 
 <CircularSelector Items=@NumList AngleOffset=@AngleOffset ButtonAngle=@ButtonAngle 
                   CenterText=@CenterTextNum OnItemHovered="(e) => CenterTextNum = e.Item.Label"
