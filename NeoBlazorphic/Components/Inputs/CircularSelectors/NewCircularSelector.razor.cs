@@ -50,6 +50,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         }
 
         public int AmountButtons { get; set; }
+        public NewCircularSelectorButtonContent? SelectedItem { get; set; }
 
         private Point2D AngleEnd = new (0, 0);
 

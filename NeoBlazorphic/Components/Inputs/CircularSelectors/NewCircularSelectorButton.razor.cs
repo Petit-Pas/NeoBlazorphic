@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using NeoBlazorphic.Models.SelectableItems;
+using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.StyleParameters;
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors
@@ -17,6 +17,12 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 
         [Parameter, EditorRequired]
         public NewCircularSelectorButtonContent? ButtonContent { get; set; } = null;
+
+        [CascadingParameter]
+        public NewCircularSelector CircularSelector { get; set; }
+
+        [Parameter, EditorRequired] 
+        public bool Selected { get; set; } = false;
 
         private Guid UID = Guid.NewGuid();
 
@@ -49,6 +55,10 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         [Parameter]
         public string AccentClass { get; set; } = "neo-primary";
 
-        protected string ScaleFactor { get; set; } = "1";
+        private void OnClick(MouseEventArgs e)
+        {
+            CircularSelector.SelectedItem = ButtonContent;
+            CircularSelector.NotifyChangeOfState();
+        }
     }
 }

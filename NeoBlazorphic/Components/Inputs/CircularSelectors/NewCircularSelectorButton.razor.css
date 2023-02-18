@@ -1,2 +1,26 @@
-﻿body {
+﻿.circular-selector-button {
+    --start-gradient: var(--light-color);
+    --end-gradient: var(--dark-color);
+}
+
+.circular-selector-button.selected {
+    --start-gradient: var(--primary-light-color);
+    --end-gradient: var(--primary-dark-color);
+}
+
+.circular-selector-button stop:nth-child(1) {
+    stop-color: var(--start-gradient);
+    transition: stop-color 0.15s ease-in-out;
+}
+
+.circular-selector-button stop:nth-child(2) {
+    stop-color: var(--end-gradient);
+    transition: stop-color 0.15s ease-in-out;
+}
+
+.button-path {
+    transition: all 0.15s ease-in-out;
+}
+.button-path:hover {
+    transform: scale(1.15);
 }

@@ -12,6 +12,12 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         [Parameter]
         public string? CenterText { get; set; }
 
+        [Parameter] 
+        public double xShift { get; set; } = 0;
+
+        [Parameter]
+        public double yShift { get; set; } = 0;
+
         [CascadingParameter]
         public NewCircularSelector Selector { get => selector; set { selector = value; SendToParent(); } }
 
