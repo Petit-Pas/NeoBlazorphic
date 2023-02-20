@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.Math.Units;
 using NeoBlazorphic.StyleParameters;
 
@@ -34,6 +35,11 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         }
         private BackgroundShape _shape = BackgroundShape.Concave;
 
+        [Parameter]
+        public ColorTheme ColorTheme { get; set; } = ColorTheme.Base;
+        [Parameter]
+        public ColorTheme SelectedTheme { get; set; } = ColorTheme.Primary;
+
         public string? CenterText { get; set; }
 
 
@@ -60,5 +66,9 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
             RefreshValues();
             StateHasChanged();
         }
+
+        private string GetColorThemeClass => ColorTheme.GetCssClass();
+
+        private string GetShapeClass => Shape.GetCssClass();
     }
 }

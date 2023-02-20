@@ -1,3 +1,46 @@
 ﻿.circular-selector {
     user-select: none;
 }
+
+.concave {
+    --start-gradient: var(--light-color);
+    --end-gradient: var(--dark-color);
+}
+
+
+.convex {
+    --start-gradient: var(--dark-color);
+    --end-gradient: var(--light-color);
+}
+
+
+.base {
+    --dark-color: var(--base-dark-color);
+    --light-color: var(--base-light-color);
+}
+
+.primary {
+    --dark-color: var(--primary-dark-color);
+    --light-color: var(--primary-light-color);
+}
+
+.danger {
+    --dark-color: var(--danger-dark-color);
+    --light-color: var(--danger-light-color);
+}
+
+.selected-base {
+    --dark-color: var(--base-dark-color);
+    --light-color: var(--base-light-color);
+}
+
+.selected-primary {
+    --dark-color: var(--primary-dark-color);
+    --light-color: var(--primary-light-color);
+}
+
+.selected-danger {
+    --dark-color: var(--danger-dark-color);
+    --light-color: var(--danger-light-color);
+}
+

@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Drawing;
+using System.Runtime.CompilerServices;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.StyleParameters;
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors
@@ -53,12 +56,17 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         private BackgroundShape _shape = BackgroundShape.Concave;
 
         [Parameter]
-        public string AccentClass { get; set; } = "neo-primary";
+        public ColorTheme SelectedTheme { get; set; } = ColorTheme.Primary;
 
         private void OnClick(MouseEventArgs e)
         {
             CircularSelector.SelectedItem = ButtonContent;
             CircularSelector.NotifyChangeOfState();
         }
+
+        // UI Methods
+        private string GetSelectedThemeClass => Selected ? SelectedTheme.GetCssClass() : "";
+
+        private string GetShapeClass => Shape.GetCssClass();
     }
 }

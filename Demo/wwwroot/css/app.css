@@ -67,3 +67,11 @@ a, .btn-link {
 .test_oui {
     background: red;
 }
+
+.red-color {
+    --special-color: red;
+}
+
+.blue-color-hover:hover {
+    --special-color: blue;
+}

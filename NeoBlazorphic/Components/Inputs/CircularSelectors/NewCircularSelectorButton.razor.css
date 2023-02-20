@@ -1,4 +1,4 @@
-﻿.circular-selector-button {
+﻿/*.circular-selector-button {
     --start-gradient: var(--light-color);
     --end-gradient: var(--dark-color);
 }
@@ -6,7 +6,7 @@
 .circular-selector-button.selected {
     --start-gradient: var(--primary-light-color);
     --end-gradient: var(--primary-dark-color);
-}
+}*/
 
 .circular-selector-button stop:nth-child(1) {
     stop-color: var(--start-gradient);
@@ -24,3 +24,29 @@
 .button-path:hover {
     transform: scale(1.15);
 }
+
+.convex {
+    --start-gradient: var(--dark-color);
+    --end-gradient: var(--light-color);
+}
+
+.concave {
+    --start-gradient: var(--light-color);
+    --end-gradient: var(--dark-color);
+}
+
+.base {
+    --dark-color: var(--base-dark-color);
+    --light-color: var(--base-light-color);
+}
+
+.primary {
+    --dark-color: var(--primary-dark-color);
+    --light-color: var(--primary-light-color);
+}
+
+.danger {
+    --dark-color: var(--danger-dark-color);
+    --light-color: var(--danger-light-color);
+}
+

@@ -1,12 +1,12 @@
 ﻿@using NeoBlazorphic.Extensions.BaseTypes;
 <CascadingValue Value="this">
     @ChildContent
-    <svg class="circular-selector" xmlns="http://www.w3.org/1999/xhtml" width=300 height=300 viewBox="-25 -25 50 50" style="filter:drop-shadow(5px 5px 5px var(--dark-shadow)) drop-shadow(-5px -5px 5px var(--light-shadow));">
+    <svg class="circular-selector @GetColorThemeClass @GetShapeClass" xmlns="http://www.w3.org/1999/xhtml" width=300 height=300 viewBox="-25 -25 50 50" style="filter:drop-shadow(5px 5px 5px var(--dark-shadow)) drop-shadow(-5px -5px 5px var(--light-shadow));">
         <defs>
             <!-- Gradient for the center of the selector -->
             <linearGradient id=@($"{UID}-CenterGradient") x1="0.25" y1="0.25" x2="0.75" y2="0.75">
-                <stop offset="0%" stop-color="var(--dark-color)"/>
-                <stop offset="100%" stop-color="var(--light-color)"/>
+                <stop offset="0%" stop-color="var(--end-gradient)"/>
+                <stop offset="100%" stop-color="var(--start-gradient)"/>
             </linearGradient>
         </defs>
         @{
@@ -20,7 +20,8 @@
         {
             var angle = -i * ButtonAngle + AngleOffset;
             <NewCircularSelectorButton Shape=@Shape AngleShift=@angle ButtonAngle=@ButtonAngle PathString=@pathString
-                                ButtonContent=@buttonContent Selected=@(SelectedItem == buttonContent) />
+                                       ButtonContent=@buttonContent Selected=@(SelectedItem == buttonContent)
+                                       SelectedTheme="SelectedTheme"/>
             i += 1;
         }
 

@@ -21,6 +21,12 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         [CascadingParameter]
         public NewCircularSelector Selector { get => selector; set { selector = value; SendToParent(); } }
 
+        [Parameter]
+        public string AdditionalClass { get; set; }
+
+        [Parameter]
+        public string SelectedClass { get; set; }
+
         private void SendToParent()
         {
             if (selector != null && ChildContent != null) {
