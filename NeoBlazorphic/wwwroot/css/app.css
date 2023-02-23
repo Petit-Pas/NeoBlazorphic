@@ -598,11 +598,6 @@ video {
   margin: 2.5rem;
 }
 
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 .mx-3 {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
@@ -686,11 +681,6 @@ video {
   padding-right: 0.75rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
 .opacity-100 {
   opacity: 1;
 }
@@ -701,18 +691,6 @@ video {
 
 .opacity-0 {
   opacity: 0;
-}
-
-.shadow-neo-out {
-  --tw-shadow: 5px 5px 10px var(--dark-shadow), -5px -5px 10px var(--light-shadow);
-  --tw-shadow-colored: 5px 5px 10px var(--tw-shadow-color), -5px -5px 10px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-neo-in {
-  --tw-shadow: inset 5px 5px 10px var(--alternate-dark-shadow), inset -5px -5px 10px var(--alternate-light-shadow);
-  --tw-shadow-colored: inset 5px 5px 10px var(--tw-shadow-color), inset -5px -5px 10px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .outline {
@@ -857,10 +835,48 @@ video {
         Note: For the main theme without modifiers, it is indeed the same as the normal shadow colors.
     */
   --alternate-dark-shadow: var(--base-dark-shadow);
+  /*
+        old
+    */
+  --alternate-light-shadow: var(--base-light-shadow);
+}
+
+@property --left-bg-card-color {
+  syntax: '<color>';
+
+  inherits: false;
+
+  initial-value: red;
+}
+
+@property --right-bg-card-color {
+  syntax: '<color>';
+
+  inherits: false;
+
+  initial-value: red;
+}
+
+.neo-base {
+  --dark-bg-color: var(--base-dark-color);
+  --light-bg-color: var(--base-light-color);
+  --base-bg-color: var(--base-main-color);
+  --dark-shadow-color: var(--base-dark-shadow);
+  --light-shadow-color: var(--base-light-shadow);
+  --main-color: var(--base-main-color);
+  --dark-color: var(--base-dark-color);
+  --light-color: var(--base-light-color);
+  --text-color: var(--base-text-color);
+  --alternate-dark-shadow: var(--base-dark-shadow);
   --alternate-light-shadow: var(--base-light-shadow);
 }
 
 .neo-danger {
+  --dark-bg-color: var(--danger-dark-color);
+  --light-bg-color: var(--danger-light-color);
+  --base-bg-color: var(--danger-main-color);
+  --dark-shadow-color: var(--danger-dark-shadow);
+  --light-shadow-color: var(--danger-light-shadow);
   --main-color: var(--danger-main-color);
   --dark-color: var(--danger-dark-color);
   --light-color: var(--danger-light-color);
@@ -870,12 +886,61 @@ video {
 }
 
 .neo-primary {
+  --dark-bg-color: var(--primary-dark-color);
+  --light-bg-color: var(--primary-light-color);
+  --base-bg-color: var(--primary-main-color);
+  --dark-shadow-color: var(--primary-dark-shadow);
+  --light-shadow-color: var(--primary-light-shadow);
   --main-color: var(--primary-main-color);
   --dark-color: var(--primary-dark-color);
   --light-color: var(--primary-light-color);
   --text-color: var(--primary-text-color);
   --alternate-dark-shadow: var(--primary-dark-shadow);
   --alternate-light-shadow: var(--primary-light-shadow);
+}
+
+.neo-bg {
+  background: linear-gradient(145deg, var(--left-bg-card-color), var(--right-bg-card-color));
+}
+
+.neo-shadow-out {
+  box-shadow: 5px 5px 10px var(--base-dark-shadow), -5px -5px 10px var(--base-light-color);
+}
+
+.neo-shadow-in {
+  box-shadow: inset 5px 5px 10px var(--dark-shadow-color), inset -5px -5px 10px var(--light-shadow-color);
+}
+
+.neo-shadow-in-on-active:active {
+  box-shadow: inset 5px 5px 10px var(--dark-shadow-color), inset -5px -5px 10px var(--light-shadow-color);
+}
+
+.neo-shadow-out-on-active:active {
+  box-shadow: 5px 5px 10px var(--base-dark-shadow), -5px -5px 10px var(--base-light-color);
+}
+
+.neo-flat {
+  --left-bg-card-color: var(--base-bg-color);
+  --right-bg-card-color: var(--base-bg-color);
+}
+
+.neo-convex {
+  --left-bg-card-color: var(--light-bg-color);
+  --right-bg-card-color: var(--dark-bg-color);
+}
+
+.neo-concave {
+  --left-bg-card-color: var(--dark-bg-color);
+  --right-bg-card-color: var(--light-bg-color);
+}
+
+.neo-concave-on-hover {
+  transition: --left-bg-card-color 0.2s, --right-bg-card-color 0.2s;
+}
+
+.neo-concave-on-hover:hover {
+  --left-bg-card-color: var(--dark-bg-color);
+  --right-bg-card-color: var(--light-bg-color);
 }
 
 ::-moz-selection {

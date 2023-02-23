@@ -4,8 +4,8 @@ namespace NeoBlazorphic.StyleParameters
 {
     public enum ShadowPosition
     {
-        [CssClass("shadow-neo-out")] Out,
-        [CssClass("shadow-neo-in")] In,
+        [CssClass("neo-shadow-out")] Out,
+        [CssClass("neo-shadow-in")] In,
         [CssClass("")] None
     }
 }

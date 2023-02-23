@@ -24,7 +24,7 @@ namespace NeoBlazorphic.Components.Base.Cards
         [Parameter] public bool SelectableText { get; set; } = false;
 
         // UI Methods
-        public string GetShadowPositionClass => ShadowPosition.GetCssClass().Split("-").Last();
+        public string GetShadowPositionClass => ShadowPosition.GetCssClass();
 
         public string GetColorTheme => ColorTheme.GetCssClass();
 

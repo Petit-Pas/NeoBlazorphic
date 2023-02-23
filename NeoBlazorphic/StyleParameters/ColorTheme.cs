@@ -4,11 +4,11 @@ namespace NeoBlazorphic.StyleParameters
 {
     public enum ColorTheme
     {
-        [CssClass("base")]
+        [CssClass("neo-base")]
         Base,
-        [CssClass("primary")]
+        [CssClass("neo-primary")]
         Primary,
-        [CssClass("danger")]
+        [CssClass("neo-danger")]
         Danger
     }
 }

@@ -34,8 +34,11 @@ namespace NeoBlazorphic.Components.Inputs.Checks.CheckBoxes
 
         // Ui methods
         private string GetChecked => IsChecked ? "checked" : "unchecked";
-        private string GetColorTheme => ColorTheme.GetCssClass();
-        
+        private string GetShadow => IsChecked ? "neo-shadow-in" : "neo-shadow-out";
+        private string GetColorTheme => IsChecked ? ColorTheme.GetCssClass() : "neo-base";
+
+        private string GetBgShape => "neo-flat" + (IsEnabled ? " neo-concave-on-hover" : "");
+
         // TODO this should change with the enum when getting rid of the old code
         private string GetShape => BoxShape == CheckBoxShape.Normal ? "squared" : "circled"; 
 
