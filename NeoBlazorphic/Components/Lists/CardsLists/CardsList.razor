@@ -21,13 +21,13 @@
             {
                 @foreach (var item in itemsToDisplay)
                 {
-                    <CardsListItem T="T" AccentClass=@AccentClass Item="item" ItemRenderFragment=@ItemRenderFragment OnMouseClickCallBack="() => CardClicked(item)" />
+                    <CardsListItem CardBorderRadius=@CardBorderRadius T="T" AccentClass=@AccentClass Item="item" ItemRenderFragment=@ItemRenderFragment OnMouseClickCallBack="() => CardClicked(item)" />
                 }
             }
             else
             {
                 <li class="my-3">
-                    <CardsListItem Item="null" T="string">
+                    <CardsListItem CardBorderRadius=@CardBorderRadius Item="null" T="string">
                         <ItemRenderFragment>
                             nothing to show
                         </ItemRenderFragment>

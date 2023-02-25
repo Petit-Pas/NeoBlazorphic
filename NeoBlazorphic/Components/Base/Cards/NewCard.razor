@@ -1,7 +1,7 @@
 ﻿
-<div class="neo-card neo-bg @GetColorTheme @GetShadowPositionClass @GetBackgroundShape @GetSelectableText" style="@BorderRadius.GetCssProperty()">
-    @if (Body != null)
+<div @onclick="(e) => OnClick(e)" class="neo-card neo-bg @GetColorTheme @GetShadowPositionClass @GetBackgroundShape @GetSelectableText @GetPadding @GetMargin h-full @AdditionalClasses" style="@BorderRadius.GetCssProperty()">
+    @if (ChildContent != null)
     {
-        @Body
+        @ChildContent
     }
 </div>

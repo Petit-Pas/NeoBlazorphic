@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.Models.SelectableItems;
 using NeoBlazorphic.StyleParameters;
 using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
@@ -14,7 +15,11 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         public RenderFragment<T?>? ItemRenderFragment { get; set; }
 
         [Parameter]
-        public string AccentClass { get; set; } = "";
+        public ColorTheme AccentClass { get; set; } = ColorTheme.Primary;
+
+        [Parameter]
+        public BorderRadius CardBorderRadius { get; set; } = BorderRadius.Default;
+
 
         private BackgroundShape CardShape { get; set; } = BackgroundShape.Flat;
 
@@ -43,7 +48,12 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
 
         private void ComputeShadowPosition()
         {
-            ShadowPosition = IsSelected() ? ShadowPosition.None : ShadowPosition.Out;
+            ShadowPosition = ShadowPosition.Out;
+        }
+
+        private bool IsSelectable()
+        {
+            return Item is ISelectableItem;
         }
 
         private bool IsSelected()
@@ -57,9 +67,9 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         }
 
         // UI Methods
-        private string GetAccentClass()
+        private ColorTheme GetAccentClass()
         {
-            return IsSelected() ? AccentClass : "";
+            return IsSelected() ? AccentClass : ColorTheme.Base;
         }
     }
 }

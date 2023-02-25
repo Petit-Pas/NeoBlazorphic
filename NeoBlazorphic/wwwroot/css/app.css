@@ -899,6 +899,20 @@ video {
   --alternate-light-shadow: var(--primary-light-shadow);
 }
 
+.neo-primary-on-focus:has(:focus) {
+  --dark-bg-color: var(--primary-dark-color);
+  --light-bg-color: var(--primary-light-color);
+  --base-bg-color: var(--primary-main-color);
+  --dark-shadow-color: var(--primary-dark-shadow);
+  --light-shadow-color: var(--primary-light-shadow);
+  --main-color: var(--primary-main-color);
+  --dark-color: var(--primary-dark-color);
+  --light-color: var(--primary-light-color);
+  --text-color: var(--primary-text-color);
+  --alternate-dark-shadow: var(--primary-dark-shadow);
+  --alternate-light-shadow: var(--primary-light-shadow);
+}
+
 .neo-bg {
   background: linear-gradient(145deg, var(--left-bg-card-color), var(--right-bg-card-color));
 }

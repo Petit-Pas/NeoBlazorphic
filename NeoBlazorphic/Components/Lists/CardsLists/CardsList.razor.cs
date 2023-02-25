@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using NeoBlazorphic.Models.SelectableItems;
 using System.Linq;
+using NeoBlazorphic.StyleParameters;
 
 namespace NeoBlazorphic.Components.Lists.CardsLists
 {
@@ -17,11 +18,14 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         [Parameter]
         public RenderFragment? FooterRenderFragment { get; set; }
 
-        [Parameter]
-        public string? AccentClass { get; set; }
+        [Parameter] 
+        public ColorTheme AccentClass { get; set; } = ColorTheme.None;
 
         [Parameter]
         public Func<T, string, bool>? Filter { get; set; }
+
+        [Parameter]
+        public BorderRadius CardBorderRadius { get; set; } = BorderRadius.Default;
 
         public string? SearchBarQuery
         {

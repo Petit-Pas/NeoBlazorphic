@@ -1,5 +1,7 @@
 ﻿.neo-card {
     padding: 1em;
+    transition: --left-bg-card-color 0.15s, --right-bg-card-color 0.15s;
+    overflow: hidden;
 }
 
 .prevent-select {

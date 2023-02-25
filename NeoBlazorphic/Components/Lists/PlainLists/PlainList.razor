@@ -3,7 +3,7 @@
 
 @typeparam T
 
-<Card Margin="Spacing._0" Padding="Spacing._0" ShadowPosition="ShadowPosition">
+<NewCard Margin="Spacing._0" Padding="Spacing._0" ShadowPosition="ShadowPosition" BorderRadius="@(new (0.75, "rem"))">
     <ul style="overflow: auto; height: 100%;">
         @{
             var itemsToDisplay = DisplayableItems();
@@ -23,4 +23,4 @@
             <li> Nothing to display... </li>
         }
     </ul>
-</Card>
+</NewCard>

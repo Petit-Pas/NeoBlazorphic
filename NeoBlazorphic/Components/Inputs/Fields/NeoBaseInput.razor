@@ -10,7 +10,7 @@
     <ToolTip>
         <ChildContent>
 
-            <div class="input-group @GetAccentColor()" style="">
+            <div class="input-group neo-base" style="">
 
                 @if (!string.IsNullOrWhiteSpace(Label))
                 {
@@ -21,30 +21,30 @@
                     <div class="input-row">
                         @if (InputFieldPrefix != null)
                         {
-                        <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2"  BorderRadius="_squaredOnRight">
+                            <NewCard ShadowPosition="ShadowPosition.Out" Padding="Spacing._2"  BorderRadius="_squaredOnRight">
                                 <div class="input-prefix">
                                     @InputFieldPrefix
                                 </div>
-                            </Card>
+                            </NewCard>
                         }
 
-                        <div class="input @GetInputAccentClass()">
+                        <div class="input @GetInvalid neo-primary-on-focus">
 
-                            <Card ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
+                            <NewCard ColorTheme="ColorTheme.None" ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
                                 <input @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
                                        type="text" class="" style="-webkit-appearance: none; outline: none; background: transparent; color: var(--text-color); width: 100%"
                                        id="@Id" placeholder="@Placeholder"
                                        @oninput="GetOnInputBinder()" @onchange="GetOnChangeBinder()" value="@CurrentValueAsString"/>
-                            </Card>
+                            </NewCard>
                         </div>
 
                         @if (InputFieldSuffix != null)
                         {
-                            <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
+                            <NewCard ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
                                 <div class="input-suffix">
                                     @InputFieldSuffix
                                 </div>
-                            </Card>
+                            </NewCard>
                         }
                     </div>
             </div>

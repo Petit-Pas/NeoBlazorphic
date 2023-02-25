@@ -148,7 +148,6 @@ namespace NeoBlazorphic.Components.Inputs.Fields
             }
             return default;
         }
-
-        private string GetInputAccentClass() => IsFocused ? AccentColor : "";
+        private string GetInvalid => EditContext.GetValidationMessages(FieldIdentifier).Any() ? "neo-danger" : "";
     }
 }

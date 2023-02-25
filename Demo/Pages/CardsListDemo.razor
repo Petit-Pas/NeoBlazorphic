@@ -7,9 +7,9 @@
 
 <h1> CardsList Demo </h1>
 
-<Card ShadowPosition="ShadowPosition.In" Padding="Spacing._1" Margin="Spacing._0">
+<NewCard ShadowPosition="ShadowPosition.In" Padding="Spacing._1" Margin="Spacing._0" BorderRadius="@(new BorderRadius(10))">
     <div class="" style="height: 40em">
-        <CardsList AccentClass="neo-danger" T="SelectableItem<int>" Items="Integers" Filter="(i, filter) => i.Item.ToString().Contains(filter)">
+        <CardsList AccentClass="@ColorTheme.Primary" T="SelectableItem<int>" Items="Integers" Filter="(i, filter) => i.Item.ToString().Contains(filter)">
             <ItemRenderFragment Context="selectableItem">
                 <div>
                     @selectableItem.Item
@@ -42,12 +42,12 @@
             </FooterRenderFragment>
         </CardsList>
     </div>
-</Card>
+</NewCard>
 
 
 <br/>
 
-<CardsList T="string" Items="Strings" Filter="(s, filter) => s.Contains(filter)">
+<CardsList T="string" Items="Strings" Filter="(s, filter) => s.Contains(filter)" CardBorderRadius="@(new BorderRadius(10))">
     <ItemRenderFragment Context="_string">
         @_string
     </ItemRenderFragment>
@@ -55,7 +55,7 @@
 
 <br/>
 
-<CardsList T="string" Items="Array.Empty<string>().ToList()" Filter="(s, filter) => s.Contains(filter)">
+<CardsList T="string" Items="Array.Empty<string>().ToList()" Filter="(s, filter) => s.Contains(filter)" CardBorderRadius="@(new BorderRadius(10))">
     <ItemRenderFragment Context="_string">
         @_string
     </ItemRenderFragment>
@@ -63,7 +63,7 @@
 
 <br/>
 
-<CardsList T="Person" Items="Persons" Filter="(person, filter) => person.Age.ToString().Contains(filter)">
+<CardsList T="Person" Items="Persons" Filter="(person, filter) => person.Age.ToString().Contains(filter)" CardBorderRadius="@(new BorderRadius(10))">
     <ItemRenderFragment Context="person">
         <div class="row">
             <div class="col">
