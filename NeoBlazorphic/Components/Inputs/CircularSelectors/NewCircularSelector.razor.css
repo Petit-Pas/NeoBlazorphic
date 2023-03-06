@@ -2,15 +2,13 @@
     user-select: none;
 }
 
-.concave {
-    --start-gradient: var(--light-color);
-    --end-gradient: var(--dark-color);
+.circular-selector.neo-concave {
+    --start-gradient: var(--right-bg-card-color);
+    --end-gradient: var(--left-bg-card-color);
 }
-
-
-.convex {
-    --start-gradient: var(--dark-color);
-    --end-gradient: var(--light-color);
+.circular-selector.neo-convex {
+    --start-gradient: var(--left-bg-card-color);
+    --end-gradient: var(--right-bg-card-color);
 }
 
 

@@ -1,4 +1,4 @@
-﻿/*.circular-selector-button {
+﻿.circular-selector-button {
     --start-gradient: var(--light-color);
     --end-gradient: var(--dark-color);
 }
@@ -6,7 +6,7 @@
 .circular-selector-button.selected {
     --start-gradient: var(--primary-light-color);
     --end-gradient: var(--primary-dark-color);
-}*/
+}
 
 .circular-selector-button stop:nth-child(1) {
     stop-color: var(--start-gradient);

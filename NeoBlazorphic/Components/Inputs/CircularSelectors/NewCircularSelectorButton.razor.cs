@@ -1,9 +1,9 @@
-﻿using System.Drawing;
-using System.Runtime.CompilerServices;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.StyleParameters;
+
+// TODO disabled missing + comportment to handle SelectableItemList
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 {
