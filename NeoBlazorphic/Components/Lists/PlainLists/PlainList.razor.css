@@ -1,0 +1,17 @@
+﻿.plain-list-item:nth-child(even) {
+    backdrop-filter: brightness(80%);
+}
+
+.plain-list-item:nth-child(odd) {
+    backdrop-filter: brightness(125%);
+}
+
+.plain-list-item:hover {
+    backdrop-filter: brightness(100%);
+    background: var(--light-bg-color)
+}
+
+.plain-list-item.selected {
+    backdrop-filter: brightness(100%);
+    background: var(--dark-bg-color)
+}

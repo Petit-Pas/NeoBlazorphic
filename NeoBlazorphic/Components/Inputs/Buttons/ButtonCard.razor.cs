@@ -1,59 +1,30 @@
-﻿
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using NeoBlazorphic.Components.Base.Cards;
+using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.StyleParameters;
 
 namespace NeoBlazorphic.Components.Inputs.Buttons
 {
-    public partial class ButtonCard : Card
+    public partial class ButtonCard : ComponentBase
     {
-        private bool _isClicked = false;
-        private bool _isHovered = false;
+        [Parameter]
+        public RenderFragment? ChildContent { get; set; }
 
-        protected override void OnInitialized()
+        [Parameter]
+        public ColorTheme ColorTheme { get; set; } = ColorTheme.Base;
+
+        [Parameter]
+        public BorderRadius BorderRadius { get; set; } = BorderRadius.Default;
+
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnMouseClickCallBack { get; set; }
+
+        protected virtual async Task OnMouseClick(MouseEventArgs args)
         {
-            base.OnInitialized();
-            TextSelectable = false;
+            await OnMouseClickCallBack.InvokeAsync(args);
         }
 
-        protected override async Task OnMouseOut(MouseEventArgs args)
-        {
-            _isHovered = false;
-            // if the button is clicked, we cancel this event because we don't want the color to change when the mouse gets out, it is still the focused button
-            if (_isClicked == false)
-            {
-                Shape = BackgroundShape.Flat;
-                await base.OnMouseOut(args);
-            }
-        }
-
-        protected override async Task OnMouseOver(MouseEventArgs args)
-        {
-            _isHovered = true;
-            Shape = BackgroundShape.Concave;
-            await base.OnMouseOver(args);
-        }
-
-        protected override async Task OnMouseDown(MouseEventArgs args)
-        {
-            _isClicked = true;
-            this.ShadowPosition = ShadowPosition.In;
-            await base.OnMouseDown(args);
-        }
-
-        protected override async Task OnMouseUp(MouseEventArgs args)
-        {
-            _isClicked = false;
-
-            // if the button is not hovered (click then drag) we first want to restore the original color of the button, which is triggered in OnMouseOut
-            if (_isHovered == false)
-            {
-                await OnMouseOut(args);
-            }
-
-            this.ShadowPosition = ShadowPosition.Out;
-            StateHasChanged();
-            await base.OnMouseUp(args);
-        }
+        // UI Methods
+        private string GetColorTheme => ColorTheme.GetCssClass();
     }
 }

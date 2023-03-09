@@ -6,7 +6,7 @@
 @page "/plainListDemo"
 
 <div style="height: 15em">
-    <PlainList ShadowPosition="ShadowPosition.Out" T="SelectableItem<string>" Items="Strings" AccentClass="neo-danger">
+    <PlainList ShadowPosition="ShadowPosition.Out" T="SelectableItem<string>" Items="Strings" Theme=@ColorTheme.Danger>
         <ItemRenderFragment Context="str">
             <div class="p-2">
                 @str.Item
@@ -17,8 +17,10 @@
 
 <br/>
 
+<input type="text" @bind="Text" />
+
 <div style="height: 15em">
-    <PlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers" AccentClass="neo-primary">
+    <PlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers" Theme=@ColorTheme.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Item.ToString().Contains(s)">
         <ItemRenderFragment Context="item">
             <div class="py-1 px-3">
                 @item.Item
@@ -29,6 +31,8 @@
 
 
 @code {
+    public string Text { get; set; }
+
     public SelectableItemList<int> Integers { get; set; } = new()
     {
         new SelectableItem<int>(1, 0),

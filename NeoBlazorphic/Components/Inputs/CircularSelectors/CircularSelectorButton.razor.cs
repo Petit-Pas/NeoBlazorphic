@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using NeoBlazorphic.Models.SelectableItems;
+using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.StyleParameters;
-using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
+
+// TODO disabled missing + comportment to handle SelectableItemList
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 {
-    public partial class CircularSelectorButton<T> : MouseInteractiveBaseComponent
+    public partial class CircularSelectorButton : ComponentBase
     {
         /// <summary>
         ///     the pathstring to use for the path component of the SVG 
@@ -18,7 +19,15 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         public int AngleShift { get; set; } = 0;
 
         [Parameter, EditorRequired]
-        public SelectableItem<T> Item { get; set; } = SelectableItem<T>.Empty;
+        public CircularSelectorButtonContent? ButtonContent { get; set; } = null;
+
+        [CascadingParameter]
+        public CircularSelector CircularSelector { get; set; }
+
+        [Parameter, EditorRequired] 
+        public bool Selected { get; set; } = false;
+
+        private Guid UID = Guid.NewGuid();
 
         /// <summary>
         ///     Used to dinamically calculate the position of the label on the button
@@ -47,31 +56,17 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         private BackgroundShape _shape = BackgroundShape.Concave;
 
         [Parameter]
-        public string AccentClass { get; set; } = "neo-primary";
+        public ColorTheme SelectedTheme { get; set; } = ColorTheme.Primary;
 
-        protected string ScaleFactor { get; set; } = "1";
-
-        protected override Task OnMouseOver(MouseEventArgs args)
+        private void OnClick(MouseEventArgs e)
         {
-            if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
-            {
-                ScaleFactor = "1.15";
-            }
-            return base.OnMouseOver(args);
+            CircularSelector.SelectedItem = ButtonContent;
+            CircularSelector.NotifyChangeOfState();
         }
 
-        protected override Task OnMouseOut(MouseEventArgs args)
-        {
-            if (Item != SelectableItem<T>.Empty && Item.IsEnabled)
-            {
-                ScaleFactor = "1";
-            }
-            return base.OnMouseOut(args);
-        }
+        // UI Methods
+        private string GetSelectedThemeClass => Selected ? SelectedTheme.GetCssClass() : "";
 
-        // UI methods
-        private string GetOpacityOfColoredButton() => Item.IsSelected ? "1" : "0";
-
-        private string GetMainButtonClass() => Item.IsEnabled ? "" : "neo-disabled";
+        private string GetShapeClass => Shape.GetCssClass();
     }
 }

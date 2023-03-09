@@ -1,2 +1,44 @@
-﻿body {
+﻿.circular-selector {
+    user-select: none;
 }
+
+.circular-selector.neo-concave {
+    --start-gradient: var(--left-bg-card-color);
+    --end-gradient: var(--right-bg-card-color);
+}
+.circular-selector.neo-convex {
+    --start-gradient: var(--left-bg-card-color);
+    --end-gradient: var(--right-bg-card-color);
+}
+
+
+.base {
+    --dark-color: var(--base-dark-color);
+    --light-color: var(--base-light-color);
+}
+
+.primary {
+    --dark-color: var(--primary-dark-color);
+    --light-color: var(--primary-light-color);
+}
+
+.danger {
+    --dark-color: var(--danger-dark-color);
+    --light-color: var(--danger-light-color);
+}
+
+.selected-base {
+    --dark-color: var(--base-dark-color);
+    --light-color: var(--base-light-color);
+}
+
+.selected-primary {
+    --dark-color: var(--primary-dark-color);
+    --light-color: var(--primary-light-color);
+}
+
+.selected-danger {
+    --dark-color: var(--danger-dark-color);
+    --light-color: var(--danger-light-color);
+}
+

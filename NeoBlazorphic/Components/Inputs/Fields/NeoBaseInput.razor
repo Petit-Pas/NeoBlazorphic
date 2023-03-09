@@ -21,30 +21,30 @@
                     <div class="input-row">
                         @if (InputFieldPrefix != null)
                         {
-                            <NewCard ShadowPosition="ShadowPosition.Out" Padding="Spacing._2"  BorderRadius="_squaredOnRight">
+                            <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2"  BorderRadius="_squaredOnRight">
                                 <div class="input-prefix">
                                     @InputFieldPrefix
                                 </div>
-                            </NewCard>
+                            </Card>
                         }
 
                         <div class="input @GetInvalid neo-primary-on-focus">
 
-                            <NewCard ColorTheme="ColorTheme.None" ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
+                            <Card ColorTheme="ColorTheme.None" ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
                                 <input @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
                                        type="text" class="" style="-webkit-appearance: none; outline: none; background: transparent; color: var(--text-color); width: 100%"
                                        id="@Id" placeholder="@Placeholder"
                                        @oninput="GetOnInputBinder()" @onchange="GetOnChangeBinder()" value="@CurrentValueAsString"/>
-                            </NewCard>
+                            </Card>
                         </div>
 
                         @if (InputFieldSuffix != null)
                         {
-                            <NewCard ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
+                            <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
                                 <div class="input-suffix">
                                     @InputFieldSuffix
                                 </div>
-                            </NewCard>
+                            </Card>
                         }
                     </div>
             </div>
@@ -55,7 +55,7 @@
             @if (IsHovered || IsFocused)
             {
                 <div>
-                    <Card ShouldBeVisibleWhenEmpty="false">
+                    <Card>
                         <ValidationMessage For="@ValidationFor"/>
                     </Card>
                 </div>

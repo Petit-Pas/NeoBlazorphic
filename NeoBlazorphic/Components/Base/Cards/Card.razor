@@ -1,14 +1,7 @@
-﻿@using NeoBlazorphic.UserInteraction.Mouse.BaseComponents
-
-@inherits MouseInteractiveBaseComponent
-
-@if (ChildContent != null)
-{
-    <div class="@GetVisiblityDependingOnEmptiness() @GetShadowPosition() @GetPadding() @GetMargin() base-card-shape @GetBackgroundShape() @CustomClasses @textSelectableStyle h-full"
-         style="@GetBorderRadius()"
-         @onmouseover=OnMouseOver @onmouseout=OnMouseOut
-         @onmousedown=OnMouseDown @onmouseup=OnMouseUp
-         @onclick=OnMouseClick>
+﻿
+<div @onclick="(e) => OnClick(e)" class="invisible-when-empty neo-card neo-bg @GetColorTheme @GetShadowPositionClass @GetBackgroundShape @GetSelectableText @GetPadding @GetMargin h-full @AdditionalClasses" style="@BorderRadius.GetCssProperty()">
+    @if (ChildContent != null)
+    {
         @ChildContent
-    </div>
-}
+    }
+</div>

@@ -2,9 +2,9 @@
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 {
-    public partial class NewCircularSelectorButtonContent : ComponentBase
+    public partial class CircularSelectorButtonContent : ComponentBase
     {
-        private NewCircularSelector? selector;
+        private CircularSelector? selector;
         private RenderFragment? childContent = null;
 
         [Parameter]
@@ -19,7 +19,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         public double yShift { get; set; } = 0;
 
         [CascadingParameter]
-        public NewCircularSelector Selector { get => selector; set { selector = value; SendToParent(); } }
+        public CircularSelector Selector { get => selector; set { selector = value; SendToParent(); } }
 
         [Parameter]
         public string AdditionalClass { get; set; }

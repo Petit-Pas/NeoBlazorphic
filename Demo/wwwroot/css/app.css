@@ -72,6 +72,9 @@ a, .btn-link {
     --special-color: red;
 }
 
+.blue-color-hover {
+    --special-color: white;
+}
 .blue-color-hover:hover {
     --special-color: blue;
 }

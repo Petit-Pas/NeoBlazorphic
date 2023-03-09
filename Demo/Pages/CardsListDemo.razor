@@ -7,7 +7,7 @@
 
 <h1> CardsList Demo </h1>
 
-<NewCard ShadowPosition="ShadowPosition.In" Padding="Spacing._1" Margin="Spacing._0" BorderRadius="@(new BorderRadius(10))">
+<Card ShadowPosition="ShadowPosition.In" Padding="Spacing._1" Margin="Spacing._0" BorderRadius="@(new BorderRadius(10))">
     <div class="" style="height: 40em">
         <CardsList AccentClass="@ColorTheme.Primary" T="SelectableItem<int>" Items="Integers" Filter="(i, filter) => i.Item.ToString().Contains(filter)">
             <ItemRenderFragment Context="selectableItem">
@@ -42,7 +42,7 @@
             </FooterRenderFragment>
         </CardsList>
     </div>
-</NewCard>
+</Card>
 
 
 <br/>

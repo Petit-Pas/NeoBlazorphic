@@ -1,33 +1,19 @@
 ﻿using Microsoft.AspNetCore.Components;
-using NeoBlazorphic.EventArgs;
+using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.Math.Units;
-using NeoBlazorphic.Models.SelectableItems;
 using NeoBlazorphic.StyleParameters;
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 {
-    public partial class CircularSelector<T> : UiComponentBase
+    public partial class CircularSelector : ComponentBase
     {
-        [Parameter, EditorRequired]
-        public SelectableItemList<T> Items { get; set; } = SelectableItemList<T>.Empty;
-
-        /// <summary>
-        ///     Expected to be in degrees
-        /// </summary>
-        [Parameter]
-        public int ButtonAngle { get; set; } = 45;
+        private Guid UID = Guid.NewGuid();
 
         [Parameter]
-        public int ViewBoxSize { get; set; } = 300;
+        public RenderFragment? ChildContent { get; set; } = null;
 
         [Parameter]
         public int AngleOffset { get; set; } = 0;
-
-        [Parameter]
-        public EventCallback<SelectedItemEventArgs<T>> OnItemSelected { get; set; }
-
-        [Parameter]
-        public EventCallback<SelectedItemEventArgs<T>> OnItemHovered { get; set; }
 
         [Parameter]
         public BackgroundShape Shape
@@ -49,53 +35,40 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         }
         private BackgroundShape _shape = BackgroundShape.Concave;
 
+        [Parameter]
+        public ColorTheme ColorTheme { get; set; } = ColorTheme.Base;
+        [Parameter]
+        public ColorTheme SelectedTheme { get; set; } = ColorTheme.Primary;
 
-        protected Point2D AngleEnd { get; set; }
+        public string? CenterText { get; set; }
+
+
+        public List<CircularSelectorButtonContent> ButtonContents { get; set; } = new List<CircularSelectorButtonContent>();
 
         [Parameter]
-        public string CenterText { get; set; } = "Default";
+        public int ButtonAngle { get; set; } = 30;
 
-        [Parameter]
-        public string AccentClass { get; set; } = "neo-primary";
-
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-
-            if (Items.Count * ButtonAngle > 360)
-            {
-                Console.WriteLine($"WARN: {Items.Count} of {ButtonAngle}° will result in more than a full circle!");
-            }
-
-            CalculateAngleEnd();
-        }
-
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-
-            CalculateAngleEnd();
-        }
-
-        private void CalculateAngleEnd()
+        private void RefreshValues()
         {
             var angleInRadians = Converter.ToRadian(ButtonAngle);
             AngleEnd = new Point2D(System.Math.Cos(angleInRadians) * 20, -System.Math.Sin(angleInRadians) * 20);
+            AmountButtons = ButtonContents?.Count ?? 0;
         }
 
-        public virtual async Task OnButtonMouseOver(SelectableItem<T> selectedItem)
+        public int AmountButtons { get; set; }
+        public CircularSelectorButtonContent? SelectedItem { get; set; }
+
+        private Point2D AngleEnd = new (0, 0);
+
+
+        public void NotifyChangeOfState()
         {
-            await OnItemHovered.InvokeAsync(new SelectedItemEventArgs<T>(selectedItem));
+            RefreshValues();
+            StateHasChanged();
         }
 
-        public virtual async Task OnButtonClicked(SelectableItem<T> selectedItem)
-        {
-            if (selectedItem.IsEnabled)
-            {
-                Items.ResetSelected(selectedItem);
-                StateHasChanged();
-                await OnItemSelected.InvokeAsync(new SelectedItemEventArgs<T>(selectedItem));
-            }
-        }
+        private string GetColorThemeClass => ColorTheme.GetCssClass();
+
+        private string GetShapeClass => Shape.GetCssClass();
     }
 }

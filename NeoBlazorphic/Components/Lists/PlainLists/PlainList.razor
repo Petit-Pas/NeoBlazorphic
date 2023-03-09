@@ -3,8 +3,8 @@
 
 @typeparam T
 
-<NewCard Margin="Spacing._0" Padding="Spacing._0" ShadowPosition="ShadowPosition" BorderRadius="@(new (0.75, "rem"))">
-    <ul style="overflow: auto; height: 100%;">
+<Card Margin="Spacing._0" Padding="Spacing._0" ShadowPosition="ShadowPosition" BorderRadius="@(new (0.75, "rem"))">
+    <ul class="@GetTheme" style="overflow: auto; height: 100%;">
         @{
             var itemsToDisplay = DisplayableItems();
         }
@@ -13,8 +13,10 @@
             var i = 0;
             @foreach (var item in itemsToDisplay)
             {
-                <PlainListItem T=@T Item="item" ItemIndex="i" ItemRenderFragment=@ItemRenderFragment AccentClass=@AccentClass 
-                               OnMouseClickCallBack="() => ItemClicked(item)" />
+
+                <li class="plain-list-item @GetSelected(item)" @onclick="(_) => ItemClicked(item)">
+                    @ItemRenderFragment(item)
+                </li>
                 i += 1;
             }
         }
@@ -23,4 +25,4 @@
             <li> Nothing to display... </li>
         }
     </ul>
-</NewCard>
+</Card>

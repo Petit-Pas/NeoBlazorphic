@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Microsoft.AspNetCore.Components;
+using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.Models.SelectableItems;
 using NeoBlazorphic.StyleParameters;
 
@@ -14,7 +15,7 @@ namespace NeoBlazorphic.Components.Lists.PlainLists
         public RenderFragment<T?>? ItemRenderFragment { get; set; }
 
         [Parameter]
-        public string AccentClass { get; set; } = "";
+        public ColorTheme Theme { get; set; } = ColorTheme.Primary;
 
         [Parameter] 
         public ShadowPosition ShadowPosition { get; set; } = ShadowPosition.Out;
@@ -46,5 +47,20 @@ namespace NeoBlazorphic.Components.Lists.PlainLists
                 StateHasChanged();
             }
         }
+
+        private bool IsSelected(T item)
+        {
+            if (item is ISelectableItem selectableItem)
+            {
+                return selectableItem.IsSelected;
+            }
+            // If the item displayed is not contained in a SelectableItem, then the item is not considered selectable, hence not selected
+            return false;
+        }
+
+        // UI Methods
+        private string GetTheme => Theme.GetCssClass();
+
+        private string GetSelected(T item) => IsSelected(item) ? "selected" : "";
     }
 }

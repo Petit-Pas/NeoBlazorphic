@@ -1,93 +1,55 @@
-﻿using System.Security.Cryptography;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
-using NeoBlazorphic.Extensions.BaseTypes;
+﻿using Microsoft.AspNetCore.Components;
 using NeoBlazorphic.StyleParameters;
-using NeoBlazorphic.UserInteraction.Mouse.BaseComponents;
+using NeoBlazorphic.Extensions.BaseTypes;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace NeoBlazorphic.Components.Base.Cards
 {
-
-    /// <summary>
-    ///     To work properly, a css class should set these variables: 
-    ///         --main-color
-    ///         --dark-shadow
-    ///         --light-shadow
-    ///         --dark-color ==> only needed if using Concave or Convex shape
-    ///         --light-color ==> only needed if using Concave or Convex shape
-    ///         
-    ///     some default ones are provided already with the css file of the NeoBlazorphic lirbary.
-    ///         
-    ///     https://neumorphism.io/ can help you design these
-    /// </summary>
-    public partial class Card : MouseInteractiveBaseComponent
+    public partial class Card : ComponentBase
     {
-        [Inject]
-        protected ILogger<Card> Logger { get; set; } = default!;
-
-        // made for inherited classes only that simply want to apply an additional class everytime the element is displayed. 
-        // if the parent wants to add some classes, he should surround the Card element with a div that has the given style.
-        protected string CustomClasses { get; set; } = "";
-
         [Parameter]
-        public RenderFragment? ChildContent { get; set; } = default!;
-
-        [Parameter] 
-        public Spacing Padding { get; set; } = Spacing._3;
-        [Parameter] 
-        public Spacing Margin { get; set; } = Spacing._0;
-
-        [Parameter] 
-        public BorderRadius BorderRadius { get; set; } = new (0.75, "rem");
-
-        [Parameter] 
-        public bool ShouldBeVisibleWhenEmpty { get; set; } = true;
-
-        private string GetPadding() => Padding.GetCssClass("padding");
-        private string GetMargin() => Margin.GetCssClass("margin");
-
-        [Parameter]
-        public bool TextSelectable
-        {
-            get => _textSelectable;
-            set
-            {
-                if (value != _textSelectable)
-                {
-                    SetNewTextSelectableStyle(value);
-                    _textSelectable = value;
-                }
-            }
-        }
-        private bool _textSelectable = true;
-        private string textSelectableStyle = "";
-
-        [Parameter]
-        public BackgroundShape Shape { get; set; } = BackgroundShape.Flat;
-
+        public RenderFragment? ChildContent { get; set; }
 
         [Parameter]
         public ShadowPosition ShadowPosition { get; set; } = ShadowPosition.Out;
 
+        [Parameter] 
+        public ColorTheme ColorTheme { get; set; } = ColorTheme.Base;
 
-        private void SetNewTextSelectableStyle(bool selectable)
+        [Parameter]
+        public BackgroundShape BackgroundShape { get; set; } = BackgroundShape.Flat;
+
+        [Parameter] 
+        public BorderRadius BorderRadius { get; set; } = BorderRadius.Default;
+
+        [Parameter] public bool SelectableText { get; set; } = false;
+
+        [Parameter] public string AdditionalClasses { get; set; } = "";
+
+        [Parameter]
+        public Spacing Padding { get; set; } = Spacing._3;
+        [Parameter]
+        public Spacing Margin { get; set; } = Spacing._0;
+
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnMouseClickCallBack { get; set; }
+
+
+        protected async Task OnClick(MouseEventArgs args)
         {
-            switch (selectable)
-            {
-                case true:
-                    textSelectableStyle = "";
-                    break;
-                case false:
-                    textSelectableStyle = "select-none";
-                    break;
-            }
+            await OnMouseClickCallBack.InvokeAsync(args);
         }
 
         // UI Methods
-        private string GetShadowPosition() => ShadowPosition.GetCssClass();
-        private string GetBackgroundShape() => Shape.GetCssClass();
-        private string GetBorderRadius() => BorderRadius.GetCssProperty();
+        public string GetShadowPositionClass => ShadowPosition.GetCssClass();
 
-        private string GetVisiblityDependingOnEmptiness() => ShouldBeVisibleWhenEmpty ? "": "invisible-when-empty";
+        public string GetColorTheme => ColorTheme.GetCssClass();
+
+        public string GetBackgroundShape => BackgroundShape.GetCssClass();
+
+        public string GetSelectableText => SelectableText ? "" : "prevent-select";
+
+        private string GetPadding => Padding.GetCssClass("padding");
+        private string GetMargin => Margin.GetCssClass("margin");
     }
 }
