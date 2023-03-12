@@ -9,7 +9,7 @@
 
 <Card ShadowPosition="ShadowPosition.In" Padding="Spacing._1" Margin="Spacing._0" BorderRadius="@(new BorderRadius(10))">
     <div class="" style="height: 40em">
-        <CardsList AccentClass="@ColorTheme.Primary" T="SelectableItem<int>" Items="Integers" Filter="(i, filter) => i.Item.ToString().Contains(filter)">
+        <CardsList AccentClass="@ThemeColor.Primary" T="SelectableItem<int>" Items="Integers" Filter="(i, filter) => i.Item.ToString().Contains(filter)">
             <ItemRenderFragment Context="selectableItem">
                 <div>
                     @selectableItem.Item
@@ -87,7 +87,7 @@
 
 @code
 {
-    public SelectableItemList<int> Integers { get; set; } = new()
+    public UniqueSelectableItemList<int> Integers { get; set; } = new()
     {
         new SelectableItem<int>(1, 0),
         new SelectableItem<int>(2, 1),

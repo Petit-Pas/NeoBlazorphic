@@ -21,7 +21,7 @@ namespace NeoBlazorphic.Components.Inputs.Checks.CheckBoxes
         public EventCallback<bool> IsCheckedChanged { get; set; }
 
         [Parameter]
-        public ColorTheme ColorTheme { get; set; } = ColorTheme.Base;
+        public ThemeColor ThemeColor { get; set; } = ThemeColor.Base;
 
         private async Task OnMouseClick(MouseEventArgs args)
         {
@@ -35,7 +35,7 @@ namespace NeoBlazorphic.Components.Inputs.Checks.CheckBoxes
         // Ui methods
         private string GetChecked => IsChecked ? "checked" : "unchecked";
         private string GetShadow => IsChecked ? "neo-shadow-in" : "neo-shadow-out";
-        private string GetColorTheme => IsChecked ? ColorTheme.GetCssClass() : "neo-base";
+        private string GetColorTheme => IsChecked ? ThemeColor.GetCssClass() : "neo-base";
 
         private string GetBgShape => "neo-flat" + (IsEnabled ? " neo-concave-on-hover" : "");
 

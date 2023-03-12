@@ -15,7 +15,7 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         public RenderFragment<T?>? ItemRenderFragment { get; set; }
 
         [Parameter]
-        public ColorTheme AccentClass { get; set; } = ColorTheme.Primary;
+        public ThemeColor AccentClass { get; set; } = ThemeColor.Primary;
 
         [Parameter]
         public BorderRadius CardBorderRadius { get; set; } = BorderRadius.Default;
@@ -67,9 +67,9 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         }
 
         // UI Methods
-        private ColorTheme GetAccentClass()
+        private ThemeColor GetAccentClass()
         {
-            return IsSelected() ? AccentClass : ColorTheme.Base;
+            return IsSelected() ? AccentClass : ThemeColor.Base;
         }
     }
 }

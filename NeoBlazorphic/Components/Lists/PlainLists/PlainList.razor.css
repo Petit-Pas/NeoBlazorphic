@@ -1,17 +1,22 @@
-﻿.plain-list-item:nth-child(even) {
+﻿.neo-plain-list {
+    overflow: auto;
+    height: 100%;
+}
+
+.neo-plain-list-item:nth-child(even) {
     backdrop-filter: brightness(80%);
 }
 
-.plain-list-item:nth-child(odd) {
+.neo-plain-list-item:nth-child(odd) {
     backdrop-filter: brightness(125%);
 }
 
-.plain-list-item:hover {
+.neo-plain-list-item:hover {
     backdrop-filter: brightness(100%);
     background: var(--light-bg-color)
 }
 
-.plain-list-item.selected {
+.neo-plain-list-item.selected {
     backdrop-filter: brightness(100%);
     background: var(--dark-bg-color)
 }

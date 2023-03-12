@@ -11,7 +11,7 @@ namespace NeoBlazorphic.Components.Inputs.Buttons
         public RenderFragment? ChildContent { get; set; }
 
         [Parameter]
-        public ColorTheme ColorTheme { get; set; } = ColorTheme.Base;
+        public ThemeColor ThemeColor { get; set; } = ThemeColor.Base;
 
         [Parameter]
         public BorderRadius BorderRadius { get; set; } = BorderRadius.Default;
@@ -25,6 +25,6 @@ namespace NeoBlazorphic.Components.Inputs.Buttons
         }
 
         // UI Methods
-        private string GetColorTheme => ColorTheme.GetCssClass();
+        private string GetColorTheme => ThemeColor.GetCssClass();
     }
 }

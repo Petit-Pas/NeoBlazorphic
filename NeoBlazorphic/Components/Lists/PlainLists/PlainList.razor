@@ -1,23 +1,22 @@
 ﻿@using NeoBlazorphic.Components.Base.Cards;
 @using NeoBlazorphic.StyleParameters
 
+@inherits NeoBlazorphic.Components.Base.NeoSelectableListComponentBase<T>
 @typeparam T
 
-<Card Margin="Spacing._0" Padding="Spacing._0" ShadowPosition="ShadowPosition" BorderRadius="@(new (0.75, "rem"))">
-    <ul class="@GetTheme" style="overflow: auto; height: 100%;">
-        @{
-            var itemsToDisplay = DisplayableItems();
-        }
+@{
+    var itemsToDisplay = DisplayableItems();
+}
+
+<Card Margin="@Margin" Padding="@Padding" ShadowPosition="ShadowPosition" BorderRadius="@BorderRadius">
+    <ul class="neo-plain-list @ColorClass">
         @if (ItemRenderFragment != null && itemsToDisplay.Length != 0)
         {
-            var i = 0;
             @foreach (var item in itemsToDisplay)
             {
-
-                <li class="plain-list-item @GetSelected(item)" @onclick="(_) => ItemClicked(item)">
+                <li class="neo-plain-list-item @GetSelectedClass(item)" @onclick="(_) => ItemClicked(item)">
                     @ItemRenderFragment(item)
                 </li>
-                i += 1;
             }
         }
         else

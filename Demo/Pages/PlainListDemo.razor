@@ -6,7 +6,7 @@
 @page "/plainListDemo"
 
 <div style="height: 15em">
-    <PlainList ShadowPosition="ShadowPosition.Out" T="SelectableItem<string>" Items="Strings" Theme=@ColorTheme.Danger>
+    <PlainList ShadowPosition="ShadowPosition.Out" T="SelectableItem<string>" Items="Strings" Color=@ThemeColor.Danger>
         <ItemRenderFragment Context="str">
             <div class="p-2">
                 @str.Item
@@ -20,7 +20,7 @@
 <input type="text" @bind="Text" />
 
 <div style="height: 15em">
-    <PlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers" Theme=@ColorTheme.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Item.ToString().Contains(s)">
+    <PlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Item.ToString().Contains(s)">
         <ItemRenderFragment Context="item">
             <div class="py-1 px-3">
                 @item.Item
@@ -33,7 +33,7 @@
 @code {
     public string Text { get; set; }
 
-    public SelectableItemList<int> Integers { get; set; } = new()
+    public UniqueSelectableItemList<int> Integers { get; set; } = new()
     {
         new SelectableItem<int>(1, 0),
         new SelectableItem<int>(2, 1),
@@ -57,7 +57,7 @@
         new SelectableItem<int>(20, 19),
     };
 
-    public SelectableItemList<string> Strings { get; set; } = new()
+    public UniqueSelectableItemList<string> Strings { get; set; } = new()
     {
         new SelectableItem<string>("hello", 0), 
         new SelectableItem<string>("world", 1), 

@@ -19,7 +19,7 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         public RenderFragment? FooterRenderFragment { get; set; }
 
         [Parameter] 
-        public ColorTheme AccentClass { get; set; } = ColorTheme.None;
+        public ThemeColor AccentClass { get; set; } = ThemeColor.None;
 
         [Parameter]
         public Func<T, string, bool>? Filter { get; set; }
@@ -51,7 +51,7 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
         {
             if (itemClicked is ISelectableItem item && Items is ISelectableItemList items)
             {
-                items.ResetSelected(item);
+                items.Select(item);
                 StateHasChanged();
             }
         }

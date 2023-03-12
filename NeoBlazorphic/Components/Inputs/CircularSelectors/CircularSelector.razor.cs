@@ -36,9 +36,9 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         private BackgroundShape _shape = BackgroundShape.Concave;
 
         [Parameter]
-        public ColorTheme ColorTheme { get; set; } = ColorTheme.Base;
+        public ThemeColor ThemeColor { get; set; } = ThemeColor.Base;
         [Parameter]
-        public ColorTheme SelectedTheme { get; set; } = ColorTheme.Primary;
+        public ThemeColor Selected { get; set; } = ThemeColor.Primary;
 
         public string? CenterText { get; set; }
 
@@ -67,7 +67,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
             StateHasChanged();
         }
 
-        private string GetColorThemeClass => ColorTheme.GetCssClass();
+        private string GetColorThemeClass => ThemeColor.GetCssClass();
 
         private string GetShapeClass => Shape.GetCssClass();
     }

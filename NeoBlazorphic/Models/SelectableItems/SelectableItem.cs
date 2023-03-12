@@ -34,11 +34,6 @@ public class SelectableItem<T> : ISelectableItem
     public T? Item { get; set; }
 
     /// <summary>
-    ///     Will be used by any UI component to actually display the actual Item.
-    /// </summary>
-    public string Label => Item?.ToString() ?? "item has no label or is empty";
-
-    /// <summary>
     ///     The index of this specific item among the list in which he resides.
     /// </summary>
     public int Index { get; set; }

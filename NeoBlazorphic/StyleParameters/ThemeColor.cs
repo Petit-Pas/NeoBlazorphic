@@ -2,7 +2,7 @@
 
 namespace NeoBlazorphic.StyleParameters
 {
-    public enum ColorTheme
+    public enum ThemeColor
     {
         [CssClass("")]
         None,

@@ -12,7 +12,7 @@
 
 
 <li class="my-3 ">
-    <Card AdditionalClasses="@(IsSelectable() ? "neo-concave-on-hover" : "")" BorderRadius="@CardBorderRadius" BackgroundShape=@BackgroundShape.Flat ShadowPosition=@ShadowPosition ColorTheme="GetAccentClass()" OnMouseClickCallBack="OnMouseClick">
+    <Card AdditionalClasses="@(IsSelectable() ? "neo-concave-on-hover" : "")" BorderRadius="@CardBorderRadius" BackgroundShape=@BackgroundShape.Flat ShadowPosition=@ShadowPosition ThemeColor="GetAccentClass()" OnMouseClickCallBack="OnMouseClick">
         @if (ItemRenderFragment != default)
         {
             @ItemRenderFragment(Item)

@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<CircularSelector ColorTheme="ColorTheme.Base" Shape="BackgroundShape.Convex">
+<CircularSelector ThemeColor="ThemeColor.Base" Shape="BackgroundShape.Convex">
     <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
     <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
     <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
@@ -37,7 +37,7 @@
     <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
 </CircularSelector>
 
-<CircularSelector ColorTheme="ColorTheme.Base" Shape="BackgroundShape.Concave" SelectedTheme="ColorTheme.Danger">
+<CircularSelector ThemeColor="ThemeColor.Base" Shape="BackgroundShape.Concave" Selected="ThemeColor.Danger">
     <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-0.5" yShift="-2.5"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">0</div> </CircularSelectorButtonContent>
     <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-0.5" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">1</div> </CircularSelectorButtonContent>
     <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-1.3" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">2</div> </CircularSelectorButtonContent>
@@ -70,14 +70,14 @@
     public string CenterTextNum { get; set; } = "-1";
     public string CenterTextAlpha { get; set; } = "default";
 
-    public SelectableItemList<int> NumList { get; set; }
-    public SelectableItemList<string> AlphaList { get; set; }
+    public UniqueSelectableItemList<int> NumList { get; set; }
+    public UniqueSelectableItemList<string> AlphaList { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        NumList = new SelectableItemList<int>();
-        AlphaList = new SelectableItemList<string>();
+        NumList = new UniqueSelectableItemList<int>();
+        AlphaList = new UniqueSelectableItemList<string>();
         ComputeItems();
     }
 

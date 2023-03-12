@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.StyleParameters;
 
-// TODO disabled missing + comportment to handle SelectableItemList
+// TODO disabled missing + comportment to handle UniqueSelectableItemList
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 {
@@ -56,7 +56,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         private BackgroundShape _shape = BackgroundShape.Concave;
 
         [Parameter]
-        public ColorTheme SelectedTheme { get; set; } = ColorTheme.Primary;
+        public ThemeColor SelectedTheme { get; set; } = ThemeColor.Primary;
 
         private void OnClick(MouseEventArgs e)
         {

@@ -14,7 +14,7 @@ namespace NeoBlazorphic.Components.Base.Cards
         public ShadowPosition ShadowPosition { get; set; } = ShadowPosition.Out;
 
         [Parameter] 
-        public ColorTheme ColorTheme { get; set; } = ColorTheme.Base;
+        public ThemeColor ThemeColor { get; set; } = ThemeColor.Base;
 
         [Parameter]
         public BackgroundShape BackgroundShape { get; set; } = BackgroundShape.Flat;
@@ -43,7 +43,7 @@ namespace NeoBlazorphic.Components.Base.Cards
         // UI Methods
         public string GetShadowPositionClass => ShadowPosition.GetCssClass();
 
-        public string GetColorTheme => ColorTheme.GetCssClass();
+        public string GetColorTheme => ThemeColor.GetCssClass();
 
         public string GetBackgroundShape => BackgroundShape.GetCssClass();
 
