@@ -1,11 +1,25 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Linq.Expressions;
+using Microsoft.AspNetCore.Components;
 using NeoBlazorphic.StyleParameters;
 using NeoBlazorphic.Extensions.BaseTypes;
 
 namespace NeoBlazorphic.Components.Inputs.Checks.CheckBoxes;
 
-public partial class CheckBox : ComponentBase
+// ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
+public partial class CheckBox
 {
+    /// <summary>
+    ///     Property to bind to for the check
+    /// </summary>
+    [Parameter]
+    public bool IsChecked { get; set; }
+
+    /// <summary>
+    ///     Event used for the IsChecked propertyBinding
+    /// </summary>
+    [Parameter]
+    public EventCallback<bool> IsCheckedChanged { get; set; }
+
     /// <summary>
     ///     Accent color of the checkbox
     ///     Only visible when checked
@@ -21,36 +35,42 @@ public partial class CheckBox : ComponentBase
     public CheckBoxShape BoxShape { get; set; } = CheckBoxShape.Squared;
 
     /// <summary>
-    ///     Property to bind to for the check
-    /// </summary>
-    [Parameter]
-    public bool IsChecked { get; set; }
-
-    /// <summary>
-    ///     Event used for the IsChecked propertyBinding
-    /// </summary>
-    [Parameter]
-    public EventCallback<bool> IsCheckedChanged { get; set; }
-
-    /// <summary>
     ///     Tells if the checkbox should be enabled
     /// </summary>
     [Parameter]
     public bool IsEnabled { get; set; }
 
     // UI methods
-    protected virtual string CheckedClass => IsChecked ? "checked" : "unchecked";
-    protected virtual string ShadowClass => IsChecked ? "neo-shadow-in" : "neo-shadow-out";
-    protected virtual string ColorClass => IsChecked ? Color.GetCssClass() : ThemeColor.Base.GetCssClass();
-    protected virtual string ShapeClass => BoxShape.GetCssClass();
-    protected virtual string EnabledClass => IsEnabled ? "enabled" : "disabled";
-    protected virtual string GetBgShape => "neo-flat" + (IsEnabled ? " neo-concave-on-hover" : "");
-
-    protected virtual string ShapeImage => BoxShape switch
+    protected virtual string CheckedClass => IsChecked switch
+    {
+        true => "checked",
+        false => "unchecked"
+    };
+    protected virtual string ShadowClass => IsChecked switch
+    {
+        true => ShadowPosition.In.GetCssClass(),
+        false => ShadowPosition.Out.GetCssClass(),
+    };
+    protected virtual string ColorClass => IsChecked switch
+    {
+        true => Color.GetCssClass(),
+        false => ThemeColor.Base.GetCssClass(),
+    };
+    protected virtual string CheckBoxShapeClass => BoxShape.GetCssClass();
+    protected virtual string EnabledClass => IsEnabled switch
+    {
+        true => "enabled",
+        false => "disabled",
+    };
+    protected virtual string BgShapeClasses => IsEnabled switch
+    {
+        true => "neo-flat neo-concave-on-hover",
+        false => "neo-flat"
+    };
+    protected virtual string ImageShapePath => BoxShape switch
     {
         CheckBoxShape.Squared => "_content/NeoBlazorphic/img/check.png",
         CheckBoxShape.Round => "_content/NeoBlazorphic/img/dot.png",
         _ => throw new NotImplementedException($"The CheckBoxShape {BoxShape} is not handled")
     };
-
 }

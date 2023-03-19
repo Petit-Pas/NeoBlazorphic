@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Components.Web;
 
 namespace NeoBlazorphic.Components.Inputs.Checks.CheckBoxes;
 
-public partial class CheckBox : ComponentBase
+public partial class CheckBox
 {
     private async Task OnMouseClick(MouseEventArgs args)
     {
-        if (IsEnabled)
+        if (!IsEnabled)
         {
-            IsChecked = !IsChecked;
-            await IsCheckedChanged.InvokeAsync(IsChecked);
+            return;
         }
+
+        IsChecked = !IsChecked;
+        await IsCheckedChanged.InvokeAsync(IsChecked);
     }
 }
