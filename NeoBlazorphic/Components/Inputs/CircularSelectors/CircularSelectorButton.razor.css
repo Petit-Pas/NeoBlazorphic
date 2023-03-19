@@ -26,13 +26,13 @@
 }
 
 .neo-convex {
-    --start-gradient: var(--dark-bg-color);
-    --end-gradient: var(--light-bg-color);
+    --start-gradient: var(--neo-dark-main-color);
+    --end-gradient: var(--neo-light-main-color);
 }
 
 .neo-concave {
-    --start-gradient: var(--light-bg-color);
-    --end-gradient: var(--dark-bg-color);
+    --start-gradient: var(--neo-light-main-color);
+    --end-gradient: var(--neo-dark-main-color);
 }
 
 .base {

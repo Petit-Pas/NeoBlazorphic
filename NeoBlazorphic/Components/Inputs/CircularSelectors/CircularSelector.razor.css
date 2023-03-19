@@ -3,12 +3,12 @@
 }
 
 .circular-selector.neo-concave {
-    --start-gradient: var(--left-bg-card-color);
-    --end-gradient: var(--right-bg-card-color);
+    --start-gradient: var(--neo-left-bg-color);
+    --end-gradient: var(--neo-right-bg-color);
 }
 .circular-selector.neo-convex {
-    --start-gradient: var(--left-bg-card-color);
-    --end-gradient: var(--right-bg-card-color);
+    --start-gradient: var(--neo-left-bg-color);
+    --end-gradient: var(--neo-right-bg-color);
 }
 
 

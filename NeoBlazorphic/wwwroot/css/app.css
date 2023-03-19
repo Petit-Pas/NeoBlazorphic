@@ -800,7 +800,7 @@ video {
 
 }
 
-@property --left-bg-card-color {
+@property --neo-left-bg-color {
   syntax: '<color>';
 
   inherits: false;
@@ -808,7 +808,7 @@ video {
   initial-value: red;
 }
 
-@property --right-bg-card-color {
+@property --neo-right-bg-color {
   syntax: '<color>';
 
   inherits: false;
@@ -817,44 +817,44 @@ video {
 }
 
 .neo-base {
-  --dark-bg-color: var(--base-dark-color);
-  --light-bg-color: var(--base-light-color);
-  --base-bg-color: var(--base-main-color);
+  --neo-dark-main-color: var(--base-dark-color);
+  --neo-light-main-color: var(--base-light-color);
+  --neo-main-color: var(--base-main-color);
   --dark-shadow-color: var(--base-dark-shadow);
   --light-shadow-color: var(--base-light-shadow);
   --text-color: var(--base-text-color);
 }
 
 .neo-danger {
-  --dark-bg-color: var(--danger-dark-color);
-  --light-bg-color: var(--danger-light-color);
-  --base-bg-color: var(--danger-main-color);
+  --neo-dark-main-color: var(--danger-dark-color);
+  --neo-light-main-color: var(--danger-light-color);
+  --neo-main-color: var(--danger-main-color);
   --dark-shadow-color: var(--danger-dark-shadow);
   --light-shadow-color: var(--danger-light-shadow);
   --text-color: var(--danger-text-color);
 }
 
 .neo-primary {
-  --dark-bg-color: var(--primary-dark-color);
-  --light-bg-color: var(--primary-light-color);
-  --base-bg-color: var(--primary-main-color);
+  --neo-dark-main-color: var(--primary-dark-color);
+  --neo-light-main-color: var(--primary-light-color);
+  --neo-main-color: var(--primary-main-color);
   --dark-shadow-color: var(--primary-dark-shadow);
   --light-shadow-color: var(--primary-light-shadow);
   --text-color: var(--primary-text-color);
 }
 
 .neo-primary-on-focus:has(:focus) {
-  --dark-bg-color: var(--primary-dark-color);
-  --light-bg-color: var(--primary-light-color);
-  --base-bg-color: var(--primary-main-color);
+  --neo-dark-main-color: var(--primary-dark-color);
+  --neo-light-main-color: var(--primary-light-color);
+  --neo-main-color: var(--primary-main-color);
   --dark-shadow-color: var(--primary-dark-shadow);
   --light-shadow-color: var(--primary-light-shadow);
   --text-color: var(--primary-text-color);
 }
 
-.neo-bg {
-  background: linear-gradient(145deg, var(--left-bg-card-color), var(--right-bg-card-color));
-  transition: --left-bg-card-color 0.2s, --right-bg-card-color 0.2s;
+.neo-gradient-bg {
+  background: linear-gradient(145deg, var(--neo-left-bg-color), var(--neo-right-bg-color));
+  transition: --neo-left-bg-color 0.2s, --neo-right-bg-color 0.2s;
 }
 
 .neo-shadow-out {
@@ -874,26 +874,26 @@ video {
 }
 
 .neo-flat {
-  --left-bg-card-color: var(--base-bg-color);
-  --right-bg-card-color: var(--base-bg-color);
+  --neo-left-bg-color: var(--neo-main-color);
+  --neo-right-bg-color: var(--neo-main-color);
 }
 
 .neo-convex {
-  --left-bg-card-color: var(--light-bg-color);
-  --right-bg-card-color: var(--dark-bg-color);
+  --neo-left-bg-color: var(--neo-light-main-color);
+  --neo-right-bg-color: var(--neo-dark-main-color);
 }
 
 .neo-concave {
-  --left-bg-card-color: var(--dark-bg-color);
-  --right-bg-card-color: var(--light-bg-color);
+  --neo-left-bg-color: var(--neo-dark-main-color);
+  --neo-right-bg-color: var(--neo-light-main-color);
 }
 
 .neo-concave-on-hover {
 }
 
 .neo-concave-on-hover:hover {
-  --left-bg-card-color: var(--dark-bg-color);
-  --right-bg-card-color: var(--light-bg-color);
+  --neo-left-bg-color: var(--neo-dark-main-color);
+  --neo-right-bg-color: var(--neo-light-main-color);
 }
 
 p, div {

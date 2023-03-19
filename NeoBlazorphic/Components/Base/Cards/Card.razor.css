@@ -1,6 +1,7 @@
 ﻿.neo-card {
     height: 100%;
     overflow: hidden;
+    background: linear-gradient(145deg, var(--neo-left-bg-color), var(--neo-right-bg-color));
 }
 .neo-card:empty {
     display: none;

@@ -13,10 +13,10 @@
 
 .neo-plain-list-item:hover {
     backdrop-filter: brightness(100%);
-    background: var(--light-bg-color)
+    background: var(--neo-light-main-color)
 }
 
 .neo-plain-list-item.selected {
     backdrop-filter: brightness(100%);
-    background: var(--dark-bg-color)
+    background: var(--neo-dark-main-color)
 }
