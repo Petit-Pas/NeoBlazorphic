@@ -5,7 +5,8 @@ using NeoBlazorphic.Extensions.BaseTypes;
 
 namespace NeoBlazorphic.Components.Inputs.Buttons;
 
-public partial class ButtonCard : ComponentBase
+// ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
+public partial class ButtonCard
 {
     /// <summary>
     ///     The content of the button
