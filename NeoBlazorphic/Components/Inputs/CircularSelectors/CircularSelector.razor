@@ -1,7 +1,7 @@
 ﻿@using NeoBlazorphic.Extensions.BaseTypes;
 <CascadingValue Value="this">
     @ChildContent
-    <svg class="circular-selector @GetColorThemeClass center-@GetShapeClass @GetShapeClass" xmlns="http://www.w3.org/1999/xhtml" width=300 height=300 viewBox="-25 -25 50 50" style="filter:drop-shadow(5px 5px 5px var(--dark-shadow-color)) drop-shadow(-5px -5px 5px var(--light-shadow-color));">
+    <svg class="circular-selector @ColorClass center-@ShapeClass @ShapeClass" xmlns="http://www.w3.org/1999/xhtml" width=300 height=300 viewBox="-25 -25 50 50" style="filter:drop-shadow(5px 5px 5px var(--dark-shadow-color)) drop-shadow(-5px -5px 5px var(--light-shadow-color));">
         <defs>
             <!-- Gradient for the center of the selector -->
             <linearGradient id=@($"{UID}-CenterGradient") x1="0.25" y1="0.25" x2="0.75" y2="0.75">

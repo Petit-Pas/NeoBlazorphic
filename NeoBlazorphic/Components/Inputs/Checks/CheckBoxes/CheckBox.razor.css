@@ -19,7 +19,7 @@
     border-radius: 0.375rem;
 }
 
-.checkbox.circled {
+.checkbox.round {
     border-radius: 9999px;
 }
 
@@ -40,7 +40,7 @@
     height: 12px;
     width: 16px;
 }
-.tick.circled {
+.tick.round {
     width: 8px;
     height: 8px;
 }

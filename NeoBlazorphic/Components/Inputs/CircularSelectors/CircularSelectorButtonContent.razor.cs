@@ -29,12 +29,9 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
 
         private void SendToParent()
         {
-            if (selector != null && ChildContent != null) {
-                if (!Selector.ButtonContents.Contains(this))
-                {
-                    Selector.ButtonContents.Add(this);
-                    Selector.NotifyChangeOfState();
-                }
+            if (selector != null && ChildContent != null)
+            {
+                selector.AddButtonContentIfMissing(this);
             }
         }
     }

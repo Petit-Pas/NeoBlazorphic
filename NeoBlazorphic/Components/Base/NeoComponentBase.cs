@@ -26,6 +26,9 @@ public abstract class NeoComponentBase : ComponentBase
     [Parameter]
     public virtual Spacing Padding { get; set; } = Spacing._0;
 
+    [Parameter]
+    public virtual bool IsEnabled { get; set; }
+
     // UI Methods
     protected virtual string ColorClass => Color.GetCssClass();
     protected virtual string ShadowClass => ShadowPosition.GetCssClass();

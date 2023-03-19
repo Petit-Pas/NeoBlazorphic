@@ -21,7 +21,7 @@
     var labelY = (-(Math.Sin(angleInRadians / 2) * 15)).ToInvariantString();
 }
 
-<g class=" circular-selector-button @(Selected ? "selected": "") @(Selected ? ButtonContent.SelectedClass : "") @ButtonContent.AdditionalClass @GetSelectedThemeClass @GetShapeClass"
+<g class=" circular-selector-button @(Selected ? "selected": "") @(Selected ? ButtonContent.SelectedClass : "") @ButtonContent.AdditionalClass @SelectedThemeClass @ShapeClass"
    style="transition: all .15s ease-in-out;"
    transform="rotate(@AngleShift)">
     <defs>

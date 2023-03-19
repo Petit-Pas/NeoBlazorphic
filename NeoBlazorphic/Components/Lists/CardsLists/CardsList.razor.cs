@@ -47,9 +47,9 @@ namespace NeoBlazorphic.Components.Lists.CardsLists
             return Array.Empty<T>();
         }
 
-        private void CardClicked(T itemClicked)
+        private void ItemClicked(T clickedItem)
         {
-            if (itemClicked is ISelectableItem item && Items is ISelectableItemList items)
+            if (clickedItem is ISelectableItem item && Items is ISelectableItemList items)
             {
                 items.Select(item);
                 StateHasChanged();

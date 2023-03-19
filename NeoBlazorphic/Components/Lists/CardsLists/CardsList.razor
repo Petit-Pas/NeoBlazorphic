@@ -1,5 +1,6 @@
 ﻿@using NeoBlazorphic.Components.Base.Cards;
 @using NeoBlazorphic.StyleParameters
+@using System.Drawing
 
 @typeparam T
 
@@ -21,17 +22,22 @@
             {
                 @foreach (var item in itemsToDisplay)
                 {
-                    <CardsListItem CardBorderRadius=@CardBorderRadius T="T" AccentClass=@AccentClass Item="item" ItemRenderFragment=@ItemRenderFragment OnMouseClickCallBack="() => CardClicked(item)" />
+                    <li class="my-3 ">
+                        <Card AdditionalClasses="neo-concave-on-hover" BorderRadius="@CardBorderRadius" Shape=@BackgroundShape.Flat ShadowPosition=@ShadowPosition.Out Color="ThemeColor.Base" OnMouseClickCallBack="() => ItemClicked(item)">
+                            @if (ItemRenderFragment != default)
+                            {
+                                @ItemRenderFragment(item)
+                            }
+                        </Card>
+                    </li>
                 }
             }
             else
             {
                 <li class="my-3">
-                    <CardsListItem CardBorderRadius=@CardBorderRadius Item="null" T="string">
-                        <ItemRenderFragment>
-                            nothing to show
-                        </ItemRenderFragment>
-                    </CardsListItem>
+                    <Card BorderRadius="@CardBorderRadius" Shape=@BackgroundShape.Flat ShadowPosition=@ShadowPosition.Out Color="ThemeColor.Base">
+                       nothing to show...
+                    </Card>
                 </li>
             }
         </ul>

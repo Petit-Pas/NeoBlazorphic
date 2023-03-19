@@ -1,30 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using NeoBlazorphic.Extensions.BaseTypes;
-using NeoBlazorphic.StyleParameters;
 
-namespace NeoBlazorphic.Components.Inputs.Buttons
+namespace NeoBlazorphic.Components.Inputs.Buttons;
+
+public partial class ButtonCard : ComponentBase
 {
-    public partial class ButtonCard : ComponentBase
+    protected virtual async Task OnMouseClick(MouseEventArgs args)
     {
-        [Parameter]
-        public RenderFragment? ChildContent { get; set; }
-
-        [Parameter]
-        public ThemeColor ThemeColor { get; set; } = ThemeColor.Base;
-
-        [Parameter]
-        public BorderRadius BorderRadius { get; set; } = BorderRadius.Default;
-
-        [Parameter]
-        public EventCallback<MouseEventArgs> OnMouseClickCallBack { get; set; }
-
-        protected virtual async Task OnMouseClick(MouseEventArgs args)
-        {
-            await OnMouseClickCallBack.InvokeAsync(args);
-        }
-
-        // UI Methods
-        private string GetColorTheme => ThemeColor.GetCssClass();
+        await OnMouseClickCallBack.InvokeAsync(args);
     }
 }

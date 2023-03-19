@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using System.Linq.Expressions;
 using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.StyleParameters;
 using System.Globalization;
@@ -11,16 +10,6 @@ namespace NeoBlazorphic.Components.Inputs.Fields
 {
     public partial class NeoBaseInput<T> : InputBase<T>
     {
-        [Parameter, EditorRequired] public Expression<Func<T>> ValidationFor { get; set; } = default!;
-
-        [Parameter] public RenderFragment? InputFieldPrefix { get; set; }
-        [Parameter] public RenderFragment? InputFieldSuffix { get; set; }
-
-        [Parameter] public string? Label { get; set; }
-        [Parameter] public string? Placeholder { get; set; }
-        [Parameter] public bool ValidateOnKeyPress { get; set; }
-        [Parameter] public string AccentColor { get; set; } = "neo-primary";
-
         [Inject]
         public IJSRuntime jsRuntime { get; set; }
 
@@ -96,11 +85,6 @@ namespace NeoBlazorphic.Components.Inputs.Fields
         }
 
         // UI computing methods 
-        private string GetAccentColor()
-        {
-            IsValid = !EditContext.GetValidationMessages(FieldIdentifier).Any();
-            return IsValid ? "" : "neo-danger";
-        }
 
         private static readonly int _cornerRemSize = 4;
         private static readonly BorderRadius _full = new(_cornerRemSize, "rem");
@@ -148,6 +132,5 @@ namespace NeoBlazorphic.Components.Inputs.Fields
             }
             return default;
         }
-        private string GetInvalid => EditContext.GetValidationMessages(FieldIdentifier).Any() ? "neo-danger" : "";
     }
 }

@@ -74,14 +74,7 @@
     --light-shadow-color: var(--danger-light-shadow);
     --text-color: var(--danger-text-color);
 }
-.neo-primary {
-    --dark-bg-color: var(--primary-dark-color);
-    --light-bg-color: var(--primary-light-color);
-    --base-bg-color: var(--primary-main-color);
-    --dark-shadow-color: var(--primary-dark-shadow);
-    --light-shadow-color: var(--primary-light-shadow);
-    --text-color: var(--primary-text-color);
-}
+.neo-primary, 
 .neo-primary-on-focus:has(:focus) {
     --dark-bg-color: var(--primary-dark-color);
     --light-bg-color: var(--primary-light-color);
@@ -93,19 +86,16 @@
 
 .neo-bg {
     background: linear-gradient(145deg, var(--left-bg-card-color), var(--right-bg-card-color));
+    transition: --left-bg-card-color 0.2s, --right-bg-card-color 0.2s;
 }
 
-.neo-shadow-out {
-    box-shadow: 5px 5px 10px var(--base-dark-shadow), -5px -5px 10px var(--base-light-color);
-}
-.neo-shadow-in {
-    box-shadow: inset 5px 5px 10px var(--dark-shadow-color), inset -5px -5px 10px var(--light-shadow-color);
-}
-.neo-shadow-in-on-active:active {
-    box-shadow: inset 5px 5px 10px var(--dark-shadow-color), inset -5px -5px 10px var(--light-shadow-color);
-}
+.neo-shadow-out, 
 .neo-shadow-out-on-active:active {
     box-shadow: 5px 5px 10px var(--base-dark-shadow), -5px -5px 10px var(--base-light-color);
+}
+.neo-shadow-in, 
+.neo-shadow-in-on-active:active {
+    box-shadow: inset 5px 5px 10px var(--dark-shadow-color), inset -5px -5px 10px var(--light-shadow-color);
 }
 
 .neo-flat {
@@ -116,13 +106,7 @@
     --left-bg-card-color: var(--light-bg-color);
     --right-bg-card-color: var(--dark-bg-color);
 }
-.neo-concave {
-    --left-bg-card-color: var(--dark-bg-color);
-    --right-bg-card-color: var(--light-bg-color);
-}
-.neo-concave-on-hover {
-    transition: --left-bg-card-color 0.2s, --right-bg-card-color 0.2s;
-}
+.neo-concave,
 .neo-concave-on-hover:hover {
     --left-bg-card-color: var(--dark-bg-color);
     --right-bg-card-color: var(--light-bg-color);

@@ -4,7 +4,7 @@ namespace NeoBlazorphic.StyleParameters
 {
     public enum CheckBoxShape
     {
-        [CssClass("rounded-md")] Normal,
-        [CssClass("rounded-full")] Round
+        [CssClass("squared")] Squared,
+        [CssClass("round")] Round
     }
 }
