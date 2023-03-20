@@ -1,0 +1,19 @@
+﻿
+.neo-tooltip {
+    position: absolute;
+    bottom: -10px;
+    z-index: 100;
+    transform: translateY(100%);
+    visibility: hidden;
+}
+
+.tooltip-container {
+    position: relative
+}
+.tooltip-container:hover .neo-tooltip {
+    visibility: visible;
+}
+
+.enforce-visible {
+    visibility: visible;
+}

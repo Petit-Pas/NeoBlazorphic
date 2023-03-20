@@ -12,13 +12,13 @@ public partial class CheckBox
     ///     Property to bind to for the check
     /// </summary>
     [Parameter]
-    public bool IsChecked { get; set; }
+    public virtual bool IsChecked { get; set; }
 
     /// <summary>
     ///     Event used for the IsChecked propertyBinding
     /// </summary>
     [Parameter]
-    public EventCallback<bool> IsCheckedChanged { get; set; }
+    public virtual EventCallback<bool> IsCheckedChanged { get; set; }
 
     /// <summary>
     ///     Accent color of the checkbox
@@ -32,13 +32,13 @@ public partial class CheckBox
     ///     Will also impact the shape of the tick
     /// </summary>
     [Parameter]
-    public CheckBoxShape BoxShape { get; set; } = CheckBoxShape.Squared;
+    public virtual CheckBoxShape BoxShape { get; set; } = CheckBoxShape.Squared;
 
     /// <summary>
     ///     Tells if the checkbox should be enabled
     /// </summary>
     [Parameter]
-    public bool IsEnabled { get; set; }
+    public virtual bool IsEnabled { get; set; }
 
     // UI methods
     protected virtual string CheckedClass => IsChecked switch

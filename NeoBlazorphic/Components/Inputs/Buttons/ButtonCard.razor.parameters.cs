@@ -24,13 +24,13 @@ public partial class ButtonCard
     ///     The color of the button card
     /// </summary>
     [Parameter]
-    public ThemeColor Color { get; set; } = ThemeColor.Base;
+    public virtual ThemeColor Color { get; set; } = ThemeColor.Base;
         
     /// <summary>
     ///     The BorderRadius of the card
     /// </summary>
     [Parameter]
-    public BorderRadius BorderRadius { get; set; } = BorderRadius.Default;
+    public virtual BorderRadius BorderRadius { get; set; } = BorderRadius.Default;
 
     // UI Methods
 

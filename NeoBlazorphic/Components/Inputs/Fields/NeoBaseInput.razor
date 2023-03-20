@@ -6,62 +6,60 @@
 
 @using NeoBlazorphic.Components.ToolTips
 
-<div @onmouseover="OnMouseOver" @onmouseout="OnMouseOut">
-    <ToolTip>
-        <ChildContent>
+<ToolTip ForceVisible="IsFocused">
+    <ChildContent>
+        <div class="input-group">
+            
+            @* Optional label above the field *@
+            @if (!string.IsNullOrWhiteSpace(Label))
+            {
+                <label class="input-label" for="@Id">@Label</label>
+            }
 
-            <div class="input-group neo-base" style="">
 
-                @if (!string.IsNullOrWhiteSpace(Label))
+            <div class="input-row">                
+                
+                @* Optional prefix to the field *@
+                @if (PrefixRenderFragment != null)
                 {
-                    <label class="input-label" for="@Id">@Label</label>
+                    @* This section will automatically take grid.col 1 if displayed *@
+                    <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnRight">
+                        @PrefixRenderFragment
+                    </Card>
                 }
                 
-                
-                    <div class="input-row">
-                        @if (InputFieldPrefix != null)
-                        {
-                            <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnRight">
-                                <div class="input-prefix">
-                                    @InputFieldPrefix
-                                </div>
-                            </Card>
-                        }
+                @* Actual input *@
+                @* Will override colors in that order: primary when focused > danger if invalid > base by default *@
+                <div class="input-container neo-base @InvalidClass neo-primary-on-focus">
 
-                        <div class="input @GetInvalid neo-primary-on-focus">
-
-                            <Card Color="ThemeColor.None" ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
-                                <input @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
-                                       type="text" class="" style="-webkit-appearance: none; outline: none; background: transparent; color: var(--text-color); width: 100%"
-                                       id="@Id" placeholder="@Placeholder"
-                                       @oninput="GetOnInputBinder()" @onchange="GetOnChangeBinder()" value="@CurrentValueAsString"/>
-                            </Card>
-                        </div>
-
-                        @if (InputFieldSuffix != null)
-                        {
-                        <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
-                                <div class="input-suffix">
-                                    @InputFieldSuffix
-                                </div>
-                            </Card>
-                        }
-                    </div>
-            </div>
-
-        </ChildContent>
-        
-        <ToolTipContent>
-            @if (IsHovered || IsFocused)
-            {
-                <div>
-                    <Card>
-                        <ValidationMessage For="@ValidationFor"/>
+                    <Card Color="ThemeColor.None" ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
+                        <input type="text" id="@Id" placeholder="@Placeholder"
+                               class="input"
+                               @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
+                               @oninput="GetOnInputBinder()" @onchange="GetOnChangeBinder()"
+                               value="@CurrentValueAsString" />
                     </Card>
                 </div>
-            }
-        </ToolTipContent>
-    </ToolTip>
-</div>
+                
+                @* Optional suffix to the field *@
+                @if (SuffixRenderFragment != null)
+                {
+                    @* This section will automatically take grid.col 3 if displayed *@
+                    <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
+                        @SuffixRenderFragment
+                    </Card>
+                }
+            </div>
+        </div>
+
+    </ChildContent>
+        
+    <ToolTipContent>
+        <Card>
+            <ValidationMessage For="@ValidationFor"/>
+        </Card>
+    </ToolTipContent>
+</ToolTip>
+
 
 

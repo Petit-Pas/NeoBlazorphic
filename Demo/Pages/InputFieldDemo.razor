@@ -16,40 +16,40 @@
     @*<FluentValidationValidator />*@
 
     <div class="my-3">
-        <StringInput AccentColor="neo-primary" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
-            <InputFieldPrefix> <p style="width: 100px">Firstname</p> </InputFieldPrefix>
-            <InputFieldSuffix> <p> +3 </p> </InputFieldSuffix>
+        <StringInput Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
+            <PrefixRenderFragment> <p class="" style="width: 100px; margin: 0 0.25rem;">Firstname</p> </PrefixRenderFragment>
+            <SuffixRenderFragment> <p> +3 </p> </SuffixRenderFragment>
         </StringInput>
     </div>
 
     <div class="my-3">
-        <StringInput AccentColor="neo-primary" ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname">
-            <InputFieldPrefix> <p style="width: 100px">LastName</p> </InputFieldPrefix>
+        <StringInput ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname">
+            <PrefixRenderFragment> <p style="width: 100px; margin: 0 0.25rem;">LastName</p> </PrefixRenderFragment>
         </StringInput>
     </div>
 
     <div class="my-3">
-        <StringInput AccentColor="neo-primary" Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
-            <InputFieldPrefix> <p style="width: 100px">Firstname</p> </InputFieldPrefix>
+        <StringInput Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
+            <PrefixRenderFragment> <p style="width: 100px; margin: 0 0.25rem;">Firstname</p> </PrefixRenderFragment>
         </StringInput>
     </div>
 
     <div class="my-3">
-        <StringInput AccentColor="neo-primary" ValidateOnKeyPress="true" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname">
-            <InputFieldPrefix> <p style="width: 100px">LastName</p> </InputFieldPrefix>
+        <StringInput ValidateOnKeyPress="true" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname">
+            <PrefixRenderFragment> <p style="width: 100px; margin: 0 0.25rem;">LastName</p> </PrefixRenderFragment>
         </StringInput>
     </div>
 
 
     <div class="my-3">
-        <IntInput AccentColor="neo-primary" ValidateOnKeyPress="false" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+        <IntInput ValidateOnKeyPress="false" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
     </div>
     <div class="my-3">
-        <IntInput AccentColor="neo-primary" ValidateOnKeyPress="false" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+        <IntInput ValidateOnKeyPress="false" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
     </div>
 
     <div class="my-3">
-        <IntInput AccentColor="neo-primary" ValidateOnKeyPress="false" Label="Age wrapped" @bind-Value="_Model.AgeWrapper._Age" ValidationFor="@(() => _Model.AgeWrapper._Age)" PlaceHolder="age"></IntInput>
+        <IntInput ValidateOnKeyPress="false" Label="Age wrapped" @bind-Value="_Model.AgeWrapper._Age" ValidationFor="@(() => _Model.AgeWrapper._Age)" PlaceHolder="age"></IntInput>
     </div>
 
     <div class="my-3">

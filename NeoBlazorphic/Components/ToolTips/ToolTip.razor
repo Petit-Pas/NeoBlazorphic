@@ -1,26 +1,24 @@
 ﻿
-<div style="position: relative">
-    @if (_isVisible)
-    {
-        <div class="" style="position: absolute; bottom: -10px; z-index: 100; transform: translateY(100%)">
-            @if (ToolTipContent != null)
-            {
-                @ToolTipContent
-            }
-            else if (string.IsNullOrWhiteSpace(Text))
-            {
-                <div>
-                    @Text
-                </div>
-            }
-            else
-            {
-                <div>
-                    Je suis le default oui
-                </div>
-            }
-        </div>
-    }
+<div class="tooltip-container">
+    @* The tooltip *@
+    <div class="neo-tooltip @OverrideVisibilityClass">
+        @if (ToolTipContent != null)
+        {
+            @ToolTipContent
+        }
+        else if (string.IsNullOrWhiteSpace(Text))
+        {
+            @Text
+        }
+        else
+        {
+            <div>
+                Empty tooltip
+            </div>
+        }
+    </div>
+
+    @* The element that needs to be hovered *@
     <div>
         @ChildContent
     </div>

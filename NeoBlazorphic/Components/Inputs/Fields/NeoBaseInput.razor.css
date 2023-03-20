@@ -2,8 +2,6 @@
 .input-group {
     display: grid;
     grid-template-rows: auto auto;
-    align-items: center;
-    z-index: 0;
 }
 
 .input-label {
@@ -16,22 +14,15 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
 }
-
-.input-prefix {
-    grid-column: 1;
-    margin: 0 0.25rem;
-    display: flex;
-    align-items: center;
-}
-
-.input {
+.input-container {
     grid-column: 2;
     z-index: 1;
 }
 
-.input-suffix {
-    grid-column: 3;
-    margin: 0 0.25rem;
-    display: flex;
-    align-items: center;
+.input {
+    -webkit-appearance: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-color);
+    width: 100%;
 }

@@ -1,100 +1,43 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.StyleParameters;
 using System.Globalization;
-using Microsoft.JSInterop;
 
 namespace NeoBlazorphic.Components.Inputs.Fields
 {
-    public partial class NeoBaseInput<T> : InputBase<T>
+    public partial class NeoBaseInput<T>
     {
-        [Inject]
-        public IJSRuntime jsRuntime { get; set; }
+        protected virtual string Id { get; set; } = Guid.NewGuid().ToString();
 
-        private bool IsFocused { get; set; } = false;
+        protected virtual bool IsInvalid => EditContext.GetValidationMessages(FieldIdentifier).Any();
 
-        private string Id { get; set; } = Guid.NewGuid().ToString();
-
-        private bool IsHovered { get; set; } = false;
-
-        private bool IsValid { get; set; } = true;
-
-        protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out T result, [NotNullWhen(false)] out string? validationErrorMessage)
-        {
-            result = default;
-            validationErrorMessage = "NeoBaseInput implementations should override TryParseValueFromString()";
-            return false;
-        }
-
-        protected override string? FormatValueAsString(T? value)
-        {
-            // Avoiding a cast to IFormattable to avoid boxing.
-            switch (value)
-            {
-                case null:
-                    return null;
-
-                case string @string:
-                    return @string;
-
-                case int @int:
-                    return BindConverter.FormatValue(@int, CultureInfo.InvariantCulture);
-
-                case long @long:
-                    return BindConverter.FormatValue(@long, CultureInfo.InvariantCulture);
-
-                case short @short:
-                    return BindConverter.FormatValue(@short, CultureInfo.InvariantCulture);
-
-                case float @float:
-                    return BindConverter.FormatValue(@float, CultureInfo.InvariantCulture);
-
-                case double @double:
-                    return BindConverter.FormatValue(@double, CultureInfo.InvariantCulture);
-
-                case decimal @decimal:
-                    return BindConverter.FormatValue(@decimal, CultureInfo.InvariantCulture);
-
-                default:
-                    throw new InvalidOperationException($"Unsupported type {value.GetType()}");
-            }
-        }
-
-        private void OnFocusIn(FocusEventArgs e)
+        protected virtual void OnFocusIn(FocusEventArgs e)
         {
             IsFocused = true;
             StateHasChanged();
         }
 
-        private void OnFocusOut(FocusEventArgs e)
+        protected virtual void OnFocusOut(FocusEventArgs e)
         {
             IsFocused = false;
             StateHasChanged();
         }
 
-        private void OnMouseOver()
-        {
-            IsHovered = true;
-        }
+        protected virtual bool IsFocused { get; set; } = false;
 
-        private void OnMouseOut()
-        {
-            IsHovered = false;
-        }
 
         // UI computing methods 
 
-        private static readonly int _cornerRemSize = 4;
-        private static readonly BorderRadius _full = new(_cornerRemSize, "rem");
-        private static readonly BorderRadius _squaredOnLeft = new(0, _cornerRemSize, _cornerRemSize, 0, "rem");
-        private static readonly BorderRadius _squaredOnRight = new(_cornerRemSize, 0, 0, _cornerRemSize, "rem");
+        private const int CornerRemSize = 4;
+        private static readonly BorderRadius _full = new(CornerRemSize, "rem");
+        private static readonly BorderRadius _squaredOnLeft = new(0, CornerRemSize, CornerRemSize, 0, "rem");
+        private static readonly BorderRadius _squaredOnRight = new(CornerRemSize, 0, 0, CornerRemSize, "rem");
         private static readonly BorderRadius _squared = new(0);
-
+        
         private BorderRadius GetFieldBorderRadius()
         {
-            return (InputFieldPrefix != null, InputFieldSuffix != null) switch
+            return (PrefixRenderFragment != null, SuffixRenderFragment != null) switch
             {
                 (true, true) => _squared,
                 (false, false) => _full,
@@ -131,6 +74,30 @@ namespace NeoBlazorphic.Components.Inputs.Fields
                     CurrentValueAsString!);
             }
             return default;
+        }
+
+        protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out T result, [NotNullWhen(false)] out string? validationErrorMessage)
+        {
+            result = default;
+            validationErrorMessage = "NeoBaseInput implementations should override TryParseValueFromString()";
+            return false;
+        }
+
+        protected override string? FormatValueAsString(T? value)
+        {
+            // Avoiding a cast to IFormattable to avoid boxing.
+            return value switch
+            {
+                null => null,
+                string @string => @string,
+                int @int => BindConverter.FormatValue(@int, CultureInfo.InvariantCulture),
+                long @long => BindConverter.FormatValue(@long, CultureInfo.InvariantCulture),
+                short @short => BindConverter.FormatValue(@short, CultureInfo.InvariantCulture),
+                float @float => BindConverter.FormatValue(@float, CultureInfo.InvariantCulture),
+                double @double => BindConverter.FormatValue(@double, CultureInfo.InvariantCulture),
+                decimal @decimal => BindConverter.FormatValue(@decimal, CultureInfo.InvariantCulture),
+                _ => throw new InvalidOperationException($"Unsupported type {value.GetType()}")
+            };
         }
     }
 }

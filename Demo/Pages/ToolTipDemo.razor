@@ -3,27 +3,13 @@
 
 @page "/tooltipdemo"
 
-<ToolTip Text="Hovered!" @ref="Tooltip1">
+<ToolTip Text="Hovered!">
     <ChildContent>
-        <button class="btn btn-primary" @onclick="() => Tooltip1.SwitchVisibility()"> Click me </button>
+        <button class="btn btn-primary"> Hover me </button>
     </ChildContent>
-</ToolTip>
-
-
-
-<p></p>
-<p></p>
-
-<ToolTip>
-    <ChildContent> <div > hello world </div></ChildContent>
-    <ToolTipContent>
-        <Card>
-
-        </Card>
-    </ToolTipContent>
 </ToolTip>
 
 @code
 {
-    public ToolTip Tooltip1 { get; set; }
+
 }

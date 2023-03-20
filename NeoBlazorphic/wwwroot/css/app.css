@@ -655,10 +655,6 @@ video {
   display: none;
 }
 
-.h-full {
-  height: 100%;
-}
-
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -834,15 +830,7 @@ video {
   --text-color: var(--danger-text-color);
 }
 
-.neo-primary {
-  --neo-dark-main-color: var(--primary-dark-color);
-  --neo-light-main-color: var(--primary-light-color);
-  --neo-main-color: var(--primary-main-color);
-  --dark-shadow-color: var(--primary-dark-shadow);
-  --light-shadow-color: var(--primary-light-shadow);
-  --text-color: var(--primary-text-color);
-}
-
+.neo-primary, 
 .neo-primary-on-focus:has(:focus) {
   --neo-dark-main-color: var(--primary-dark-color);
   --neo-light-main-color: var(--primary-light-color);
@@ -857,20 +845,14 @@ video {
   transition: --neo-left-bg-color 0.2s, --neo-right-bg-color 0.2s;
 }
 
-.neo-shadow-out {
-  box-shadow: 5px 5px 10px var(--base-dark-shadow), -5px -5px 10px var(--base-light-color);
-}
-
-.neo-shadow-in {
-  box-shadow: inset 5px 5px 10px var(--dark-shadow-color), inset -5px -5px 10px var(--light-shadow-color);
-}
-
-.neo-shadow-in-on-active:active {
-  box-shadow: inset 5px 5px 10px var(--dark-shadow-color), inset -5px -5px 10px var(--light-shadow-color);
-}
-
+.neo-shadow-out, 
 .neo-shadow-out-on-active:active {
   box-shadow: 5px 5px 10px var(--base-dark-shadow), -5px -5px 10px var(--base-light-color);
+}
+
+.neo-shadow-in, 
+.neo-shadow-in-on-active:active {
+  box-shadow: inset 5px 5px 10px var(--dark-shadow-color), inset -5px -5px 10px var(--light-shadow-color);
 }
 
 .neo-flat {
@@ -883,14 +865,7 @@ video {
   --neo-right-bg-color: var(--neo-dark-main-color);
 }
 
-.neo-concave {
-  --neo-left-bg-color: var(--neo-dark-main-color);
-  --neo-right-bg-color: var(--neo-light-main-color);
-}
-
-.neo-concave-on-hover {
-}
-
+.neo-concave,
 .neo-concave-on-hover:hover {
   --neo-left-bg-color: var(--neo-dark-main-color);
   --neo-right-bg-color: var(--neo-light-main-color);
