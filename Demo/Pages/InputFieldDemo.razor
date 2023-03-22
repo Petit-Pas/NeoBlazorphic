@@ -17,7 +17,6 @@
 
     <div class="my-3">
         <StringInput Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
-            <PrefixRenderFragment> <p class="" style="width: 100px; margin: 0 0.25rem;">Firstname</p> </PrefixRenderFragment>
             <SuffixRenderFragment> <p> +3 </p> </SuffixRenderFragment>
         </StringInput>
     </div>
@@ -31,6 +30,7 @@
     <div class="my-3">
         <StringInput Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
             <PrefixRenderFragment> <p style="width: 100px; margin: 0 0.25rem;">Firstname</p> </PrefixRenderFragment>
+            <SuffixRenderFragment> <p> +3 </p> </SuffixRenderFragment>
         </StringInput>
     </div>
 

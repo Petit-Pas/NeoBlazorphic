@@ -9,7 +9,14 @@
 
 <Card ShadowPosition="ShadowPosition.In" Padding="Spacing._1" Margin="Spacing._0" BorderRadius="@(new BorderRadius(10))">
     <div class="" style="height: 40em">
-        <CardsList AccentClass="@ThemeColor.Primary" T="SelectableItem<int>" Items="Integers" Filter="(i, filter) => i.Item.ToString().Contains(filter)">
+        <CardsList AccentClass="@ThemeColor.Primary" T="SelectableItem<int>" Items="Integers" FilterString="@SearchBarQuery" Filter="(i, filter) => i.Item.ToString().Contains(filter)">            
+            
+            <HeaderRenderFragment>
+                <div class="" style="">
+                    <input @bind=SearchBarQuery @bind:event="oninput" placeholder="filter here..." style="color: black;">
+                </div>
+            </HeaderRenderFragment>
+
             <ItemRenderFragment Context="selectableItem">
                 <div>
                     @selectableItem.Item
@@ -47,7 +54,7 @@
 
 <br/>
 
-<CardsList T="string" Items="Strings" Filter="(s, filter) => s.Contains(filter)" CardBorderRadius="@(new BorderRadius(10))">
+<CardsList T="string" Items="Strings" Filter="(s, filter) => s.Contains(filter)" BorderRadius="@(new BorderRadius(10))">
     <ItemRenderFragment Context="_string">
         @_string
     </ItemRenderFragment>
@@ -55,7 +62,7 @@
 
 <br/>
 
-<CardsList T="string" Items="Array.Empty<string>().ToList()" Filter="(s, filter) => s.Contains(filter)" CardBorderRadius="@(new BorderRadius(10))">
+<CardsList T="string" Items="Array.Empty<string>().ToList()" Filter="(s, filter) => s.Contains(filter)" BorderRadius="@(new BorderRadius(10))">
     <ItemRenderFragment Context="_string">
         @_string
     </ItemRenderFragment>
@@ -63,7 +70,7 @@
 
 <br/>
 
-<CardsList T="Person" Items="Persons" Filter="(person, filter) => person.Age.ToString().Contains(filter)" CardBorderRadius="@(new BorderRadius(10))">
+<CardsList T="Person" Items="Persons" Filter="(person, filter) => person.Age.ToString().Contains(filter)" BorderRadius="@(new BorderRadius(10))">
     <ItemRenderFragment Context="person">
         <div class="row">
             <div class="col">
@@ -87,7 +94,9 @@
 
 @code
 {
-    public UniqueSelectableItemList<int> Integers { get; set; } = new()
+    public string SearchBarQuery { get; set; } = "";
+
+    public MultipleSelectableItemList<int> Integers { get; set; } = new(3)
     {
         new SelectableItem<int>(1, 0),
         new SelectableItem<int>(2, 1),

@@ -7,12 +7,8 @@ namespace NeoBlazorphic.Models.SelectableItems;
 ///     Selecting an item already selected will unselect it
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class UniqueSelectableItemList<T> : List<SelectableItem<T>>, ISelectableItemList
+public class UniqueSelectableItemList<T> : BaseSelectableList<T>, ISelectableItemList
 {
-    public static readonly UniqueSelectableItemList<T> Empty = new();
-
-    public event EventHandler? SelectionUpdated;
-
     public void Select(ISelectableItem? selectedItem)
     {
         // Error
@@ -38,11 +34,6 @@ public class UniqueSelectableItemList<T> : List<SelectableItem<T>>, ISelectableI
         SelectedItem = selectedItem;
     }
 
-    private void OnSelectionUpdated()
-    {
-        SelectionUpdated?.Invoke(this, System.EventArgs.Empty);
-    }
-
     private ISelectableItem? SelectedItem
     {
         get => _selectedItem;
@@ -56,26 +47,4 @@ public class UniqueSelectableItemList<T> : List<SelectableItem<T>>, ISelectableI
         }
     }
     private ISelectableItem? _selectedItem;
-
-    private bool WarnIfNull([NotNullWhen(false)] ISelectableItem? item)
-    {
-        if (item != null)
-        {
-            return false;
-        }
-
-        Console.WriteLine("Error: trying to interact with UniqueSelectableItemList with a null item");
-        return true;
-    }
-
-    private bool WarnIfNotInCollection(ISelectableItem item)
-    {
-        if (this.Contains(item))
-        {
-            return false;
-        }
-
-        Console.WriteLine("Error: trying to interact with UniqueSelectableItemList with an item that does not belong to the collection");
-        return true;
-    }
 }

@@ -1,53 +1,43 @@
 ﻿@using NeoBlazorphic.Components.Base.Cards;
 @using NeoBlazorphic.StyleParameters
-@using System.Drawing
 
 @typeparam T
 
-<div class="" style="height: 100%; overflow: hidden; display: grid; grid-template-rows: auto 1fr auto">
+<div class="card-list-container">
 
-    @if (Filter != default)
+    @if (HeaderRenderFragment != null)
     {
-        <div class="mx-3 my-1" style="grid-row: 1">
-            <input @bind=SearchBarQuery @bind:event="oninput" placeholder="filter here..." style="color: black;">
-        </div>
+        @HeaderRenderFragment
     }
-    
-    <div class="" style="overflow-y: auto; grid-row: 2">
-        <ul class="px-3">
-            @{
-                var itemsToDisplay = DisplayableItems().ToArray();
-            }
-            @if (ItemRenderFragment != null && itemsToDisplay.Length != 0)
+
+    <ul class="card-list">
+        @{
+            var itemsToDisplay = DisplayableItems().ToArray();
+        }
+        @if (ItemRenderFragment != null && itemsToDisplay.Length != 0)
+        {
+            @foreach (var item in itemsToDisplay)
             {
-                @foreach (var item in itemsToDisplay)
-                {
-                    <li class="my-3 ">
-                        <Card AdditionalClasses="neo-concave-on-hover" BorderRadius="@CardBorderRadius" Shape=@BackgroundShape.Flat ShadowPosition=@ShadowPosition.Out Color="ThemeColor.Base" OnMouseClickCallBack="() => ItemClicked(item)">
-                            @if (ItemRenderFragment != default)
-                            {
-                                @ItemRenderFragment(item)
-                            }
-                        </Card>
-                    </li>
-                }
-            }
-            else
-            {
-                <li class="my-3">
-                    <Card BorderRadius="@CardBorderRadius" Shape=@BackgroundShape.Flat ShadowPosition=@ShadowPosition.Out Color="ThemeColor.Base">
-                       nothing to show...
+                <li class="card-list-card">
+                    <Card BorderRadius="@BorderRadius" Shape=@BackgroundShape.Flat ShadowPosition=@ShadowPosition.Out
+                          Color="@ColorFor(item)" AdditionalClasses="@AdditionalClasses" 
+                          OnMouseClickCallBack="() => ItemClicked(item)">
+                        @ItemRenderFragment(item)
                     </Card>
                 </li>
             }
-        </ul>
-    </div>
+        }
+        else
+        {
+            <li class="">
+                nothing to show...
+            </li>
+        }
+    </ul>
     
-    @if (FooterRenderFragment != default)
+    @if (FooterRenderFragment != null)
     {
-        <div class="mx-3 my-1">
-            @FooterRenderFragment
-        </div>
+        @FooterRenderFragment
     }
 </div>
 

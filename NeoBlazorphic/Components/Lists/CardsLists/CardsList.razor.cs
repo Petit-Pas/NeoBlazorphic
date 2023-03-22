@@ -1,59 +1,36 @@
-﻿using System.Collections;
-using Microsoft.AspNetCore.Components;
+﻿using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.Models.SelectableItems;
-using System.Linq;
 using NeoBlazorphic.StyleParameters;
 
-namespace NeoBlazorphic.Components.Lists.CardsLists
+namespace NeoBlazorphic.Components.Lists.CardsLists;
+
+// ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
+public partial class CardsList<T>
 {
-    public partial class CardsList<T>
+    protected virtual T[] DisplayableItems()
     {
-
-        [Parameter, EditorRequired]
-        public IEnumerable? Items { get; set; }
-
-        [Parameter]
-        public RenderFragment<T>? ItemRenderFragment { get; set; }
-
-        [Parameter]
-        public RenderFragment? FooterRenderFragment { get; set; }
-
-        [Parameter] 
-        public ThemeColor AccentClass { get; set; } = ThemeColor.None;
-
-        [Parameter]
-        public Func<T, string, bool>? Filter { get; set; }
-
-        [Parameter]
-        public BorderRadius CardBorderRadius { get; set; } = BorderRadius.Default;
-
-        public string? SearchBarQuery
+        if (Items is IEnumerable<T> items)
         {
-            get => _searchBarQuery;
-            set => _searchBarQuery = value;
-        }
-        private string? _searchBarQuery = "";
-
-        private T[] DisplayableItems()
-        {
-            if (Items is IEnumerable<T> items)
+            if (Filter == null || string.IsNullOrEmpty(FilterString))
             {
-                if (Filter == null || string.IsNullOrEmpty(SearchBarQuery))
-                {
-                    return items.ToArray();
-                }
-                return items.Where(x => Filter(x, SearchBarQuery)).ToArray();
+                return items.ToArray();
             }
-            return Array.Empty<T>();
+            return items.Where(x => Filter(x, FilterString)).ToArray();
         }
+        return Array.Empty<T>();
+    }
 
-        private void ItemClicked(T clickedItem)
+    protected virtual void ItemClicked(T clickedItem)
+    {
+        if (clickedItem is ISelectableItem item && Items is ISelectableItemList items)
         {
-            if (clickedItem is ISelectableItem item && Items is ISelectableItemList items)
-            {
-                items.Select(item);
-                StateHasChanged();
-            }
+            items.Select(item);
+            StateHasChanged();
         }
+    }
+
+    protected virtual ThemeColor ColorFor(T item)
+    {
+        return item?.IsSelected() ?? false ? AccentClass : ThemeColor.Base;
     }
 }

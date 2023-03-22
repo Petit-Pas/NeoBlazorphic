@@ -1,1 +1,16 @@
-﻿
+﻿.card-list-container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 5px;
+}
+
+.card-list {
+    overflow-y: auto;
+    grid-row: 2;
+    padding: 12px;
+}
+
+.card-list-card {
+    margin: 15px 0;
+}
