@@ -13,6 +13,7 @@
     #if WINDOWS
             try
             {   
+                // Sometimes this cast does not work... Can be ignored anyway, just a little less user friendly
                 (blazorWebView.Handler.PlatformView as Microsoft.UI.Xaml.Controls.WebView2).CoreWebView2.Settings
                     .IsGeneralAutofillEnabled = false;
             }   

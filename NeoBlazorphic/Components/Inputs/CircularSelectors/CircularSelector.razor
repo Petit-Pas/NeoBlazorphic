@@ -1,31 +1,39 @@
 ﻿@using NeoBlazorphic.Extensions.BaseTypes;
+
+@typeparam T
+
 <CascadingValue Value="this">
-    @ChildContent
-    <svg class="circular-selector @ColorClass center-@ShapeClass @ShapeClass" xmlns="http://www.w3.org/1999/xhtml" width=300 height=300 viewBox="-25 -25 50 50" style="filter:drop-shadow(5px 5px 5px var(--dark-shadow-color)) drop-shadow(-5px -5px 5px var(--light-shadow-color));">
+    
+    @if (ChildContent != default)
+    {
+        @* Will fill the ButtonContent property through AddButtonContentIfMissing() by using the cascadingValue *@
+        @ChildContent
+    }
+    <svg xmlns="http://www.w3.org/1999/xhtml"
+         class="circular-selector @ColorClass @ShapeClass" 
+         width=300 height=300 viewBox="-25 -25 50 50">
         <defs>
-            <!-- Gradient for the center of the selector -->
-            <linearGradient id=@($"{UID}-CenterGradient") x1="0.25" y1="0.25" x2="0.75" y2="0.75">
-                <stop offset="0%" stop-color="var(--start-gradient)" />
+            @* Gradient for the center of the selector *@
+            <linearGradient id=@($"{_uid}-CenterGradient") x1="0.25" y1="0.25" x2="0.75" y2="0.75">
+                <stop offset="0%" stop-color="var(--start-gradient)"/>
                 <stop offset="100%" stop-color="var(--end-gradient)"/>
             </linearGradient>
         </defs>
-        @{
-            // SVG shape of every button that composes the circular sector
-            string pathString = $"M 0 0 L 20 0 A 20 20 0 0 0 {AngleEnd.X.ToInvariantString()} {AngleEnd.Y.ToInvariantString()} L 0 0";
-            var i = 0;
-        }
 
-
+        @{ var i = 0; }
         @foreach (var buttonContent in ButtonContents)
         {
-            var angle = -i * ButtonAngle + AngleOffset;
-            <CircularSelectorButton Shape=@Shape AngleShift=@angle ButtonAngle=@ButtonAngle PathString=@pathString
-                                       ButtonContent=@buttonContent Selected=@(SelectedItem == buttonContent)
-                                       SelectedTheme="Selected"/>
+            <CircularSelectorButton Shape=@Shape AngleShift=@AngleForButton(i) ButtonAngle=@ButtonAngle PathString=@_buttonSvgPath
+                                    ButtonContent=@buttonContent 
+                                    SelectedTheme="Selected"/>
             i += 1;
         }
 
-        <circle cx="0" cy="0" r="10" style="stroke-width:0.15px; fill:url(@($"#{UID}-CenterGradient"));" />
-        <text text-anchor="middle" x="0" y="1" style="fill:white; stroke: transparent;font: bold 4px Verdana, Helvetica, Arial, sans-serif;pointer-events: none;"> @CenterText </text>
-    </svg>  
+        <circle class="circular-selector-center" 
+                cx="0" cy="0" r="10"/>
+        <text class="circular-selector-center-text"
+              text-anchor="middle" x="0" y="1">
+            @CenterText
+        </text>
+    </svg>
 </CascadingValue>

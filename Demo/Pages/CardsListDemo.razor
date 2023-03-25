@@ -36,7 +36,7 @@
                         </button>
                     </div>
                     <div class="col-1">
-                    <button class="btn btn-secondary" @onclick="() => Integers.Add(new SelectableItem<int>(Integers.Last().Item + 1, Integers.Count))">
+                    <button class="btn btn-secondary" @onclick="() => Integers.Add(new SelectableItem<int>(Integers.Last().Item + 1))">
                         Add 1
                     </button>
                 </div>
@@ -98,26 +98,26 @@
 
     public MultipleSelectableItemList<int> Integers { get; set; } = new(3)
     {
-        new SelectableItem<int>(1, 0),
-        new SelectableItem<int>(2, 1),
-        new SelectableItem<int>(3, 2),
-        new SelectableItem<int>(4, 3),
-        new SelectableItem<int>(5, 4),
-        new SelectableItem<int>(6, 5),
-        new SelectableItem<int>(7, 6),
-        new SelectableItem<int>(8, 7),
-        new SelectableItem<int>(9, 8),
-        new SelectableItem<int>(10, 9),
-        new SelectableItem<int>(11, 10),
-        new SelectableItem<int>(12, 11),
-        new SelectableItem<int>(13, 12),
-        new SelectableItem<int>(14, 13),
-        new SelectableItem<int>(15, 14),
-        new SelectableItem<int>(16, 15),
-        new SelectableItem<int>(17, 16),
-        new SelectableItem<int>(18, 17),
-        new SelectableItem<int>(19, 18),
-        new SelectableItem<int>(20, 19),
+        new SelectableItem<int>(1),
+        new SelectableItem<int>(2),
+        new SelectableItem<int>(3),
+        new SelectableItem<int>(4),
+        new SelectableItem<int>(5),
+        new SelectableItem<int>(6),
+        new SelectableItem<int>(7),
+        new SelectableItem<int>(8),
+        new SelectableItem<int>(9),
+        new SelectableItem<int>(10),
+        new SelectableItem<int>(11),
+        new SelectableItem<int>(12),
+        new SelectableItem<int>(13),
+        new SelectableItem<int>(14),
+        new SelectableItem<int>(15),
+        new SelectableItem<int>(16),
+        new SelectableItem<int>(17),
+        new SelectableItem<int>(18),
+        new SelectableItem<int>(19),
+        new SelectableItem<int>(20),
     };
 
     public List<string> Strings { get; set; } = new() { "hello", "world", "how is it?" };

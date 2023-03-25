@@ -59,21 +59,21 @@ a, .btn-link {
     color: white;
 }
 
-    .blazor-error-boundary::after {
-        content: "An error has occurred."
-    }
+.blazor-error-boundary::after {
+    content: "An error has occurred."
+}
 
 
 .test_oui {
     background: red;
 }
 
-.red-color {
-    --special-color: red;
-}
 
 .blue-color-hover {
     --special-color: white;
+}
+.red-color {
+    --special-color: red!important;
 }
 .blue-color-hover:hover {
     --special-color: blue;

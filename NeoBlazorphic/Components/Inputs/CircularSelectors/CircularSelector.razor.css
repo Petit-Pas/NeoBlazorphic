@@ -1,44 +1,26 @@
 ﻿.circular-selector {
     user-select: none;
+    filter: drop-shadow(5px 5px 5px var(--base-dark-shadow)) drop-shadow(-5px -5px 5px var(--base-light-shadow));
 }
 
 .circular-selector.neo-concave {
-    --start-gradient: var(--neo-left-bg-color);
-    --end-gradient: var(--neo-right-bg-color);
+    --start-gradient: var(--neo-right-bg-color);
+    --end-gradient: var(--neo-left-bg-color);
 }
 .circular-selector.neo-convex {
-    --start-gradient: var(--neo-left-bg-color);
-    --end-gradient: var(--neo-right-bg-color);
+    --start-gradient: var(--neo-right-bg-color);
+    --end-gradient: var(--neo-left-bg-color);
 }
 
-
-.base {
-    --dark-color: var(--base-dark-color);
-    --light-color: var(--base-light-color);
+.circular-selector-center {
+    fill: var(--neo-main-color);
+    stroke: var(--neo-dark-main-color);
+    stroke-width: 0.05px;
 }
 
-.primary {
-    --dark-color: var(--primary-dark-color);
-    --light-color: var(--primary-light-color);
+.circular-selector-center-text {
+    fill: white;
+    stroke: transparent;
+    font: bold 4px Verdana, Helvetica, Arial, sans-serif;
+    pointer-events: none;
 }
-
-.danger {
-    --dark-color: var(--danger-dark-color);
-    --light-color: var(--danger-light-color);
-}
-
-.selected-base {
-    --dark-color: var(--base-dark-color);
-    --light-color: var(--base-light-color);
-}
-
-.selected-primary {
-    --dark-color: var(--primary-dark-color);
-    --light-color: var(--primary-light-color);
-}
-
-.selected-danger {
-    --dark-color: var(--danger-dark-color);
-    --light-color: var(--danger-light-color);
-}
-

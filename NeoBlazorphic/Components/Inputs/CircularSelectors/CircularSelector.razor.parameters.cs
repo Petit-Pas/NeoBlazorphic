@@ -4,14 +4,37 @@ using NeoBlazorphic.StyleParameters;
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors;
 
-public partial class CircularSelector : ComponentBase
+public partial class CircularSelector<T> : ComponentBase
 {
+    /// <summary>
+    ///     Should be a list of CircularSelectorButtonContent
+    ///     They will interact with the CircularSelector by themselves
+    /// </summary>
     [Parameter]
-    public RenderFragment? ChildContent { get; set; } = null;
+    public RenderFragment? ChildContent
+    {
+        get => _childContent;
+        set
+        {
+            if (value != _childContent)
+            {
+                ButtonContents.Clear();
+                _childContent = value;
+            }
+        }
+    }
+    private RenderFragment? _childContent = null;
 
+    /// <summary>
+    ///     An offset in degrees to rotate the buttons
+    /// </summary>
     [Parameter]
     public int AngleOffset { get; set; } = 0;
 
+    /// <summary>
+    ///     Overall shape of the component
+    ///     Should be Concave or Convex, no Flat
+    /// </summary>
     [Parameter]
     public BackgroundShape Shape
     {

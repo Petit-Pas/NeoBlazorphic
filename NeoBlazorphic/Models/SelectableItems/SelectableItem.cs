@@ -13,18 +13,11 @@ public class SelectableItem<T> : ISelectableItem
         Item = default;
     }
 
-    public SelectableItem(T item, int index, bool isEnabled = true, bool isSelected = false)
+    public SelectableItem(T item, bool isSelected = false)
     {
         Item = item;
-        Index = index;
-        IsEnabled = isEnabled;
         IsSelected = isSelected;
     }
-
-    /// <summary>
-    ///     If for some reason you want a value to be displayed in the same list as others, but you don't want it to be selectable'
-    /// </summary>
-    public bool IsEnabled { get; set; } = true;
 
     public bool IsSelected { get; set; } = false;
 
@@ -32,9 +25,4 @@ public class SelectableItem<T> : ISelectableItem
     ///     The actual object to select
     /// </summary>
     public T? Item { get; set; }
-
-    /// <summary>
-    ///     The index of this specific item among the list in which he resides.
-    /// </summary>
-    public int Index { get; set; }
 }

@@ -7,7 +7,7 @@
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <IsPublishable>True</IsPublishable>
     <PackageId>$(AssemblyName)</PackageId>
-    <Version>1.0.0-rc1</Version>
+    <Version>1.0.0-rc2</Version>
 	<Company>None</Company>
 	<Authors>benoit_hoffman</Authors>
 	<Description>Blazor component library using the neomorphism style</Description>

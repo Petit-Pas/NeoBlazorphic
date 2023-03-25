@@ -5,123 +5,70 @@
 @using NeoBlazorphic.StyleParameters
 <h3>CircularSelectorDemo</h3>
 
-<div class="col">
-    <div class="row">
-        <div class="col-2"> Amount of buttons: @AmountButtons </div>
-        <button class="col-1 border-2 mx-2" @onclick="(e) => AmountButtons += 1"> + </button>
-        <button class="col-1 border-2" @onclick="(e) => AmountButtons -= 1"> - </button>
-    </div>
-
-    <div class="row">
-        <div class="col-2"> Size of buttons: @ButtonAngle ° </div>
-        <button class="col-1 border-2 mx-2" @onclick="(e) => ButtonAngle += 15"> + </button>
-        <button class="col-1 border-2" @onclick="(e) => ButtonAngle -= 15"> - </button>
-    </div>
-
-    <div class="row">
-        <div class="col-2"> Offset: @AngleOffset ° </div>
-        <button class="col-1 border-2 mx-2" @onclick="(e) => AngleOffset += 30"> + </button>
-        <button class="col-1 border-2" @onclick="(e) => AngleOffset -= 30"> - </button>
-    </div>
-</div>
-
-<CircularSelector ThemeColor="ThemeColor.Base" Shape="BackgroundShape.Convex">
-    <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
+<CircularSelector T="string" ThemeColor="ThemeColor.Base" Shape="BackgroundShape.Convex">
+    <CircularSelectorButtonContent T="string" xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
+    <CircularSelectorButtonContent T="string" xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
+    <CircularSelectorButtonContent T="string" xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
+    <CircularSelectorButtonContent T="string" xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
+    <CircularSelectorButtonContent T="string" xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
+    <CircularSelectorButtonContent T="string" xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
+    <CircularSelectorButtonContent T="string" xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
+    <CircularSelectorButtonContent T="string" xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
+    <CircularSelectorButtonContent T="string" xShift="0" yShift="0"> <img src="/icon-192.png" /> </CircularSelectorButtonContent>
 </CircularSelector>
 
-<CircularSelector ThemeColor="ThemeColor.Base" Shape="BackgroundShape.Concave" Selected="ThemeColor.Danger">
-    <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-0.5" yShift="-2.5"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">0</div> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-0.5" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">1</div> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-1.3" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">2</div> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-1.3" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">3</div> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-1.5" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">4</div> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-1.5" yShift="-2.5"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">5</div> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-1.5" yShift="-2.5"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">6</div> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-1.5" yShift="-2.5"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">7</div> </CircularSelectorButtonContent>
-    <CircularSelectorButtonContent AdditionalClass="blue-color-hover" SelectedClass="red-color" xShift="-1.3" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">8</div> </CircularSelectorButtonContent>
-</CircularSelector>
+@if (NumList.Count == 9)
+{
+    <CircularSelector AngleOffset="180" T="SelectableItem<int>" ThemeColor="ThemeColor.Base" Shape="BackgroundShape.Concave" Selected="ThemeColor.Primary" CenterText="@CenterTextNum">
+        <CircularSelectorButtonContent Item="NumList[0]" AdditionalClass="blue-color-hover" OnMouseClickCallBack="() => Select(0)" OnMouseOverCallBack="() => Hint(0)" SelectedClass="red-color" xShift="-1.3" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">0</div> </CircularSelectorButtonContent>
+        <CircularSelectorButtonContent Item="NumList[1]" AdditionalClass="blue-color-hover" OnMouseClickCallBack="() => Select(1)" OnMouseOverCallBack="() => Hint(1)" SelectedClass="red-color" xShift="-1.5" yShift="-2.5"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">1</div> </CircularSelectorButtonContent>
+        <CircularSelectorButtonContent Item="NumList[2]" AdditionalClass="blue-color-hover" OnMouseClickCallBack="() => Select(2)" OnMouseOverCallBack="() => Hint(2)" SelectedClass="red-color" xShift="-1.5" yShift="-2.5"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">2</div> </CircularSelectorButtonContent>
+        <CircularSelectorButtonContent Disabled="true" Item="NumList[3]" AdditionalClass="blue-color-hover" OnMouseClickCallBack="() => Select(3)" OnMouseOverCallBack="() => Hint(3)" SelectedClass="red-color" xShift="-1.5" yShift="-2.5"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">3</div> </CircularSelectorButtonContent>
+        <CircularSelectorButtonContent Item="NumList[4]" AdditionalClass="blue-color-hover" OnMouseClickCallBack="() => Select(4)" OnMouseOverCallBack="() => Hint(4)" SelectedClass="red-color" xShift="-1.5" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">4</div> </CircularSelectorButtonContent>
+        <CircularSelectorButtonContent Item="NumList[5]" AdditionalClass="blue-color-hover" OnMouseClickCallBack="() => Select(5)" OnMouseOverCallBack="() => Hint(5)" SelectedClass="red-color" xShift="-1.3" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">5</div> </CircularSelectorButtonContent>
+        <CircularSelectorButtonContent Item="NumList[6]" AdditionalClass="blue-color-hover" OnMouseClickCallBack="() => Select(6)" OnMouseOverCallBack="() => Hint(6)" SelectedClass="red-color" xShift="-1.3" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">6</div> </CircularSelectorButtonContent>
+        <CircularSelectorButtonContent Item="NumList[7]" AdditionalClass="blue-color-hover" OnMouseClickCallBack="() => Select(7)" OnMouseOverCallBack="() => Hint(7)" SelectedClass="red-color" xShift="-0.5" yShift="-3"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">7</div> </CircularSelectorButtonContent>
+        <CircularSelectorButtonContent Item="NumList[8]" AdditionalClass="blue-color-hover" OnMouseClickCallBack="() => Select(8)" OnMouseOverCallBack="() => Hint(8)" SelectedClass="red-color" xShift="-0.5" yShift="-2.5"> <div style="font-size: 4px; color: var(--special-color);transition: all 0.15s ease-in-out;">8</div> </CircularSelectorButtonContent>
+    </CircularSelector>
+    }
+else
+{
+    <div>wtf? @NumList.Count</div>
+}
 
 @code {
 
-    public int AmountButtons
+    private void Select(int selected)
     {
-        get => _amountButtons;
-        set
-        {
-            _amountButtons = value;
-            ComputeItems();
-        }
+        var element = NumList.Single(x => x.Item == selected);
+        NumList.Select(element);
     }
 
-    private int _amountButtons = 4;
-
-    public int ButtonAngle { get; set; } = 45;
-
-    public int AngleOffset { get; set; } = 0;
+    private void Hint(int selected)
+    {
+        CenterTextNum = selected.ToString();
+    }
 
     public string CenterTextNum { get; set; } = "-1";
     public string CenterTextAlpha { get; set; } = "default";
 
-    public UniqueSelectableItemList<int> NumList { get; set; }
+    public MultipleSelectableItemList<int> NumList { get; set; }
     public UniqueSelectableItemList<string> AlphaList { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        NumList = new UniqueSelectableItemList<int>();
-        AlphaList = new UniqueSelectableItemList<string>();
-        ComputeItems();
-    }
-
-    private List<string> characters = new List<string>()
-    {
-        "a", "b", "c", "d", "e", "f", "g", "h",
-        "i", "j", "k", "l", "m", "n", "o", "p"
-    };
-
-    private void ComputeItems()
-    {
-        var toRemove = Math.Max(NumList.Count - AmountButtons, 0);
-        // removes the one too much
-        NumList.RemoveRange(NumList.Count - toRemove , toRemove);
-        // Adds missing ones
-        for (var i = NumList.Count; i != AmountButtons; i += 1)
+        NumList = new MultipleSelectableItemList<int>(3)
         {
-            if (i == 1)
-            {
-                NumList.Add(new SelectableItem<int>(i, i, isEnabled: false));
-            }
-            else
-            {
-                NumList.Add(new SelectableItem<int>(i, i));
-            }
-        }
-
-        toRemove = Math.Max(AlphaList.Count - AmountButtons, 0);
-        // removes the one too much
-        AlphaList.RemoveRange(AlphaList.Count - toRemove , toRemove);
-        var a = 'a';
-        // Adds missing ones
-        for (var i = AlphaList.Count; i != AmountButtons; i += 1)
-        {
-            if (i == 1)
-            {
-                AlphaList.Add(new SelectableItem<string>(characters[i], i, isEnabled: false));
-            }
-            else
-            {
-                AlphaList.Add(new SelectableItem<string>(characters[i], i));
-            }
-        }
-
+            new(0),
+            new(1),
+            new(2),
+            new(3),
+            new(4),
+            new(5),
+            new(6),
+            new(7),
+            new(8),
+        };
     }
-
 }

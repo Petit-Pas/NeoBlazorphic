@@ -1,39 +1,40 @@
 ﻿using Microsoft.AspNetCore.Components;
+using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.Math.Units;
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors;
 
-public partial class CircularSelector : ComponentBase
+// ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
+public partial class CircularSelector<T> : ComponentBase
 {
-    private Guid UID = Guid.NewGuid();
+    private Guid _uid = Guid.NewGuid();
 
-    public List<CircularSelectorButtonContent> ButtonContents { get; set; } = new List<CircularSelectorButtonContent>();
+    protected virtual Stack<CircularSelectorButtonContent<T>> ButtonContents { get; set; } = new ();
 
-    private void RefreshValues()
-    {
-        var angleInRadians = Converter.ToRadian(ButtonAngle);
-        AngleEnd = new Point2D(System.Math.Cos(angleInRadians) * 20, -System.Math.Sin(angleInRadians) * 20);
-        AmountButtons = ButtonContents?.Count ?? 0;
-    }
-
-    public int AmountButtons { get; set; }
-    public CircularSelectorButtonContent? SelectedItem { get; set; }
-
-    private Point2D AngleEnd = new (0, 0);
-
-
-    public void NotifyChangeOfState()
+    protected virtual void UpdateState()
     {
         RefreshValues();
         StateHasChanged();
     }
 
-    public void AddButtonContentIfMissing(CircularSelectorButtonContent buttonContent)
+    public void AddButtonContentIfMissing(CircularSelectorButtonContent<T> buttonContent)
     {
         if (!ButtonContents.Contains(buttonContent))
         {
-            ButtonContents.Add(buttonContent);
-            NotifyChangeOfState();
+            ButtonContents.Push(buttonContent);
+            UpdateState();
         }
     }
+
+    private void RefreshValues()
+    {
+        var angleInRadians = Converter.ToRadian(ButtonAngle);
+        _angleEnd = new Point2D(System.Math.Cos(angleInRadians) * 20, -System.Math.Sin(angleInRadians) * 20);
+        _buttonSvgPath = $"M 0 0 L 20 0 A 20 20 0 0 0 {_angleEnd.X.ToInvariantString()} {_angleEnd.Y.ToInvariantString()} L 0 0";
+    }
+
+    private int AngleForButton(int buttonIndex) => - buttonIndex * ButtonAngle + AngleOffset;
+
+    private Point2D _angleEnd = new(0, 0);
+    private string _buttonSvgPath = "";
 }
