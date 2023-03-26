@@ -11,7 +11,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors;
 public partial class CircularSelectorButton<T> : ComponentBase
 {
     private Guid _uid;
-    private string _gradientId;
+    private string _gradientId = "";
 
     protected override void OnInitialized()
     {

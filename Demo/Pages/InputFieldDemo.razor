@@ -3,80 +3,79 @@
 @using NeoBlazorphic.Components.Inputs.Fields.String;
 @using NeoBlazorphic.Components.Inputs.Fields.Number;
 @using FluentValidation
-@using NeoBlazorphic.StyleParameters
 @using System.ComponentModel.DataAnnotations
 
 @using Morris.Blazor.Validation
 
-@*Model="_Model"*@
-<EditForm EditContext="_EditContext">
+@*Model="Model"*@
+<EditForm EditContext="EditContext">
     <Validate />
     @*<DataAnnotationsValidator />*@
     @*<FluentValidationValidator />*@
 
     <div class="my-3">
-        <StringInput Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
+        <StringInput Label="prénom" @bind-Value="Model.FirstName" ValidationFor="@(() => Model.FirstName)" PlaceHolder="firstname">
             <SuffixRenderFragment> <p> +3 </p> </SuffixRenderFragment>
         </StringInput>
     </div>
 
     <div class="my-3">
-        <StringInput ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname">
+        <StringInput ValidateOnKeyPress="true" LabelSizePx="121" Label="nom de famille" @bind-Value="Model.LastName" ValidationFor="@(() => Model.LastName)" PlaceHolder="lastname">
             <PrefixRenderFragment> <p style="width: 100px; margin: 0 0.25rem;">LastName</p> </PrefixRenderFragment>
         </StringInput>
     </div>
 
     <div class="my-3">
-        <StringInput Label="prénom" @bind-Value="_Model.FirstName" ValidationFor="@(() => _Model.FirstName)" PlaceHolder="firstname">
+        <StringInput Label="prénom" @bind-Value="Model.FirstName" ValidationFor="@(() => Model.FirstName)" PlaceHolder="firstname">
             <PrefixRenderFragment> <p style="width: 100px; margin: 0 0.25rem;">Firstname</p> </PrefixRenderFragment>
             <SuffixRenderFragment> <p> +3 </p> </SuffixRenderFragment>
         </StringInput>
     </div>
 
     <div class="my-3">
-        <StringInput ValidateOnKeyPress="true" Label="nom de famille" @bind-Value="_Model.LastName" ValidationFor="@(() => _Model.LastName)" PlaceHolder="lastname">
+        <StringInput ValidateOnKeyPress="true" Label="nom de famille" @bind-Value="Model.LastName" ValidationFor="@(() => Model.LastName)" PlaceHolder="lastname">
             <PrefixRenderFragment> <p style="width: 100px; margin: 0 0.25rem;">LastName</p> </PrefixRenderFragment>
         </StringInput>
     </div>
 
 
     <div class="my-3">
-        <IntInput ValidateOnKeyPress="false" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
+        <IntInput ValidateOnKeyPress="false" Label="Age" @bind-Value="Model.Age" ValidationFor="@(() => Model.Age)" PlaceHolder="age"></IntInput>
     </div>
     <div class="my-3">
-        <IntInput ValidateOnKeyPress="false" Label="Age" @bind-Value="_Model.Age" ValidationFor="@(() => _Model.Age)" PlaceHolder="age"></IntInput>
-    </div>
-
-    <div class="my-3">
-        <IntInput ValidateOnKeyPress="false" Label="Age wrapped" @bind-Value="_Model.AgeWrapper._Age" ValidationFor="@(() => _Model.AgeWrapper._Age)" PlaceHolder="age"></IntInput>
+        <IntInput ValidateOnKeyPress="false" Label="Age" @bind-Value="Model.Age" ValidationFor="@(() => Model.Age)" PlaceHolder="age"></IntInput>
     </div>
 
     <div class="my-3">
-        <InputText @bind-Value="_Model.LastName"></InputText>
+        <IntInput ValidateOnKeyPress="false" Label="Age wrapped" @bind-Value="Model.AgeWrapper._Age" ValidationFor="@(() => Model.AgeWrapper._Age)" PlaceHolder="age"></IntInput>
+    </div>
+
+    <div class="my-3">
+        <InputText @bind-Value="Model.LastName"></InputText>
     </div>
 
     <button type="submit">Validate</button>
-    <button @onclick="() => Test()">Test</button>
+    <button @onclick="Test">Test</button>
 </EditForm>
 
 <p>
-    @_Model.FirstName @_Model.LastName @_Model.Age
+    @Model.FirstName @Model.LastName @Model.Age
 </p>
 
 @code {
 
     private void Test()
     {
-        _EditContext.Validate();
+        EditContext?.Validate();
     }
 
-    public FormModel _Model { get; set; }
-    public EditContext _EditContext { get; set; }
+    private FormModel Model { get; set; } = null!;
+    private EditContext EditContext { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
-        _Model = new FormModel();
-        _EditContext = new EditContext(_Model);
+        Model = new FormModel();
+        EditContext = new EditContext(Model);
         await base.OnInitializedAsync();
     }
 
@@ -117,10 +116,11 @@
     {
         [Required]
         [MinLength(3)]
-        public string FirstName { get; set; }
+        public string FirstName { get; set; } = "";
+
         [Required]
         [MinLength(3)]
-        public string LastName { get; set; }
+        public string LastName { get; set; } = "";
 
         [Required]
         [Range(0, 100)]

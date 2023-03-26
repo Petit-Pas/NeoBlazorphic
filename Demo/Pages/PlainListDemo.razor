@@ -1,7 +1,6 @@
 ﻿@using NeoBlazorphic.Components.Lists.PlainLists
 @using NeoBlazorphic.Models.SelectableItems
 @using NeoBlazorphic.StyleParameters
-@using NeoBlazorphic.Components.Lists.PlainLists
 
 @page "/plainListDemo"
 
@@ -31,7 +30,7 @@
 
 
 @code {
-    public string Text { get; set; }
+    public string Text { get; set; } = "";
 
     public UniqueSelectableItemList<int> Integers { get; set; } = new()
     {

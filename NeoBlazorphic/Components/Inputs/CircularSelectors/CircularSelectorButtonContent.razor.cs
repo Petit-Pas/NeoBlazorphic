@@ -13,7 +13,7 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         ///     Can remain null otherwise
         /// </summary>
         [Parameter]
-        public T Item { get; set; }
+        public T? Item { get; set; }
 
         /// <summary>
         ///     Tells whether that button should react to the mouse or not
@@ -63,20 +63,20 @@ namespace NeoBlazorphic.Components.Inputs.CircularSelectors
         public double yShift { get; set; } = 0;
 
         [CascadingParameter]
-        public CircularSelector<T> Selector { get => selector; set { selector = value; SendToParent(); } }
+        public CircularSelector<T>? Selector { get => selector; set { selector = value; SendToParent(); } }
 
         /// <summary>
         ///     Additional classes to apply on the button itself
         /// </summary>
         [Parameter]
-        public string AdditionalClass { get; set; }
+        public string AdditionalClass { get; set; } = "";
 
         /// <summary>
         ///     A class applied on the button as a while when when the element is selected
         ///     Only works if Item is of type ISelectableItem.
         /// </summary>
         [Parameter]
-        public string SelectedClass { get; set; }
+        public string SelectedClass { get; set; } = "";
 
         private void SendToParent()
         {

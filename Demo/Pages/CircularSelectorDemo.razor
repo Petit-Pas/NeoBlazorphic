@@ -52,8 +52,8 @@ else
     public string CenterTextNum { get; set; } = "-1";
     public string CenterTextAlpha { get; set; } = "default";
 
-    public MultipleSelectableItemList<int> NumList { get; set; }
-    public UniqueSelectableItemList<string> AlphaList { get; set; }
+    public MultipleSelectableItemList<int> NumList { get; set; } = new();
+    public UniqueSelectableItemList<string> AlphaList { get; set; } = new();
 
     protected override void OnInitialized()
     {

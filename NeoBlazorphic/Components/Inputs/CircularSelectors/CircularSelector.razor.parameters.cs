@@ -4,6 +4,7 @@ using NeoBlazorphic.StyleParameters;
 
 namespace NeoBlazorphic.Components.Inputs.CircularSelectors;
 
+// ReSharper disable once ClassWithVirtualMembersNeverInherited.Global
 public partial class CircularSelector<T> : ComponentBase
 {
     /// <summary>
