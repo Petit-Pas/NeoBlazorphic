@@ -38,7 +38,7 @@ public partial class CheckBox
     ///     Tells if the checkbox should be enabled
     /// </summary>
     [Parameter]
-    public virtual bool IsEnabled { get; set; }
+    public virtual bool IsEnabled { get; set; } = true;
 
     // UI methods
     protected virtual string CheckedClass => IsChecked switch
