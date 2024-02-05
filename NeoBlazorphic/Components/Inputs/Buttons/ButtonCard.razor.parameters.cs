@@ -32,9 +32,16 @@ public partial class ButtonCard
     [Parameter]
     public virtual BorderRadius BorderRadius { get; set; } = BorderRadius.Default;
 
+    /// <summary>
+    ///     The padding of the card
+    /// </summary>
+    [Parameter]
+    public virtual Spacing Padding { get; set; } = Spacing._3;
+
     // UI Methods
 
     protected virtual string ColorClass => Color.GetCssClass();
     protected virtual string BorderRadiusStyle => BorderRadius.GetCssProperty();
+    protected virtual string PaddingClass => Padding.GetCssClass("padding");
 
 }

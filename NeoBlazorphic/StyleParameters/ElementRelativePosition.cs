@@ -8,10 +8,10 @@ namespace NeoBlazorphic.StyleParameters
 {
     public enum ElementRelativePosition
     {
-        Top,
-        Left,
-        Bottom,
-        Right,
+        Top = 1,
+        Left = 2,
+        Bottom = 4,
+        Right = 8,
         None
     }
 }
