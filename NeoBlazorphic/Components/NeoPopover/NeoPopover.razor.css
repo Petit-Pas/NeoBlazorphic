@@ -1,19 +1,26 @@
-﻿.neo-popover-container {
+﻿.neo-popover-parent {
     position: relative;
 }
 
-.neo-popover {
+.neo-popover-container {
     position: absolute;
     bottom: 0px;
     z-index: 100;
-    transform: translateY(0%);
+    transform: translateY(100%);
+    visibility: hidden;
+    overflow: hidden;
+    background-color: white;
+}
+
+.neo-popover {
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
+    transform: translateY(-100%);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
 .neo-popover-visible {
     opacity: 1;
     visibility: visible;
-    transform: translateY(100%);
+    transform: translateY(0%);
 }

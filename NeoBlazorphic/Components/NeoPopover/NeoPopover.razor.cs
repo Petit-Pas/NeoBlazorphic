@@ -17,6 +17,10 @@ public partial class NeoPopover
 
     private bool _displayPopover = false;
 
+    private Guid InternalId = Guid.NewGuid();
+
+    // TODO, when there is an opened popover, we should close it, no matter what it is, before opening a new one.
+
     public async Task TogglePopover()
     {
         _displayPopover = !_displayPopover;
@@ -28,7 +32,7 @@ public partial class NeoPopover
     {
         if (value)
         {
-            await _jsRuntime.InvokeVoidAsync("registerClickExceptForElement", nameof(ClickedOutsideOfElement), DotNetObjectReference.Create(this), "popoverId");
+            await _jsRuntime.InvokeVoidAsync("registerClickExceptForElement", nameof(ClickedOutsideOfElement), DotNetObjectReference.Create(this), InternalId);
         }
         else
         {

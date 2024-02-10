@@ -2,6 +2,8 @@
 
 @using NeoBlazorphic.Components.NeoPopover;
 
+@inject IJSRuntime JSRuntime
+
 <div> PopOverDemo </div>
 
 <NeoPopover @ref=Popover>
@@ -40,11 +42,54 @@
     <p>Other div with other content</p>
 </div>
 
+<NeoPopover @ref=Popover2>
+    <ChildContent>
+        <div style="background: blue">
+            <div>
+                Main content
+            </div>
+            <button @onclick="SwitchPopoverState2"> Click me to display popover </button>
+        </div>
+    </ChildContent>
+    <PopoverContent>
+        <div style="background: red;">
+            <p>
+                Popover content
+            </p>
+            <p>
+                Popover content
+            </p>
+            <p>
+                Popover content
+            </p>
+            <p>
+                Popover content
+            </p>
+            <p>
+                Popover content
+            </p>
+        </div>
+    </PopoverContent>
+</NeoPopover>
+<div style="background: green">
+    <p>Other div with other content</p>
+    <p>Other div with other content</p>
+    <p>Other div with other content</p>
+    <p>Other div with other content</p>
+</div>
+
 @code {
     public NeoPopover Popover { get; set; }
+    public NeoPopover Popover2 { get; set; }
 
-    public async Task SwitchPopoverState()
+    public async Task SwitchPopoverState(MouseEventArgs eventArgs)
     {
         await Popover.TogglePopover();
     }
+
+    public async Task SwitchPopoverState2(MouseEventArgs eventArgs)
+    {
+        await Popover2.TogglePopover();
+    }
+
 }
