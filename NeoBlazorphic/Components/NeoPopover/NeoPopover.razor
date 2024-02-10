@@ -1,0 +1,15 @@
+﻿
+@if (ChildContent != null)
+{
+    <div class="neo-popover-container">
+        @if (PopoverContent != null)
+        {
+            <div id="popoverId" class="neo-popover @(_displayPopover ? "neo-popover-visible" : "")">
+                @PopoverContent
+            </div>
+        }
+        <div>
+            @ChildContent
+        </div>
+    </div>
+}

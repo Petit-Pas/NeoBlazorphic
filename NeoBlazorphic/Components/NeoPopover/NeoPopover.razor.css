@@ -1,0 +1,19 @@
+﻿.neo-popover-container {
+    position: relative;
+}
+
+.neo-popover {
+    position: absolute;
+    bottom: 0px;
+    z-index: 100;
+    transform: translateY(0%);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
+}
+
+.neo-popover-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(100%);
+}

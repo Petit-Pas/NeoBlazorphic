@@ -1,0 +1,50 @@
+﻿@page "/PopOverDemo"
+
+@using NeoBlazorphic.Components.NeoPopover;
+
+<div> PopOverDemo </div>
+
+<NeoPopover @ref=Popover>
+    <ChildContent>
+        <div style="background: blue"> 
+            <div>
+                Main content 
+            </div>
+            <button @onclick="SwitchPopoverState"> Click me to display popover </button>
+        </div>
+    </ChildContent>
+    <PopoverContent>
+        <div style="background: red;">
+            <p>
+                Popover content
+            </p>
+            <p>
+                Popover content
+            </p>
+            <p>
+                Popover content
+            </p>
+            <p>
+                Popover content
+            </p>
+            <p>
+                Popover content
+            </p>
+        </div>
+    </PopoverContent>
+</NeoPopover>
+<div style="background: green">
+    <p>Other div with other content</p>
+    <p>Other div with other content</p>
+    <p>Other div with other content</p>
+    <p>Other div with other content</p>
+</div>
+
+@code {
+    public NeoPopover Popover { get; set; }
+
+    public async Task SwitchPopoverState()
+    {
+        await Popover.TogglePopover();
+    }
+}
