@@ -19,31 +19,36 @@ public partial class NeoPopover
 
     private Guid InternalId = Guid.NewGuid();
 
-    // TODO, when there is an opened popover, we should close it, no matter what it is, before opening a new one.
+    // TODO if many popup keeps appearing, when there is an opened popover, we should close it, no matter what it is, before opening a new one.
 
     public async Task TogglePopover()
     {
-        _displayPopover = !_displayPopover;
-        await HandleClickOutsideOfElementEvent(_displayPopover);
-        StateHasChanged();
-    }
-
-    private async Task HandleClickOutsideOfElementEvent(bool value)
-    {
-        if (value)
+        if (_displayPopover)
         {
-            await _jsRuntime.InvokeVoidAsync("registerClickExceptForElement", nameof(ClickedOutsideOfElement), DotNetObjectReference.Create(this), InternalId);
+            HidePopover();
         }
         else
         {
-            await _jsRuntime.InvokeVoidAsync("unregisterClickExceptForElement", value);
+            await ShowPopover();
         }
     }
 
-    [JSInvokable]
-    public async Task ClickedOutsideOfElement()
+    public void HidePopover()
     {
-        await TogglePopover();
+        _displayPopover = false;
+        StateHasChanged();
     }
 
+    public async Task ShowPopover()
+    {
+        _displayPopover = true;
+        await _jsRuntime.InvokeVoidAsync("registerClickExceptForElement", nameof(ClickedOutsideOfElement), DotNetObjectReference.Create(this), InternalId);
+        StateHasChanged();
+    }
+
+    [JSInvokable]
+    public void ClickedOutsideOfElement()
+    {
+        HidePopover();
+    }
 }
