@@ -1,17 +1,17 @@
-﻿@using NeoBlazorphic.Components.Lists.PlainLists
+﻿@using NeoBlazorphic.Components.Lists.NeoPlainLists
 @using NeoBlazorphic.Models.SelectableItems
 @using NeoBlazorphic.StyleParameters
 
 @page "/plainListDemo"
 
 <div style="height: 15em">
-    <PlainList ShadowPosition="ShadowPosition.Out" T="SelectableItem<string>" Items="Strings" Color=@ThemeColor.Danger>
+    <NeoPlainList ShadowPosition="ShadowPosition.Out" T="SelectableItem<string>" Items="Strings" Color=@ThemeColor.Danger>
         <ItemRenderFragment Context="str">
             <div class="p-2">
                 @str.Item
             </div>
         </ItemRenderFragment>
-    </PlainList>
+    </NeoPlainList>
 </div>
 
 <br/>
@@ -19,23 +19,23 @@
 <input type="text" @bind="Text" />
 
 <div style="height: 15em">
-    <PlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Item.ToString().Contains(s)">
+    <NeoPlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Item.ToString().Contains(s)">
         <ItemRenderFragment Context="item">
             <div class="py-1 px-3">
                 @item.Item
             </div>
         </ItemRenderFragment>
-    </PlainList>
+    </NeoPlainList>
 </div>
 
 <div style="height: 15em">
-    <PlainList ShadowPosition="ShadowPosition.In" T="string" Items="NonBoxedStrings" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Contains(s)" OnElementClickCallBack="(element) => LastClicked = element">
+    <NeoPlainList ShadowPosition="ShadowPosition.In" T="string" Items="NonBoxedStrings" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Contains(s)" OnElementClickCallBack="(element) => LastClicked = element">
         <ItemRenderFragment Context="item">
             <div class="py-1 px-3">
                 @item
             </div>
         </ItemRenderFragment>
-    </PlainList>
+    </NeoPlainList>
 </div>
 
 <p> Last element clicked in above list: </p>
