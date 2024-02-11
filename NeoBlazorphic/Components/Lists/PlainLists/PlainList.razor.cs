@@ -32,13 +32,15 @@ public partial class PlainList<T> : ComponentBase
     ///     Just subscribe the click event to this method and the communication with the ISelectableItemList is automatically handled
     /// </summary>
     /// <param name="itemClicked"></param>
-    protected virtual void ItemClicked(T itemClicked)
+    protected virtual async Task ItemClicked(T itemClicked)
     {
         if (itemClicked is ISelectableItem item && Items is ISelectableItemList items)
         {
             items.Select(item);
             StateHasChanged();
         }
+
+        await OnElementClickCallBack.InvokeAsync(itemClicked);
     }
 
     protected virtual string GetSelectedClass(T item) => item?.IsSelected() ?? false ? "selected" : "";

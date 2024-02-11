@@ -28,6 +28,19 @@
     </PlainList>
 </div>
 
+<div style="height: 15em">
+    <PlainList ShadowPosition="ShadowPosition.In" T="string" Items="NonBoxedStrings" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Contains(s)" OnElementClickCallBack="(element) => LastClicked = element">
+        <ItemRenderFragment Context="item">
+            <div class="py-1 px-3">
+                @item
+            </div>
+        </ItemRenderFragment>
+    </PlainList>
+</div>
+
+<p> Last element clicked in above list: </p>
+<p> @LastClicked </p>
+
 
 @code {
     public string Text { get; set; } = "";
@@ -61,5 +74,12 @@
         new SelectableItem<string>("hello"), 
         new SelectableItem<string>("world"), 
         new SelectableItem<string>("how is it?")
+    };
+
+    public string LastClicked { get; set; } = "";
+
+    public List<string> NonBoxedStrings { get; set; } = new()
+    {
+        "Titi", "Tata", "Toto"
     };
 }

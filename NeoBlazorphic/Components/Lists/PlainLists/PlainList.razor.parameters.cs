@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using NeoBlazorphic.Extensions.BaseTypes;
 using NeoBlazorphic.StyleParameters;
 
@@ -65,6 +66,13 @@ public partial class PlainList<T> : ComponentBase
     /// </summary>
     [Parameter]
     public Func<T, string, bool>? Filter { get; set; }
+
+    /// <summary>
+    ///     An event to subscribe for the click on an element.
+    ///     IS a preffered way to handle interaction when you don't want to have to use SelectableItemList and all
+    /// </summary>
+    [Parameter]
+    public virtual EventCallback<T> OnElementClickCallBack { get; set; }
 
 
     // UI Methods
