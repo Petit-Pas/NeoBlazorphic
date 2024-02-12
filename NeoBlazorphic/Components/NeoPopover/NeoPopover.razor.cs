@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 
 namespace NeoBlazorphic.Components.NeoPopover;
 
-public partial class NeoPopover
+public partial class NeoPopover : IDisposable
 {
     [Inject]
     private IJSRuntime _jsRuntime { get; set; }
@@ -26,6 +26,8 @@ public partial class NeoPopover
         if (_displayPopover)
         {
             HidePopover();
+            await _jsRuntime.InvokeVoidAsync("unregisterClickExceptForElement");
+            
         }
         else
         {
@@ -50,5 +52,13 @@ public partial class NeoPopover
     public void ClickedOutsideOfElement()
     {
         HidePopover();
+    }
+
+    public void Dispose()
+    {
+        if (_displayPopover)
+        {
+            _jsRuntime.InvokeVoidAsync("unregisterClickExceptForElement");
+        }
     }
 }

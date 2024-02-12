@@ -1,6 +1,7 @@
 ﻿.neo-plain-list {
     overflow: auto;
     height: 100%;
+    border-radius: inherit;
 }
 
 .neo-plain-list-item:nth-child(even) {
