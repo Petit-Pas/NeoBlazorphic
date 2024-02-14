@@ -21,7 +21,7 @@ public partial class NeoPopover : IDisposable
 
     // TODO if many popup keeps appearing, when there is an opened popover, we should close it, no matter what it is, before opening a new one.
 
-    public async Task TogglePopover()
+    public async Task TogglePopoverAsync()
     {
         if (_displayPopover)
         {
@@ -31,7 +31,7 @@ public partial class NeoPopover : IDisposable
         }
         else
         {
-            await ShowPopover();
+            await ShowPopoverAsync();
         }
     }
 
@@ -41,7 +41,7 @@ public partial class NeoPopover : IDisposable
         StateHasChanged();
     }
 
-    public async Task ShowPopover()
+    public async Task ShowPopoverAsync()
     {
         _displayPopover = true;
         await _jsRuntime.InvokeVoidAsync("registerClickExceptForElement", nameof(ClickedOutsideOfElement), DotNetObjectReference.Create(this), InternalId);
