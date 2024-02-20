@@ -5,7 +5,7 @@
 @page "/plainListDemo"
 
 <div style="height: 15em">
-    <NeoPlainList ShadowPosition="ShadowPosition.Out" T="SelectableItem<string>" Items="Strings" Color=@ThemeColor.Danger>
+    <NeoPlainList BorderType="NeoBorderType.NeoShadowOut" T="SelectableItem<string>" Items="Strings" Color=@ThemeColor.Danger>
         <ItemRenderFragment Context="str">
             <div class="p-2">
                 @str.Item
@@ -19,7 +19,7 @@
 <input type="text" @bind="Text" />
 
 <div style="height: 15em">
-    <NeoPlainList ShadowPosition="ShadowPosition.In" T="SelectableItem<int>" Items="Integers" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Item.ToString().Contains(s)">
+    <NeoPlainList BorderType="NeoBorderType.NeoShadowIn" T="SelectableItem<int>" Items="Integers" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Item.ToString().Contains(s)">
         <ItemRenderFragment Context="item">
             <div class="py-1 px-3">
                 @item.Item
@@ -29,7 +29,7 @@
 </div>
 
 <div style="height: 15em">
-    <NeoPlainList ShadowPosition="ShadowPosition.In" T="string" Items="NonBoxedStrings" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Contains(s)" OnElementClickCallBack="(element) => LastClicked = element">
+    <NeoPlainList BorderType="NeoBorderType.NeoShadowIn" T="string" Items="NonBoxedStrings" Color=@ThemeColor.Primary FilterString="@Text" Filter="(item, s) => string.IsNullOrEmpty(s) || item.Contains(s)" OnElementClickCallBack="(element) => LastClicked = element">
         <ItemRenderFragment Context="item">
             <div class="py-1 px-3">
                 @item

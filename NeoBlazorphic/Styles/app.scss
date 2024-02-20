@@ -100,6 +100,10 @@
     box-shadow: inset 5px 5px 10px var(--dark-shadow-color), inset -5px -5px 10px var(--light-shadow-color);
 }
 
+.neo-light-border {
+    border: 1px var(--neo-light-main-color) solid;
+}
+
 .neo-flat {
     --neo-left-bg-color: var(--neo-main-color);
     --neo-right-bg-color: var(--neo-main-color);

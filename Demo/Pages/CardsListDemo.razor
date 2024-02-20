@@ -7,7 +7,7 @@
 
 <h1> CardsList Demo </h1>
 
-<Card ShadowPosition="ShadowPosition.In" Padding="Spacing._1" Margin="Spacing._0" BorderRadius="@(new BorderRadius(10))">
+<Card BorderType="NeoBorderType.NeoShadowIn" Padding="Spacing._1" Margin="Spacing._0" BorderRadius="@(new BorderRadius(10))">
     <div class="" style="height: 40em">
         <CardsList AccentClass="@ThemeColor.Primary" T="SelectableItem<int>" Items="Integers" FilterString="@SearchBarQuery" Filter="(i, filter) => i.Item.ToString().Contains(filter)">            
             

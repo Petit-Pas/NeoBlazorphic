@@ -30,7 +30,7 @@ public partial class Card
     ///     The shadow position of the card
     /// </summary>
     [Parameter]
-    public virtual ShadowPosition ShadowPosition { get; set; } = ShadowPosition.Out;
+    public virtual NeoBorderType BorderType { get; set; } = NeoBorderType.NeoShadowOut;
 
     /// <summary>
     ///     The shape of the card
@@ -71,7 +71,7 @@ public partial class Card
     // UI Methods
 
     protected virtual string ColorClass => Color.GetCssClass();
-    protected virtual string ShadowClass => ShadowPosition.GetCssClass();
+    protected virtual string BorderTypeClass => BorderType.GetCssClass();
     protected virtual string ShapeClass => Shape.GetCssClass();
     protected virtual string BorderRadiusStyle => BorderRadius.GetCssProperty();
     protected virtual string PaddingClass => Padding.GetCssClass("padding");

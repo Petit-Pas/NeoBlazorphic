@@ -16,14 +16,13 @@
                 <label class="input-label" for="@Id">@Label</label>
             }
 
-
             <div class="input-row">                
                 
                 @* Optional prefix to the field *@
                 @if (PrefixRenderFragment != null)
                 {
                     @* This section will automatically take grid.col 1 if displayed *@
-                    <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnRight">
+                    <Card BorderType="NeoBorderType.NeoLightBorder" Padding="Spacing._2" BorderRadius="_squaredOnRight">
                         @PrefixRenderFragment
                     </Card>
                 }
@@ -32,7 +31,7 @@
                 @* Will override colors in that order: primary when focused > danger if invalid > base by default *@
                 <div class="input-container neo-base @InvalidClass neo-primary-on-focus">
 
-                    <Card Color="ThemeColor.None" ShadowPosition="ShadowPosition.In" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
+                    <Card Color="ThemeColor.None" BorderType="NeoBorderType.NeoShadowIn" Padding="Spacing._2" BorderRadius="@GetFieldBorderRadius()">
                         <input type="text" id="@Id" placeholder="@Placeholder"
                                class="input"
                                @onfocusin="OnFocusIn" @onfocusout="OnFocusOut"
@@ -45,7 +44,7 @@
                 @if (SuffixRenderFragment != null)
                 {
                     @* This section will automatically take grid.col 3 if displayed *@
-                    <Card ShadowPosition="ShadowPosition.Out" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
+                    <Card BorderType="NeoBorderType.NeoLightBorder" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
                         @SuffixRenderFragment
                     </Card>
                 }

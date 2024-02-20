@@ -19,7 +19,7 @@ public partial class NeoPlainList<T> : ComponentBase
     ///     The ShadowPosition to use for the main card that embeds the list
     /// </summary>
     [Parameter]
-    public virtual ShadowPosition ShadowPosition { get; set; } = ShadowPosition.Out;
+    public virtual NeoBorderType BorderType { get; set; } = NeoBorderType.NeoShadowOut;
 
     /// <summary>
     ///     The BorderRadius to use for the main card that embeds the list

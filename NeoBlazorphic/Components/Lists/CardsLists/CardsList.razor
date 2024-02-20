@@ -19,7 +19,7 @@
             @foreach (var item in itemsToDisplay)
             {
                 <li class="card-list-card">
-                    <Card BorderRadius="@BorderRadius" Shape=@BackgroundShape.Flat ShadowPosition=@ShadowPosition.Out
+                    <Card BorderRadius="@BorderRadius" Shape=@BackgroundShape.Flat BorderType="NeoBorderType.NeoShadowOut"
                           Color="@ColorFor(item)" AdditionalClasses="@AdditionalClasses" 
                           OnMouseClickCallBack="() => ItemClicked(item)">
                         @ItemRenderFragment(item)
