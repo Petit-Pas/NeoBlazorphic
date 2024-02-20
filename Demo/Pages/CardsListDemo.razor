@@ -70,7 +70,7 @@
 
 <br/>
 
-<CardsList T="Person" Items="Persons" Filter="(person, filter) => person.Age.ToString().Contains(filter)" BorderRadius="@(new BorderRadius(10))">
+<CardsList T="Person" Items="Persons" FilterString="@SearchBarQuery" Filter="(person, filter) => person.Age.ToString().Contains(filter)" BorderRadius="@(new BorderRadius(10))">
     <ItemRenderFragment Context="person">
         <div class="row">
             <div class="col">

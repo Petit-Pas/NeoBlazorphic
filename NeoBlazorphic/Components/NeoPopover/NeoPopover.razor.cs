@@ -15,7 +15,10 @@ public partial class NeoPopover : IDisposable
     [Parameter]
     public RenderFragment? PopoverContent { get; set; }
 
-    private bool _displayPopover = false;
+    public bool PopoverOpened = false;
+
+    [Parameter]
+    public EventCallback PopoverOpenedChanged { get; set; }
 
     private Guid InternalId = Guid.NewGuid();
 
@@ -23,7 +26,7 @@ public partial class NeoPopover : IDisposable
 
     public async Task TogglePopoverAsync()
     {
-        if (_displayPopover)
+        if (PopoverOpened)
         {
             HidePopover();
             await _jsRuntime.InvokeVoidAsync("unregisterClickExceptForElement");
@@ -35,17 +38,24 @@ public partial class NeoPopover : IDisposable
         }
     }
 
-    public void HidePopover()
+    public async void HidePopover()
     {
-        _displayPopover = false;
+        PopoverOpened = false;
         StateHasChanged();
+        await OnPopoverOpenedChanged();
     }
 
     public async Task ShowPopoverAsync()
     {
-        _displayPopover = true;
+        PopoverOpened = true;
         await _jsRuntime.InvokeVoidAsync("registerClickExceptForElement", nameof(ClickedOutsideOfElement), DotNetObjectReference.Create(this), InternalId);
         StateHasChanged();
+        await OnPopoverOpenedChanged();
+    }
+
+    private async Task OnPopoverOpenedChanged()
+    {
+        await PopoverOpenedChanged.InvokeAsync();
     }
 
     [JSInvokable]
@@ -56,7 +66,7 @@ public partial class NeoPopover : IDisposable
 
     public void Dispose()
     {
-        if (_displayPopover)
+        if (PopoverOpened)
         {
             _jsRuntime.InvokeVoidAsync("unregisterClickExceptForElement");
         }

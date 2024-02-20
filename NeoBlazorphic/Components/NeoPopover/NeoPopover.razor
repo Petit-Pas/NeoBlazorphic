@@ -5,7 +5,7 @@
         @if (PopoverContent != null)
         {
             <div class="neo-popover-container">
-                <div class="neo-popover @(_displayPopover ? "neo-popover-visible" : "")">
+                <div class="neo-popover @(PopoverOpened ? "neo-popover-visible" : "")">
                     @PopoverContent
                 </div>
             </div>
