@@ -22,7 +22,7 @@
                 @if (PrefixRenderFragment != null)
                 {
                     @* This section will automatically take grid.col 1 if displayed *@
-                    <Card BorderType="NeoBorderType.NeoLightBorder" Padding="Spacing._2" BorderRadius="_squaredOnRight">
+                    <Card BorderType="NeoBorderType.NeoLightBorder" Padding="PrefixPadding" BorderRadius="_squaredOnRight">
                         @PrefixRenderFragment
                     </Card>
                 }
@@ -44,7 +44,7 @@
                 @if (SuffixRenderFragment != null)
                 {
                     @* This section will automatically take grid.col 3 if displayed *@
-                    <Card BorderType="NeoBorderType.NeoLightBorder" Padding="Spacing._2" BorderRadius="_squaredOnLeft">
+                    <Card BorderType="NeoBorderType.NeoLightBorder" Padding="SuffixPadding" BorderRadius="_squaredOnLeft">
                         @SuffixRenderFragment
                     </Card>
                 }

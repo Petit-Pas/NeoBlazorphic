@@ -47,6 +47,12 @@ public partial class NeoBaseInput<T>
     [Parameter]
     public virtual bool ValidateOnKeyPress { get; set; }
 
+    [Parameter]
+    public virtual Spacing PrefixPadding { get; set; } = Spacing._2;
+
+    [Parameter]
+    public virtual Spacing SuffixPadding { get; set; } = Spacing._2;
+
     // UI Methods
     protected virtual string InvalidClass => IsInvalid switch
     {
