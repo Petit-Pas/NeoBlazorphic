@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <IsPublishable>True</IsPublishable>
     <PackageId>$(AssemblyName)</PackageId>
-    <Version>1.0.1-alpha9</Version>
+    <Version>1.0.1</Version>
 	<Company>None</Company>
 	<Authors>benoit_hoffman</Authors>
 	<Description>Blazor component library using the neomorphism style</Description>
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
