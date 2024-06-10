@@ -38,8 +38,18 @@ public partial class ButtonCard
     [Parameter]
     public virtual Spacing Padding { get; set; } = Spacing._3;
 
-    // UI Methods
+    /// <summary>
+    ///     Tells if the checkbox should be enabled
+    /// </summary>
+    [Parameter]
+    public virtual bool IsEnabled { get; set; } = true;
 
+    // UI Methods
+    protected virtual string EnabledClass => IsEnabled switch
+    {
+        true => "enabled",
+        false => "disabled",
+    };
     protected virtual string ColorClass => Color.GetCssClass();
     protected virtual string BorderRadiusStyle => BorderRadius.GetCssProperty();
     protected virtual string PaddingClass => Padding.GetCssClass("padding");
